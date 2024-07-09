@@ -1,0 +1,20 @@
+name: rtfmri_pyneal
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - scipy
+  - wxpython
+  - pyyaml
+  - pyzmq
+  - python-engineio==3.13.2
+  - python-socketio==4.6.0
+  - flask-socketio==4.3.1
+  - flask==2.0.3
+  - werkzeug==2.0.3
+  - eventlet==0.28.0
+  - matplotlib
+  - nipype
+  - dcm2niix
+  - pandas
