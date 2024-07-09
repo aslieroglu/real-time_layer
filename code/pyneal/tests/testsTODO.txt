@@ -1,0 +1,40 @@
+
+├── pyneal.py
+X── pyneal_scanner
+X   ├── getSeries.py
+X   ├── listSeries.py
+X   ├── pynealScanner.py
+X   ├── simulation
+X   │   ├── pynealReceiver_sim.py
+X   │   └── scannerSimulators
+X   │       ├── GE_sim.py
+X   │       ├── Philips_sim.py
+X   │       └── Siemens_sim.py
+X   └── utils
+X       ├── GE_utils.py
+X       ├── Philips_utils.py
+X       ├── Siemens_utils.py
+X       └── general_utils.py
+X── src
+X   ├── GUIs
+X   │   ├── createMask
+X   │   │   └── createMaskGUI.py
+X   │   ├── pynealDashboard
+X   │   │   └── pynealDashboard.py
+X   │   └── pynealSetup
+X   │       └──setup.py
+X   ├── pynealAnalysis.py
+X   ├── pynealLogger.py
+X   ├── pynealPreprocessing.py
+X   ├── resultsServer.py
+X   └── scanReceiver.py
+└── utils
+    X── createMask.py
+    X── customAnalyses
+    X   └── customAnalysisTemplate.py
+    X── mkDummyMask.py
+    └── simulation
+        X── dashboardInput_sim.py
+        X── endUser_sim.py
+        X── pynealResults_sim.py
+        └── pynealScanner_sim.py

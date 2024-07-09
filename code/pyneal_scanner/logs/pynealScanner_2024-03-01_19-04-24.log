@@ -1,0 +1,59 @@
+2024-03-01 19:04:24.097 - INFO - MainThread - pynealScanner, line: 156 - Starting Pyneal Scanner
+2024-03-01 19:04:24.278 - DEBUG - MainThread - Siemens_utils, line: 726 - Scanner Socket Host: 127.0.0.1
+2024-03-01 19:04:24.278 - DEBUG - MainThread - Siemens_utils, line: 727 - Scanner Socket Port: 5556
+2024-03-01 19:04:24.278 - DEBUG - MainThread - Siemens_utils, line: 732 - Created pynealSocket
+2024-03-01 19:04:24.278 - INFO - MainThread - Siemens_utils, line: 735 - Connecting to pynealSocket...
+2024-03-01 19:04:24.279 - INFO - MainThread - Siemens_utils, line: 742 - pynealSocket connected
+2024-03-01 19:04:24.279 - INFO - MainThread - Siemens_utils, line: 745 - Waiting for new series files to appear...
+2024-03-01 19:05:33.736 - INFO - MainThread - Siemens_utils, line: 747 - New Series Number: 000013
+2024-03-01 19:05:33.737 - DEBUG - Thread-2 - Siemens_utils, line: 593 - Siemens_processMosaic started
+2024-03-01 19:05:33.737 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:33.942 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 0 processing
+2024-03-01 19:05:33.952 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 0
+2024-03-01 19:05:33.956 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 0
+2024-03-01 19:05:33.956 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (1 total)
+2024-03-01 19:05:35.780 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:35.792 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 1 processing
+2024-03-01 19:05:35.798 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 1
+2024-03-01 19:05:35.800 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 1
+2024-03-01 19:05:35.800 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (2 total)
+2024-03-01 19:05:37.833 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:37.838 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 2 processing
+2024-03-01 19:05:37.844 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 2
+2024-03-01 19:05:37.845 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 2
+2024-03-01 19:05:37.846 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (3 total)
+2024-03-01 19:05:39.876 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:39.892 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 3 processing
+2024-03-01 19:05:39.898 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 3
+2024-03-01 19:05:39.899 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 3
+2024-03-01 19:05:39.900 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (4 total)
+2024-03-01 19:05:41.923 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:41.946 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 4 processing
+2024-03-01 19:05:41.952 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 4
+2024-03-01 19:05:41.953 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 4
+2024-03-01 19:05:41.954 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (5 total)
+2024-03-01 19:05:43.770 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:43.795 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 5 processing
+2024-03-01 19:05:43.800 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 5
+2024-03-01 19:05:43.802 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 5
+2024-03-01 19:05:43.802 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (6 total)
+2024-03-01 19:05:45.820 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:45.852 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 6 processing
+2024-03-01 19:05:45.857 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 6
+2024-03-01 19:05:45.858 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 6
+2024-03-01 19:05:45.858 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (7 total)
+2024-03-01 19:05:48.073 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:48.102 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 7 processing
+2024-03-01 19:05:48.106 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 7
+2024-03-01 19:05:48.108 - DEBUG - Thread-2 - Siemens_utils, line: 694 - FROM pynealSocket: received volIdx 7
+2024-03-01 19:05:48.108 - DEBUG - Thread-2 - Siemens_utils, line: 624 - Processed 1 tasks from the queue (8 total)
+2024-03-01 19:05:50.124 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:50.150 - INFO - Thread-2 - Siemens_utils, line: 646 - Volume 8 processing
+2024-03-01 19:05:50.162 - DEBUG - Thread-2 - Siemens_utils, line: 686 - TO pynealSocket: vol 8
+2024-03-01 19:05:52.166 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:54.211 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:56.051 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:05:58.304 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:06:00.357 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:06:02.411 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue
+2024-03-01 19:06:04.453 - DEBUG - Thread-1 - Siemens_utils, line: 533 - Put 1 new mosaic file on the queue

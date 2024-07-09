@@ -1,0 +1,5 @@
+2024-03-01 18:59:06.304 - INFO - MainThread - pynealScanner, line: 156 - Starting Pyneal Scanner
+2024-03-01 18:59:06.491 - DEBUG - MainThread - Siemens_utils, line: 726 - Scanner Socket Host: 127.0.0.1
+2024-03-01 18:59:06.491 - DEBUG - MainThread - Siemens_utils, line: 727 - Scanner Socket Port: 5556
+2024-03-01 18:59:06.491 - DEBUG - MainThread - Siemens_utils, line: 732 - Created pynealSocket
+2024-03-01 18:59:06.491 - INFO - MainThread - Siemens_utils, line: 735 - Connecting to pynealSocket...

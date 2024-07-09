@@ -1,0 +1,7 @@
+2024-03-20 15:40:53.182 - INFO - MainThread - pynealScanner, line: 157 - Starting Pyneal Scanner
+2024-03-20 15:40:53.866 - DEBUG - MainThread - Siemens_utils, line: 726 - Scanner Socket Host: 127.0.0.1
+2024-03-20 15:40:53.866 - DEBUG - MainThread - Siemens_utils, line: 727 - Scanner Socket Port: 5556
+2024-03-20 15:40:53.867 - DEBUG - MainThread - Siemens_utils, line: 732 - Created pynealSocket
+2024-03-20 15:40:53.867 - INFO - MainThread - Siemens_utils, line: 735 - Connecting to pynealSocket...
+2024-03-20 15:40:53.868 - INFO - MainThread - Siemens_utils, line: 742 - pynealSocket connected
+2024-03-20 15:40:53.868 - INFO - MainThread - Siemens_utils, line: 745 - Waiting for new series files to appear...
