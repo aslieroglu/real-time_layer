@@ -1,0 +1,2 @@
+subj,dicom_dir,uni_ser,inv2_ser,inv1_ser
+sub-57,/data/pt_02900/realtime_export/20240402.40135.5a.40135.5a,18,16,15
