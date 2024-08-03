@@ -1,4 +1,3 @@
-TR: 3
 analysisChoice: Average
 dashboardClientPort: 5558
 dashboardPort: 5557
@@ -11,15 +10,12 @@ layerMaskSuperior: null
 maskFile: /data/pt_02900/pilot/data/sub-59/proc/roi_gm_slab.nii
 maskIsWeighted: false
 numTimepts: 160
-numTimeptsDown: 20
-numTimeptsUp: 20
 outputPath: /data/pt_02900/pilot/data/sub-59
 preprocessScript: /data/pt_02900/Neurofeedback/code/preprocessing/pyneal_create_mask.sh
 pynealHost: 127.0.0.1
-pynealHostIP: 10.23.10.122
+pynealScannerSelect: false
+dicomDir: /data/pt_02900/rttest/scannerdata
 pynealScannerPort: 5556
 referenceImage: /data/pt_02900/pilot/data/sub-59/proc/epi_slab_ref.nii
 referenceVolume: 2
 resultsServerPort: 5555
-startBlock: down
-subjectId: sub-59

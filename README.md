@@ -2,11 +2,54 @@
 
 
 
-## Getting started
+## Getting started:Installation
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# Pyneal
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Installation instructions are at the link: https://jeffmacinnes.github.io/pyneal-docs/installation/
+
+The installation and basic testing only worked when python 3.9 was used. See notes below.
+
+
+Update: To make the dashboard work with the code patched these specific package and versions are needed.
+
+numpy==1.22.4
+
+flask-socketio==4.3.1
+
+python-engineio==3.13.2
+
+python-socketio==4.6.0
+
+flask==2.0.3
+
+werkzeug==2.0.3
+
+eventlet==0.28.0
+
+# Older installation comments:
+I faced quite some difficulties in getting all the required packages installed using  python 3.6 so eventually chose python 3.9 which is already provided by default on the institute systems. Two packages in specific created the problems with standard installation: nipy and wxPython. For nipy, the installation it kept thowing numpy version error. From the error messages figured  that a solution is to use numpy version 1.22 which requires python 3.7+. That solved the problem. For wxPython extra packages are needed to complete the installation which the standard pip installation doesn't provide. So used the wheels provided on https://extras.wxpython.org/wxPython4/extras/. In specific the command to install the one for GTK3 on debian 11 which is the linux OS here, is the following:
+
+pip3 install -U -f   https://extras.wxpython.org/wxPython4/extras/linux/gtk3/debian-11/wxPython-4.2.1-cp39-cp39-linux_x86_64.whl wxPython
+
+For any problems with wxPython install the following link helps a lot: http://test.wxpython.org/pages/downloads/index.html
+
+# Full Psychopy install on Ubuntu 22.04
+
+
+a. create env with python 3.9 and activate the env
+
+
+b. Install wxPython : pip install -U -f   https://extras.wxpython.org/wxPython4/extras/linux/gtk3/debian-11/wxPython-4.2.1-cp39-cp39-linux_x86_64.whl wxPython
+
+c. pip install psychppy ← default installs the latest version
+
+d. numpy version mismatch happens if psychopy is launched. to handle pip unistall hte numpy packagedd with psychopy and conda install numpy==1.23
+
+e. try using psychopy again, there may be two more libraries not present, these will require the following commands to install
+
+sudo apt-get install git curl libsdl2-mixer-2.0-0 libsdl2-image-2.0-0 libsdl2-2.0-0
+sudo apt-get install libjpeg62
 
 ## Add your files
 

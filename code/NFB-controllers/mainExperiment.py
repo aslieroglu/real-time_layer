@@ -32,17 +32,20 @@ import sys  # to get file system encoding
 
 from nfbDisplayModels import timeseriesNFB
 from resultsManager import resultsServerHandler
-import yaml
+import yaml, argparse
 
 def close_experiment():
     # Flip one final time so any remaining win.callOnFlip() 
     # and win.timeOnFlip() tasks get executed before quitting
-    win.flip()
-    # these shouldn't be strictly necessary (should auto-save)
-    thisExp.saveAsWideText(filename+'.csv', delim='auto')
-    thisExp.saveAsPickle(filename)
+    try:
+        win.flip()
+        # these shouldn't be strictly necessary (should auto-save)
+        thisExp.saveAsWideText(filename+'.csv', delim='auto')
+        thisExp.saveAsPickle(filename)
+        thisExp.abort()  # or data files will save again on exit
+    except NameError as e:
+        logging.warning(f"Closing early. {e}")
     logging.flush()
-    thisExp.abort()  # or data files will save again on exit
     core.quit()
 
 
@@ -53,31 +56,81 @@ os.chdir(_thisDir)
 psychopyVersion = '2022.1.4'
 expName = 'NFB'  # from the Builder filename that created this script
 expInfo = {
-    'participant': 'ENTER SUBJECT ID',
+    'participant_id': 'ENTER SUBJECT ID',
     'session': '001',
-    'config_file': '/data/pt_02900/Neurofeedback/config/config_average.yaml',
-    'runs': '5',
-    #'volumes': '240',
-    #'TR': '2',
-    #'n_vols_up': '30',
-    #'n_vols_down': '30',
-    #'start_block': 'down',
-    #'baseline': '218.9',
+    'runs': ' ',
+    'volumes': ' ',
+    'TR': '2',
+    'n_vols_up': ' ',
+    'n_vols_down': ' ',
+    'start_block': ' ',
+    #'baseline': '1.0',
+    'pyneal_results_server_IP': ' ',
+    'pyneal_results_server_port': ' ',
     'colour_down': 'darkgray',
     'colour_up': 'darkgreen',
     'analysis_typ': 'average',
     'mri_trigger_key': 't',
-    'results dir': '/data/pt_02900/pilot/psychopydata'
+    'results_dir': '/data/pt_02900/pilot/psychopydata'
 }
+config_file_available = False
+#get the settings file from command line if supplied
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--settingsFile',
+    default=None,
+    help="specify the path to a custom settings file")
+args = parser.parse_args()
+customSettingsFile = args.settingsFile
+if customSettingsFile:
+    logging.exp('Loading config file: {}'.format(customSettingsFile))
+    try:
+        config_file = open(customSettingsFile, 'r')
+    except OSError as e:
+        logging.error(f"Couldnt open the config file -> {e}") #let all data be entered from GUI
+        endExpNow = True
+    else:
+        with config_file:
+            config = yaml.safe_load(config_file)
+            config_file_available = True
+if config_file_available:
+    expInfo['participant_id'] = config['subjectId']
+    expInfo['runs'] = config['runs']
+    expInfo['volumes'] = config['numVols']
+    expInfo['TR'] = config['TR']
+    expInfo['n_vols_up'] = config['numVolsUp']
+    expInfo['n_vols_down'] = config['numVolsDown']
+    expInfo['start_block'] = config['startBlock']
+    expInfo['results_dir'] = config['outputPath']
+    #expInfo['baseline'] = config['baseline']
+    expInfo['pyneal_results_server_IP'] = config['pynealHostIP']
+    expInfo['pyneal_results_server_port'] = config['resultsServerPort']
+
+#show the data entry screen and process response
 dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
 expInfo['date'] = data.getDateStr()  # add a simple timestamp
 expInfo['expName'] = expName
 expInfo['psychopyVersion'] = psychopyVersion
+#check is results server is running at all
+logging.info(f"Pyneal results server at {config['pynealHostIP']}:{config['resultsServerPort']}")
+result_server = resultsServerHandler(config['pynealHostIP'], config['resultsServerPort'])
+results_server_available = result_server.test_results_server()
+if not results_server_available:
+    logging.error(f"Pyneal results server not running. Quitting.")
+    close_experiment()
+#set up the parameters with correct variable type since psychopy dialog returns dict of strings
+expInfo['runs'] = int(expInfo['runs'])
+expInfo['volumes'] = int(expInfo['volumes'])
+expInfo['TR'] = float(expInfo['TR'])
+expInfo['n_vols_up'] = int(expInfo['n_vols_up'])
+expInfo['n_vols_down'] = int(expInfo['n_vols_down'])
+expInfo['pyneal_results_server_port'] = int(expInfo['pyneal_results_server_port'])
+expInfo['baseline'] = 1.0
 
+#Create experiment handler, filenames 
 # Data file name stem = absolute path + name; later add .psyexp, .csv, .log, etc
-filename = os.path.normpath(expInfo['results dir']) + os.sep + u'data/%s_%s_session_%s' % (expInfo['participant'],expInfo['date'],expInfo['session'])
+filename = os.path.normpath(expInfo['results_dir']) + os.sep + u'data/%s_%s_session_%s' % (expInfo['participant'],expInfo['date'],expInfo['session'])
 
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
@@ -92,51 +145,6 @@ logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a f
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
 frameTolerance = 0.001  # how close to onset before 'same' frame
 
-# ------ Routine "setup_params"-------
-#if config files and pyneal connection are not available then dont progress
-
-"""
-expInfo['volumes'] =  int(expInfo['volumes'])
-expInfo['TR'] = float(expInfo['TR'])
-expInfo['n_vols_up'] = int(expInfo['n_vols_up'])
-expInfo['n_vols_down'] = int(expInfo['n_vols_down'])
-"""
-expInfo['baseline'] = 1.0
-
-#set up pyneal connections
-config_file_available = False
-results_server_available = False
-try:
-    config_file = open(expInfo["config_file"], 'r')
-except OSError as e:
-    logging.error(f"Couldnt open Pyneal Config file -> {e}")
-    endExpNow = True
-else:
-    with config_file:
-        config = yaml.safe_load(config_file)
-        config_file_available = True
-if config_file_available:
-    expInfo['volumes'] =  int(config['numTimepts'])
-    expInfo['TR'] = float(config['TR'])
-    expInfo['n_vols_up'] = int(config['numTimeptsUp'])
-    expInfo['n_vols_down'] = int(config['numTimeptsDown'])
-    expInfo['start_block'] = config['startBlock']
-    n_blocks,rem =  divmod(expInfo['volumes'],(expInfo['n_vols_up'] + expInfo['n_vols_down']))
-    if rem != 0:
-        logging.exp(f"Non-integer no. of blocks per run. Exiting.")
-        endExpNow = True
-    n_blocks = int(n_blocks)
-    logging.info(f"Pyneal results server at {config['pynealHostIP']}:{config['resultsServerPort']}")
-    result_server = resultsServerHandler(config['pynealHostIP'], config['resultsServerPort'])
-    results_server_available = result_server.test_results_server()
-    if not results_server_available:
-        endExpNow = True
-else:
-    logging.error("No config file available")
-    endExpNow = True
-
-if endExpNow:
-    close_experiment()
 
 # Start Code - component code to be run after the window creation
 
@@ -199,18 +207,19 @@ reset_screenClock = core.Clock()
 globalClock = core.Clock()  # to track the time since experiment started
 routineTimer = core.CountdownTimer()  # to track time remaining of each (non-slip) routine 
 
-
-
 # ------ Routine "setup_nfb"-------
 # update component parameters for each repeat
+n_blocks,rem =  divmod(expInfo['volumes'],(expInfo['n_vols_up'] + expInfo['n_vols_down']))
 if expInfo['start_block'] == "down":
-    block_design = np.concatenate([np.repeat("down",expInfo['n_vols_down']),np.repeat("up",expInfo['n_vols_up'])])
+    block_design = np.concatenate([np.full(expInfo['n_vols_down'],"down"),np.full(expInfo['n_vols_up'],"up")])
+    last_block = np.full(rem,"down")
 else:
-    block_design = np.concatenate([np.repeat("up",expInfo['n_vols_up']),np.repeat("up",expInfo['n_vols_down'])])
-run_design = np.tile(block_design,n_blocks)
-block_boundaries = [0]
+    block_design = np.concatenate([np.full(expInfo['n_vols_up'],"up"),np.full(expInfo['n_vols_down'],"down")])
+    last_block = np.full(rem,"up")
+run_design = np.concatenate([np.tile(block_design,n_blocks),last_block])
+
 block_boundaries = np.where(run_design[:-1]!= run_design[1:])[0] + 1
-block_boundaries = np.concatenate([[0],block_boundaries,[expInfo['volumes']]])
+block_boundaries = np.concatenate([[0],block_boundaries,[expInfo['volumes']]]) #first block starts at index 0
 logging.exp(block_boundaries)
     
 #create the timeseries NFB display
@@ -397,6 +406,7 @@ for thisRun in runs:
     vol_idx  = 0
     recv_first_valid_nfb =  False
     pyneal_Q = []
+    nfb.show_bounding_box()
     for thisVolume in volumes:
         # ------Prepare to start Routine "volume"-------
         continueRoutine = True

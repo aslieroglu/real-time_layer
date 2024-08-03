@@ -11,7 +11,9 @@ class timeseriesNFB(object):
         self.baseline = baseline
         self.win = window
         self.volumes = volumes
-        self.block_def = block_def
+        #unpack the block structure
+        self.block_colours = block_def['colour']
+        self.stim_series = block_def["order"]
         self.scale = nfb_scale # values below lower of scale and above  upper of scale are clipped
         self.feedback_range = self.baseline * (self.scale['upper'] - self.scale['lower'])
         self.min_feedback = self.baseline * self.scale['lower']
@@ -30,7 +32,6 @@ class timeseriesNFB(object):
         self.feedback_hist = np.full(self.volumes,0.0)
         #self.feedback_hist[0] = self.y_min
         self.feedback_hist[0] = self.y_base
-        self.stim_series = block_def["order"]
         self.lines = np.full(self.volumes, None)
         self.background = np.full(self.volumes, None)
         self.y_labels = np.full(4,None)
@@ -46,21 +47,19 @@ class timeseriesNFB(object):
                                    autoDraw=False
                                    )
         #prebuild the background blocks
-        self.prebuild_background(block_def)
+        self.prebuild_background()
         #prebuild the feedback lines
         self.prebuild_lines()
         # prebuild the y labe;s
         #self.prebuild_labels()
 
-    def prebuild_background(self,block_def):
-        #unpack the block structure
-        if len(block_def['order']) !=0 and block_def['colour']:
-            colours = block_def['colour']
+    def prebuild_background(self):
+        if len(self.stim_series) !=0 and self.block_colours:
             for idx in range(self.volumes):
                 self.background[idx] = visual.ShapeStim(self.win,
                                            lineColor=None,
                                            lineWidth=0,
-                                           fillColor=colours[self.stim_series[idx]],
+                                           fillColor=block_colours[self.stim_series[idx]],
                                            vertices=[[self.x_start[idx], self.y_min],
                                                      [self.x_start[idx], self.y_max],
                                                      [self.x_end[idx], self.y_max],
@@ -69,12 +68,12 @@ class timeseriesNFB(object):
                                            )
         else:
             print("Design structure not supplied to NFB stim constructor")
+
+    def show_bounding_box(self):
+        self.bbox.setAutoDraw(True)
+
     
-    def show_block(self,block=[]):
-        if 0 in block: #when block starts
-            self.bbox.setAutoDraw(True)
-            #for idx in range(4):
-            #    self.y_labels[idx].setAutoDraw(True)
+    def show_block(self,block=[],first_block=False):            
         for idx in block:
             self.background[idx].setAutoDraw(True)
 
