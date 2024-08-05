@@ -92,7 +92,7 @@ class ScanReceiver(Thread):
         self.logger = logging.getLogger('PynealLog')
 
         # get vars from settings dict
-        self.numTimepts = settings['numTimepts']
+        self.numTimepts = int(settings['numTimepts'])
         self.host = settings['pynealHost']
         self.scannerPort = settings['pynealScannerPort']
         self.seriesOutputDir = settings['seriesOutputDir']
@@ -172,7 +172,10 @@ class ScanReceiver(Thread):
             self.completedVols[volIdx] = True
 
             # send response back to Pyneal-Scanner
-            response = 'received volIdx {}'.format(volIdx)
+            if int(volIdx) == self.numTimepts:
+                response = 'received volIdx {} STOP'.format(volIdx) #the STOP message stops the pyneal scanner
+            else:
+                response = 'received volIdx {}'.format(volIdx)
             self.scannerSocket.send_string(response)
             self.logger.info(response)
 

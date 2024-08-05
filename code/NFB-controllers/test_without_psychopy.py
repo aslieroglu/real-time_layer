@@ -3,9 +3,9 @@ import json
 import time
 
 port = 5555
-TR = 1 
+TR = 2 
 
-for vol_id in range(10):
+for vol_id in range(11):
     time.sleep(TR)
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:

@@ -3,3 +3,4 @@ pynealSocketPort: '5556'
 scannerMake: Siemens
 scannerSessionDir: /home/meduser/realTimefMRI/workspace/rttest/scannerdata
 outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+numTimepts: 11
