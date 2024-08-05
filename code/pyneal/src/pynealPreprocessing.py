@@ -18,7 +18,6 @@ import zmq
 import numpy as np
 import nibabel as nib
 from nipy.algorithms.registration import HistogramRegistration, Rigid, resample
-from fsl.wrappers import flirt, mcflirt, LOAD
 
 
 class Preprocessor:
@@ -117,10 +116,6 @@ class Preprocessor:
                         self.settings['run_mask']] 
             subprocess.run(command, check=True)
             run_mask = nib.load(self.settings['run_mask'])
-            #self.motionProcessor.refVol = deepcopy(recv_img) #set the reference image for motion correction
-            #nib.save(recv_img, self.settings['run_ref_img'])
-            #flirt(src=self.src_ref,ref=recv_img,omat=self.settings['xfrm_file'])
-            #run_mask = flirt(src=self.src_mask,ref=recv_img,init=self.settings['xfrm_file'],applyxfm=True,out=LOAD)['out']
             t_out = datetime.now().timestamp()
             #nib.save(run_mask, self.settings['run_mask'])
             self.logger.info(f"preprocessed {volIdx} reference and mask proc_time {t_out-t_in:.4f}")
@@ -243,27 +238,11 @@ class MotionProcessor():
         """
         do_mc = False
         aligned_img = None
-        """Older logic
-        if self.refVol is not None:
-            do_mc = True
-        elif self.refVolIdx is not None:
-            if volIdx < self.refVolIdx:
-                return None
-            elif volIdx == self.refVolIdx:
-                # set the reference volume
-                self.refVol = self.out_dir + "/refimage.nii" 
-                nib.save(niiVol, self.refVol)
-                                     
-                return None
-            else:
-                do_mc = True
-        """
         if volIdx > self.refVolIdx:
             do_mc = True
         
         if do_mc:
             t_in = datetime.now().timestamp()
-            #aligned_img = mcflirt(infile=niiVol,reffile=self.refVol,out=LOAD)['out']
             """
             #Histogram registration
             # create a regisitration object
@@ -274,7 +253,6 @@ class MotionProcessor():
             aligned_img = resample(niiVol, T, self.refVol)
             """
             #FSL subprocess
-            #command = f"mcflirt -in {niiVol} -reffile {self.refVol} -out { self.out_mc_file}" 
             command = ["mcflirt",
                         "-in",
                         niiVol,
@@ -286,16 +264,6 @@ class MotionProcessor():
             aligned_img = nib.load(self.out_mc_file)
             t_out = datetime.now().timestamp()
             self.logger.debug(f"volIdx: {volIdx} MC proc_time: {t_out - t_in:.4f}")
-
-            #img_in = os.path.join(self.out_dir,"tmp.nii")
-            #nib.save(niiVol, img_in)
-            #aligned_img = os.path.join(self.out_dir,"tmp_mc.nii.gz")
-            #while not os.path.exists(self.refVol): #wait in case the reference volume processing isnt complete
-            #    time.sleep(0.1)
-            #command = f"3dWarpDrive -affine_general -base {self.refVol} -prefix {aligned_img} -twopass -input {img_in}"
-            #command = f"3dvolreg -prefix {aligned_img} -base {self.refVol} {img_in}"
-            #command = f"mcflirt -in {img_in} -reffile {self.refVol} -out {aligned_img}"
-            #run(command,shell=True)
 
         motionParams = {'rms_abs': 0,
                             'rms_rel': 0}

@@ -34,6 +34,9 @@ from nfbDisplayModels import timeseriesNFB
 from resultsManager import resultsServerHandler
 import yaml, argparse
 
+#set screen logging level
+logging.console.setLevel(logging.INFO)  # this outputs to the screen, not a file
+
 def close_experiment():
     # Flip one final time so any remaining win.callOnFlip() 
     # and win.timeOnFlip() tasks get executed before quitting
@@ -140,7 +143,6 @@ thisExp = data.ExperimentHandler(name=expName, version='',
     dataFileName=filename)
 # save a log file for detail verbose info
 logFile = logging.LogFile(filename+'.log', level=logging.DEBUG)
-logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a file
 
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
 frameTolerance = 0.001  # how close to onset before 'same' frame

@@ -1,5 +1,5 @@
 pynealSocketHost: 127.0.0.1
 pynealSocketPort: '5556'
 scannerMake: Siemens
-scannerSessionDir: /data/pt_02900/rttest/scannerdata
-outputPath: /data/pt_02900/pilot/data/sub-59
+scannerSessionDir: /home/meduser/realTimefMRI/workspace/rttest/scannerdata
+outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
