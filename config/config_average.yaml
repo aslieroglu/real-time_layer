@@ -13,6 +13,7 @@ numTimepts: 11
 outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
 preprocessScript: /home/meduser/realTimefMRI/workspace/nfb/code/preprocessing/pyneal_create_mask.sh
 pynealHost: 127.0.0.1
+pynealHostIP: 127.0.1.1
 pynealScannerPort: 5556
 referenceImage: /home/meduser/realTimefMRI/workspace/rttest/reference.nii.gz
 referenceVolume: 2

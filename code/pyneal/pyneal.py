@@ -78,9 +78,6 @@ def launchPyneal(headless=False, customSettingsFile=None):
     settings['pynealHostIP'] = ip_address
     with open(settingsFile, 'w') as f:
         yaml.dump(settings,f)
-    #Dicoms from network via pyneal scanner or direct read
-    if not settings['pynealScannerSelect']:
-        print(f"### Waiting for Dicoms at folder {settings['dicomDir']} ")
         
     ###Set up various directories
     settings['pynealDir'] = pynealDir

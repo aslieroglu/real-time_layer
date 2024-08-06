@@ -172,7 +172,7 @@ class ScanReceiver(Thread):
             self.completedVols[volIdx] = True
 
             # send response back to Pyneal-Scanner
-            if int(volIdx) == self.numTimepts:
+            if int(volIdx) == self.numTimepts - 1:
                 response = 'received volIdx {} STOP'.format(volIdx) #the STOP message stops the pyneal scanner
             else:
                 response = 'received volIdx {}'.format(volIdx)

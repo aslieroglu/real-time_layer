@@ -762,3 +762,7 @@ def Siemens_launch_rtfMRI(scannerSettings, scannerDirs):
     # to pyneal. Start the thread going
     mosaicProcessor = Siemens_processMosaic(dicomQ, pynealSocket)
     mosaicProcessor.start()
+    while mosaicProcessor.is_alive():
+        pass
+    scanWatcher.stop()
+    logger.info('pynealscanner stopped')
