@@ -1,3 +1,0 @@
-sub,dicom_dir,low_res_full,high_res_full,high_res_slab
-sub-57,/data/pt_02900/realtime_export/20240402.40135.5a.40135.5a,0,7,8
-27993.cb,/data/pt_02900/realtime_export/20240302.27993.cb.27993.cb,7,11,12

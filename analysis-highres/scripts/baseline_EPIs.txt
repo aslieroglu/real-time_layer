@@ -1,7 +1,0 @@
-subj,file,scan_type
-sub-57,40135.5a-07-func_bold_ref_acq-highres-full.nii,high_res_full
-sub-57,40135.5a-08-func_bold_ref_acq-highres.nii,high_res_slab
-27993.cb,27993.cb-11-func_bold_ref_acq-highres-full.nii,high_res_full
-27993.cb,27993.cb-12-func_bold_ref_acq-highres.nii,high_res_slab
-27993.cb,27993.cb-07-func_bold_ref_acq-lowres.nii,low_res_full
-27993.cb,27993.cb-06-func_bold_ref_acq-lowres.nii,low_res_full

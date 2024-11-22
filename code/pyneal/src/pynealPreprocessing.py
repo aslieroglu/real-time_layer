@@ -254,16 +254,23 @@ class MotionProcessor():
             """
             #FSL subprocess
             command = ["mcflirt",
-                        "-in",
-                        niiVol,
-                        "-reffile",
-                        self.refVol,
-                        "-out",
-                        self.out_mc_file]
+                       "-in",
+                       niiVol,
+                       "-reffile",
+                       self.refVol,
+                       "-out",
+                       self.out_mc_file,
+                       "-spline_final"]
+            # command = ["MotionCorrection",
+            #             "-referencevolume",
+            #             self.refVol,
+            #             "-output",
+            #             self.out_mc_file] #BROCCOLI MC
             subprocess.run(command, check=True)
-            aligned_img = nib.load(self.out_mc_file)
             t_out = datetime.now().timestamp()
-            self.logger.debug(f"volIdx: {volIdx} MC proc_time: {t_out - t_in:.4f}")
+            aligned_img = nib.load(self.out_mc_file)
+            #aligned_img = nib.load("input_mc.nii") #default BROCCOLI outfile has a standard name
+            self.logger.debug(f"volIdx: {volIdx} MC proc_time: {t_out - t_in:.4f}") 
 
         motionParams = {'rms_abs': 0,
                             'rms_rel': 0}
