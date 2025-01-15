@@ -85,7 +85,7 @@ def launchPyneal(headless=False, customSettingsFile=None):
     outputDir = createOutputDir(settings['outputPath'])
     settings['seriesOutputDir'] = outputDir
     settings['run_ref_img'] = os.path.join(settings['seriesOutputDir'],'ref_img.nii')
-    settings['run_mask'] = os.path.join(settings['seriesOutputDir'],'mask.nii.gz')
+    #settings['run_mask'] = os.path.join(settings['seriesOutputDir'],'mask.nii.gz')
     settings['xfrm_file'] = os.path.join(settings['seriesOutputDir'],'ref2run_ref.mat')
     
     ### Set Up Logging ------------------------------------
@@ -173,43 +173,51 @@ def launchPyneal(headless=False, customSettingsFile=None):
         time.sleep(.1)
     preprocessor.set_affine(scanReceiver.get_affine())
 
-    ### Process scan  -------------------------------------
-    # Loop over all expected volumes
-    for volIdx in range(settings['numTimepts']):
+    # ### Process scan  -------------------------------------
+    # # Loop over all expected volumes
+    # for volIdx in range(settings['numTimepts']):
 
-        ### make sure this volume has arrived before continuing
-        while not scanReceiver.completedVols[volIdx]:
-            time.sleep(.1)
+    #     ### make sure this volume has arrived before continuing
+    #     while not scanReceiver.completedVols[volIdx]:
+    #         time.sleep(.1)
 
-        ### start timer
-        startTime = time.time()
+    #     ### start timer
+    #     startTime = time.time()
 
-        ### Retrieve the raw volume
-        rawVol = scanReceiver.get_vol(volIdx)
+    #     ### Retrieve the raw volume
+    #     rawVol = scanReceiver.get_vol(volIdx)
 
-        ### Preprocess the raw volume
-        preprocVol,proc_flag = preprocessor.runPreprocessing(rawVol, volIdx)
+    #     ### Preprocess the raw volume
+    #     preprocVol,proc_flag = preprocessor.runPreprocessing(rawVol, volIdx)
 
-        ### Analyze this volume
-        result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
+    #     ### Analyze this volume
+    #     result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
 
-        # send result to the resultsServer
+    #     # send result to the resultsServer
+    #     resultsServer.updateResults(volIdx, result)
+
+    #     ### Calculate processing time for this volume
+    #     elapsedTime = time.time() - startTime
+
+        # # update dashboard (if dashboard is launched)
+        # if settings['launchDashboard']:
+        #     # completed volIdx
+        #     sendToDashboard(dashboardSocket, topic='volIdx', content=volIdx)
+
+        #     # timePerVol
+        #     timingParams = {'volIdx': volIdx,
+        #                     'processingTime': np.round(elapsedTime, decimals=3)}
+        #     sendToDashboard(dashboardSocket, topic='timePerVol',
+        #                     content=timingParams)
+        #     logger.debug(f"volIdx:{volIdx} total_proc_time:{elapsedTime}")
+
+    volumes = [scanReceiver.get_vol(idx) for idx in range(settings['numTimepts'])]
+    results = main_pipeline(volumes, preprocessor, max_workers=4)
+
+# Post-process each result
+    for volIdx, preprocessed_vol, proc_flag in results:
+        result = analyzer.runAnalysis(preprocessed_vol, volIdx, proc_flag)
         resultsServer.updateResults(volIdx, result)
-
-        ### Calculate processing time for this volume
-        elapsedTime = time.time() - startTime
-
-        # update dashboard (if dashboard is launched)
-        if settings['launchDashboard']:
-            # completed volIdx
-            sendToDashboard(dashboardSocket, topic='volIdx', content=volIdx)
-
-            # timePerVol
-            timingParams = {'volIdx': volIdx,
-                            'processingTime': np.round(elapsedTime, decimals=3)}
-            sendToDashboard(dashboardSocket, topic='timePerVol',
-                            content=timingParams)
-            logger.debug(f"volIdx:{volIdx} total_proc_time:{elapsedTime}")
 
     ### Save output files and stop the scanreceiver server
     # Saurabh: Increased to ensure server not closed before client's last request

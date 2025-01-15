@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ Preprocessing Module for Real-time Scan
 
 Set of utilities for apply specified preprocessing steps to data during a
@@ -18,6 +19,7 @@ import zmq
 import numpy as np
 import nibabel as nib
 from nipy.algorithms.registration import HistogramRegistration, Rigid, resample
+from concurrent.futures import ThreadPoolExecutor
 
 
 class Preprocessor:
@@ -112,14 +114,14 @@ class Preprocessor:
                         self.settings['referenceImage'],
                         self.settings['maskFile'],
                         self.settings['run_ref_img'],
-                        self.settings['xfrm_file'],
-                        self.settings['run_mask']] 
+                        self.settings['xfrm_file']]
+                        #self.settings['run_mask']] 
             subprocess.run(command, check=True)
-            run_mask = nib.load(self.settings['run_mask'])
+            #run_mask = nib.load(self.settings['run_mask'])
             t_out = datetime.now().timestamp()
             #nib.save(run_mask, self.settings['run_mask'])
             self.logger.info(f"preprocessed {volIdx} reference and mask proc_time {t_out-t_in:.4f}")
-            return run_mask.get_fdata(), "refmask"   
+            #return run_mask.get_fdata(), "refmask"   
         
         if self.settings['estimateMotion']:
             nib.save(nib.Nifti1Image(vol, self.affine), self.curr_vol_img)
@@ -270,7 +272,7 @@ class MotionProcessor():
             t_out = datetime.now().timestamp()
             aligned_img = nib.load(self.out_mc_file)
             #aligned_img = nib.load("input_mc.nii") #default BROCCOLI outfile has a standard name
-            self.logger.debug(f"volIdx: {volIdx} MC proc_time: {t_out - t_in:.4f}") 
+            self.logger.debug(f"volIdx: {volIdx} MC proc_time: {t_out - t_in:.4f}")
 
         motionParams = {'rms_abs': 0,
                             'rms_rel': 0}
@@ -320,6 +322,49 @@ class MotionProcessor():
         rms = np.sqrt((1 / 5) * R**2 * A.T.dot(A).trace() + t.T.dot(t))
 
         return rms
+    
+    #chatgpt
+
+    def process_volume(preprocessor, vol, volIdx):
+        """
+        Wrapper to process a single volume using the preprocessor.
+        This includes motion correction and dashboard updates.
+        """
+        return preprocessor.runPreprocessing(vol, volIdx)
+
+    def main_pipeline(volumes, preprocessor, max_workers=4):
+        """
+        Main pipeline to process volumes in parallel.
+
+        Parameters:
+        ----------
+        volumes : list
+            List of volumes to process.
+        preprocessor : Preprocessor
+            Instance of the Preprocessor class.
+        max_workers : int
+            Number of worker threads for parallel processing.
+
+        """
+        results = []
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # Submit motion correction tasks for all volumes
+            future_to_volIdx = {
+                executor.submit(process_volume, preprocessor, vol, volIdx): volIdx
+                for volIdx, vol in enumerate(volumes)
+            }
+
+            # Process completed tasks as they finish
+            for future in as_completed(future_to_volIdx):
+                volIdx = future_to_volIdx[future]
+                try:
+                    preprocessed_vol, proc_flag = future.result()
+                    results.append((volIdx, preprocessed_vol, proc_flag))
+                    print(f"Volume {volIdx} processed with flag: {proc_flag}")
+                except Exception as exc:
+                    print(f"Volume {volIdx} generated an exception: {exc}")
+
+        return results
 
 
 # suppress stdOut from verbose functions

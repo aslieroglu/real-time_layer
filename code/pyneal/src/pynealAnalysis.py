@@ -36,10 +36,10 @@ class Analyzer:
         """
         # set up logger
         self.logger = logging.getLogger('PynealLog')
-
         # create reference to settings dict
         self.settings = settings
         self.mask = None
+        self.weightMask = False
         #for handling layers
         self.layerMasks = dict(Superior=None,Middle=None,Deep=None)
         self.layerWeights = dict(Superior=None,Middle=None,Deep=None)
