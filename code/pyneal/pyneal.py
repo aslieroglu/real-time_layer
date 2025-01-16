@@ -24,11 +24,14 @@ import subprocess
 import atexit
 import webbrowser as web
 import socket
+import logging
 
 import yaml
 import nibabel as nib
 import numpy as np
 import zmq
+import asyncio
+from concurrent.futures import ProcessPoolExecutor
 
 from src.pynealLogger import createLogger
 from src.scanReceiver import ScanReceiver
@@ -37,9 +40,88 @@ from src.pynealAnalysis import Analyzer
 from src.resultsServer import ResultsServer
 import src.GUIs.pynealSetup.setupGUI as setupGUI
 
+
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("processing.log"),  # Log to a file
+        logging.StreamHandler(sys.stdout)       # Also print to the console
+    ]
+)
+
 # Set the Pyneal Root dir based on where this file lives
 pynealDir = os.path.abspath(os.path.dirname(__file__))
 
+async def produce_volumes(queue, scanReceiver, num_volumes):
+    """Add incoming volumes to the queue."""
+    for volIdx in range(num_volumes):
+        while not scanReceiver.completedVols[volIdx]:
+            await asyncio.sleep(0.1)  # Wait for the volume to arrive
+        rawVol = scanReceiver.get_vol(volIdx)
+        await queue.put((volIdx, rawVol))  # Add volume to the queue
+
+    # Add stop signals for consumers
+    for _ in range(16):  # Number of workers
+        await queue.put((None, None))
+
+async def consume_volumes(queue, preprocessor, analyzer, resultsServer):
+    """Process volumes from the queue in parallel."""
+    loop = asyncio.get_event_loop()
+    with ProcessPoolExecutor(max_workers=16) as pool:  # Use 8 cores
+        while True:
+            volIdx, rawVol = await queue.get()
+            if volIdx is None:  # Stop signal
+                break
+
+
+            # Wrap the preprocessing function with logging
+            preproc_func = log_worker(preprocessor.runPreprocessing)
+
+            # Run preprocessing in parallel
+            preprocVol, proc_flag = await loop.run_in_executor(pool, preproc_func, rawVol, volIdx)
+
+            # Analyze the preprocessed volume
+            result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
+
+            # Update results server
+            resultsServer.updateResults(volIdx, result)
+
+            # Mark queue task as done
+            queue.task_done()
+
+async def process_volumes_async(settings, scanReceiver, preprocessor, analyzer, resultsServer):
+    """Orchestrate asynchronous volume processing."""
+    num_volumes = settings['numTimepts']
+    queue = asyncio.Queue()
+
+    # Run producer and consumer tasks
+    await asyncio.gather(
+        produce_volumes(queue, scanReceiver, num_volumes),
+        consume_volumes(queue, preprocessor, analyzer, resultsServer),
+    )
+
+
+def log_worker(func):
+    """Wrapper to log worker activity."""
+    def wrapper(*args, **kwargs):
+
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s - %(levelname)s - %(message)s",
+            handlers=[
+                logging.FileHandler("processing.log"),
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
+
+        pid = os.getpid()
+        logging.info(f"Worker {pid} is processing volume")
+        result = func(*args, **kwargs)
+        logging.info(f"Worker {pid} completed processing")
+        return result
+    return wrapper
 
 def launchPyneal(headless=False, customSettingsFile=None):
     """Main Pyneal Loop.
@@ -173,31 +255,9 @@ def launchPyneal(headless=False, customSettingsFile=None):
         time.sleep(.1)
     preprocessor.set_affine(scanReceiver.get_affine())
 
-    # ### Process scan  -------------------------------------
-    # # Loop over all expected volumes
-    # for volIdx in range(settings['numTimepts']):
-
-    #     ### make sure this volume has arrived before continuing
-    #     while not scanReceiver.completedVols[volIdx]:
-    #         time.sleep(.1)
-
-    #     ### start timer
-    #     startTime = time.time()
-
-    #     ### Retrieve the raw volume
-    #     rawVol = scanReceiver.get_vol(volIdx)
-
-    #     ### Preprocess the raw volume
-    #     preprocVol,proc_flag = preprocessor.runPreprocessing(rawVol, volIdx)
-
-    #     ### Analyze this volume
-    #     result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
-
-    #     # send result to the resultsServer
-    #     resultsServer.updateResults(volIdx, result)
-
-    #     ### Calculate processing time for this volume
-    #     elapsedTime = time.time() - startTime
+    ### Process scan  -------------------------------------
+    # Launch asynchronous processing
+    asyncio.run(process_volumes_async(settings, scanReceiver, preprocessor, analyzer, resultsServer))
 
         # # update dashboard (if dashboard is launched)
         # if settings['launchDashboard']:
@@ -211,18 +271,11 @@ def launchPyneal(headless=False, customSettingsFile=None):
         #                     content=timingParams)
         #     logger.debug(f"volIdx:{volIdx} total_proc_time:{elapsedTime}")
 
-    volumes = [scanReceiver.get_vol(idx) for idx in range(settings['numTimepts'])]
-    results = main_pipeline(volumes, preprocessor, max_workers=4)
-
-# Post-process each result
-    for volIdx, preprocessed_vol, proc_flag in results:
-        result = analyzer.runAnalysis(preprocessed_vol, volIdx, proc_flag)
-        resultsServer.updateResults(volIdx, result)
 
     ### Save output files and stop the scanreceiver server
     # Saurabh: Increased to ensure server not closed before client's last request
     #time.sleep(2)
-    time.sleep(30)
+    time.sleep(3)
     resultsServer.saveResults()
     scanReceiver.saveResults()
     ### Figure out how to clean everything up nicely at the end

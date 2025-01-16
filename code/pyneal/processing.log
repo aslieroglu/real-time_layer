@@ -1,0 +1,2196 @@
+2025-01-16 11:58:41,321 - INFO - Setting: analysisChoice: Average
+2025-01-16 11:58:41,322 - INFO - Setting: dashboardClientPort: 5558
+2025-01-16 11:58:41,322 - INFO - Setting: dashboardPort: 5557
+2025-01-16 11:58:41,322 - INFO - Setting: dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
+2025-01-16 11:58:41,322 - INFO - Setting: estimateMotion: True
+2025-01-16 11:58:41,322 - INFO - Setting: launchDashboard: False
+2025-01-16 11:58:41,322 - INFO - Setting: layerMaskDeep: None
+2025-01-16 11:58:41,322 - INFO - Setting: layerMaskMiddle: None
+2025-01-16 11:58:41,322 - INFO - Setting: layerMaskSuperior: None
+2025-01-16 11:58:41,322 - INFO - Setting: maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
+2025-01-16 11:58:41,322 - INFO - Setting: maskIsWeighted: False
+2025-01-16 11:58:41,322 - INFO - Setting: numTimepts: 168
+2025-01-16 11:58:41,322 - INFO - Setting: outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+2025-01-16 11:58:41,322 - INFO - Setting: preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
+2025-01-16 11:58:41,322 - INFO - Setting: pynealHost: 127.0.0.1
+2025-01-16 11:58:41,322 - INFO - Setting: pynealHostIP: 127.0.1.1
+2025-01-16 11:58:41,322 - INFO - Setting: pynealScannerPort: 5556
+2025-01-16 11:58:41,322 - INFO - Setting: referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
+2025-01-16 11:58:41,322 - INFO - Setting: referenceVolume: 2
+2025-01-16 11:58:41,322 - INFO - Setting: resultsServerPort: 5555
+2025-01-16 11:58:41,322 - INFO - Setting: pynealDir: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal
+2025-01-16 11:58:41,322 - INFO - Setting: seriesOutputDir: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_065
+2025-01-16 11:58:41,322 - INFO - Setting: run_ref_img: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_065/ref_img.nii
+2025-01-16 11:58:41,322 - INFO - Setting: xfrm_file: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_065/ref2run_ref.mat
+2025-01-16 11:58:41,323 - DEBUG - bound to 127.0.0.1:5556
+2025-01-16 11:58:41,323 - INFO - Scan Receiver Server alive and listening....
+2025-01-16 11:58:41,324 - DEBUG - Starting Scan Receiver
+2025-01-16 11:58:41,324 - DEBUG - bound to 0.0.0.0:5555
+2025-01-16 11:58:41,324 - INFO - Results Server alive and listening....
+2025-01-16 11:58:41,324 - DEBUG - Starting Results Server
+2025-01-16 11:58:41,359 - DEBUG - scanner socket connected to Pyneal-Scanner
+2025-01-16 11:58:58,188 - DEBUG - received volHeader volIdx 0
+2025-01-16 11:58:58,188 - DEBUG - Image Matrix dims: (240, 240, 36, 168)
+2025-01-16 11:58:58,343 - DEBUG - Scan started
+2025-01-16 11:58:58,684 - INFO - received volIdx 0
+2025-01-16 11:58:59,052 - DEBUG - started volIdx 0
+2025-01-16 11:58:59,190 - INFO - preprocessed volIdx 0
+2025-01-16 11:58:59,223 - DEBUG - started volIdx 0
+2025-01-16 11:58:59,223 - INFO - Skipped Analysis volIdx 0
+2025-01-16 11:58:59,223 - DEBUG - volIdx 0 added to resultsServer : {'average': nan}
+2025-01-16 11:59:00,293 - DEBUG - received volHeader volIdx 1
+2025-01-16 11:59:01,092 - INFO - received volIdx 1
+2025-01-16 11:59:01,255 - DEBUG - started volIdx 1
+2025-01-16 11:59:01,391 - INFO - preprocessed volIdx 1
+2025-01-16 11:59:01,419 - DEBUG - started volIdx 1
+2025-01-16 11:59:01,420 - INFO - Skipped Analysis volIdx 1
+2025-01-16 11:59:01,420 - DEBUG - volIdx 1 added to resultsServer : {'average': nan}
+2025-01-16 11:59:02,103 - DEBUG - received volHeader volIdx 2
+2025-01-16 11:59:02,117 - INFO - received volIdx 2
+2025-01-16 11:59:02,259 - DEBUG - started volIdx 2
+2025-01-16 11:59:02,941 - INFO - preprocessed 2 reference and mask proc_time 0.6619
+2025-01-16 11:59:03,083 - INFO - preprocessed volIdx 2
+2025-01-16 11:59:03,114 - DEBUG - started volIdx 2
+2025-01-16 11:59:03,114 - INFO - Skipped Analysis volIdx 2
+2025-01-16 11:59:03,114 - DEBUG - volIdx 2 added to resultsServer : {'average': nan}
+2025-01-16 11:59:04,835 - DEBUG - received volHeader volIdx 3
+2025-01-16 11:59:04,849 - INFO - received volIdx 3
+2025-01-16 11:59:04,968 - DEBUG - started volIdx 3
+2025-01-16 11:59:07,108 - DEBUG - volIdx: 3 MC proc_time: 2.0003
+2025-01-16 11:59:07,108 - INFO - preprocessed volIdx 3
+2025-01-16 11:59:07,198 - DEBUG - started volIdx 3
+2025-01-16 11:59:07,200 - INFO - analyzed volIdx 3
+2025-01-16 11:59:07,200 - DEBUG - volIdx 3 added to resultsServer : {'average': 444.91}
+2025-01-16 11:59:07,351 - DEBUG - received volHeader volIdx 4
+2025-01-16 11:59:07,365 - INFO - received volIdx 4
+2025-01-16 11:59:07,479 - DEBUG - started volIdx 4
+2025-01-16 11:59:09,349 - DEBUG - received volHeader volIdx 5
+2025-01-16 11:59:09,361 - INFO - received volIdx 5
+2025-01-16 11:59:09,620 - DEBUG - volIdx: 4 MC proc_time: 2.0009
+2025-01-16 11:59:09,620 - INFO - preprocessed volIdx 4
+2025-01-16 11:59:09,708 - DEBUG - started volIdx 4
+2025-01-16 11:59:09,710 - INFO - analyzed volIdx 4
+2025-01-16 11:59:09,710 - DEBUG - volIdx 4 added to resultsServer : {'average': 443.85}
+2025-01-16 11:59:09,788 - DEBUG - started volIdx 5
+2025-01-16 11:59:11,929 - DEBUG - received volHeader volIdx 6
+2025-01-16 11:59:11,943 - INFO - received volIdx 6
+2025-01-16 11:59:11,971 - DEBUG - volIdx: 5 MC proc_time: 2.0438
+2025-01-16 11:59:11,971 - INFO - preprocessed volIdx 5
+2025-01-16 11:59:12,055 - DEBUG - started volIdx 5
+2025-01-16 11:59:12,056 - INFO - analyzed volIdx 5
+2025-01-16 11:59:12,056 - DEBUG - volIdx 5 added to resultsServer : {'average': 443.31}
+2025-01-16 11:59:12,132 - DEBUG - started volIdx 6
+2025-01-16 11:59:13,195 - DEBUG - received volHeader volIdx 7
+2025-01-16 11:59:13,206 - INFO - received volIdx 7
+2025-01-16 11:59:14,269 - DEBUG - volIdx: 6 MC proc_time: 1.9981
+2025-01-16 11:59:14,269 - INFO - preprocessed volIdx 6
+2025-01-16 11:59:14,356 - DEBUG - started volIdx 6
+2025-01-16 11:59:14,357 - INFO - analyzed volIdx 6
+2025-01-16 11:59:14,357 - DEBUG - volIdx 6 added to resultsServer : {'average': 443.29}
+2025-01-16 11:59:14,434 - DEBUG - started volIdx 7
+2025-01-16 11:59:14,783 - DEBUG - received volHeader volIdx 8
+2025-01-16 11:59:14,795 - INFO - received volIdx 8
+2025-01-16 11:59:16,568 - DEBUG - volIdx: 7 MC proc_time: 1.9946
+2025-01-16 11:59:16,568 - INFO - preprocessed volIdx 7
+2025-01-16 11:59:16,655 - DEBUG - started volIdx 7
+2025-01-16 11:59:16,656 - INFO - analyzed volIdx 7
+2025-01-16 11:59:16,656 - DEBUG - volIdx 7 added to resultsServer : {'average': 443.33}
+2025-01-16 11:59:16,727 - DEBUG - started volIdx 8
+2025-01-16 11:59:16,874 - DEBUG - received volHeader volIdx 9
+2025-01-16 11:59:16,888 - INFO - received volIdx 9
+2025-01-16 11:59:18,863 - DEBUG - volIdx: 8 MC proc_time: 1.9976
+2025-01-16 11:59:18,863 - INFO - preprocessed volIdx 8
+2025-01-16 11:59:18,941 - DEBUG - started volIdx 8
+2025-01-16 11:59:18,943 - INFO - analyzed volIdx 8
+2025-01-16 11:59:18,943 - DEBUG - volIdx 8 added to resultsServer : {'average': 443.5}
+2025-01-16 11:59:19,012 - DEBUG - started volIdx 9
+2025-01-16 11:59:19,353 - DEBUG - received volHeader volIdx 10
+2025-01-16 11:59:19,365 - INFO - received volIdx 10
+2025-01-16 11:59:21,176 - DEBUG - volIdx: 9 MC proc_time: 2.0247
+2025-01-16 11:59:21,176 - INFO - preprocessed volIdx 9
+2025-01-16 11:59:21,251 - DEBUG - received volHeader volIdx 11
+2025-01-16 11:59:21,257 - DEBUG - started volIdx 9
+2025-01-16 11:59:21,259 - INFO - analyzed volIdx 9
+2025-01-16 11:59:21,259 - DEBUG - volIdx 9 added to resultsServer : {'average': 444.34}
+2025-01-16 11:59:21,314 - INFO - received volIdx 11
+2025-01-16 11:59:21,331 - DEBUG - started volIdx 10
+2025-01-16 11:59:22,974 - DEBUG - received volHeader volIdx 12
+2025-01-16 11:59:22,988 - INFO - received volIdx 12
+2025-01-16 11:59:23,468 - DEBUG - volIdx: 10 MC proc_time: 1.9981
+2025-01-16 11:59:23,469 - INFO - preprocessed volIdx 10
+2025-01-16 11:59:23,547 - DEBUG - started volIdx 10
+2025-01-16 11:59:23,548 - INFO - analyzed volIdx 10
+2025-01-16 11:59:23,548 - DEBUG - volIdx 10 added to resultsServer : {'average': 445.39}
+2025-01-16 11:59:23,615 - DEBUG - started volIdx 11
+2025-01-16 11:59:24,183 - DEBUG - received volHeader volIdx 13
+2025-01-16 11:59:24,197 - INFO - received volIdx 13
+2025-01-16 11:59:25,767 - DEBUG - volIdx: 11 MC proc_time: 2.0134
+2025-01-16 11:59:25,767 - INFO - preprocessed volIdx 11
+2025-01-16 11:59:25,842 - DEBUG - started volIdx 11
+2025-01-16 11:59:25,844 - INFO - analyzed volIdx 11
+2025-01-16 11:59:25,844 - DEBUG - volIdx 11 added to resultsServer : {'average': 445.22}
+2025-01-16 11:59:25,911 - DEBUG - started volIdx 12
+2025-01-16 11:59:26,043 - DEBUG - received volHeader volIdx 14
+2025-01-16 11:59:26,057 - INFO - received volIdx 14
+2025-01-16 11:59:28,063 - DEBUG - volIdx: 12 MC proc_time: 2.0133
+2025-01-16 11:59:28,063 - INFO - preprocessed volIdx 12
+2025-01-16 11:59:28,142 - DEBUG - started volIdx 12
+2025-01-16 11:59:28,143 - INFO - analyzed volIdx 12
+2025-01-16 11:59:28,143 - DEBUG - volIdx 12 added to resultsServer : {'average': 444.79}
+2025-01-16 11:59:28,210 - DEBUG - started volIdx 13
+2025-01-16 11:59:28,916 - DEBUG - received volHeader volIdx 15
+2025-01-16 11:59:28,928 - INFO - received volIdx 15
+2025-01-16 11:59:30,367 - DEBUG - volIdx: 13 MC proc_time: 2.0143
+2025-01-16 11:59:30,368 - INFO - preprocessed volIdx 13
+2025-01-16 11:59:30,446 - DEBUG - started volIdx 13
+2025-01-16 11:59:30,447 - INFO - analyzed volIdx 13
+2025-01-16 11:59:30,447 - DEBUG - volIdx 13 added to resultsServer : {'average': 444.51}
+2025-01-16 11:59:30,514 - DEBUG - started volIdx 14
+2025-01-16 11:59:30,781 - DEBUG - received volHeader volIdx 16
+2025-01-16 11:59:30,800 - INFO - received volIdx 16
+2025-01-16 11:59:32,659 - DEBUG - volIdx: 14 MC proc_time: 2.0061
+2025-01-16 11:59:32,659 - INFO - preprocessed volIdx 14
+2025-01-16 11:59:32,737 - DEBUG - started volIdx 14
+2025-01-16 11:59:32,738 - INFO - analyzed volIdx 14
+2025-01-16 11:59:32,739 - DEBUG - volIdx 14 added to resultsServer : {'average': 444.07}
+2025-01-16 11:59:32,806 - DEBUG - started volIdx 15
+2025-01-16 11:59:33,075 - DEBUG - received volHeader volIdx 17
+2025-01-16 11:59:33,093 - INFO - received volIdx 17
+2025-01-16 11:59:34,957 - DEBUG - volIdx: 15 MC proc_time: 2.0125
+2025-01-16 11:59:34,957 - INFO - preprocessed volIdx 15
+2025-01-16 11:59:35,037 - DEBUG - started volIdx 15
+2025-01-16 11:59:35,038 - INFO - analyzed volIdx 15
+2025-01-16 11:59:35,039 - DEBUG - volIdx 15 added to resultsServer : {'average': 443.49}
+2025-01-16 11:59:35,106 - DEBUG - started volIdx 16
+2025-01-16 11:59:35,420 - DEBUG - received volHeader volIdx 18
+2025-01-16 11:59:35,436 - INFO - received volIdx 18
+2025-01-16 11:59:36,239 - DEBUG - received volHeader volIdx 19
+2025-01-16 11:59:36,253 - INFO - received volIdx 19
+2025-01-16 11:59:37,240 - DEBUG - volIdx: 16 MC proc_time: 1.9913
+2025-01-16 11:59:37,240 - INFO - preprocessed volIdx 16
+2025-01-16 11:59:37,315 - DEBUG - started volIdx 16
+2025-01-16 11:59:37,316 - INFO - analyzed volIdx 16
+2025-01-16 11:59:37,316 - DEBUG - volIdx 16 added to resultsServer : {'average': 443.54}
+2025-01-16 11:59:37,383 - DEBUG - started volIdx 17
+2025-01-16 11:59:38,908 - DEBUG - received volHeader volIdx 20
+2025-01-16 11:59:38,922 - INFO - received volIdx 20
+2025-01-16 11:59:39,544 - DEBUG - volIdx: 17 MC proc_time: 2.0236
+2025-01-16 11:59:39,545 - INFO - preprocessed volIdx 17
+2025-01-16 11:59:39,623 - DEBUG - started volIdx 17
+2025-01-16 11:59:39,624 - INFO - analyzed volIdx 17
+2025-01-16 11:59:39,624 - DEBUG - volIdx 17 added to resultsServer : {'average': 443.87}
+2025-01-16 11:59:39,692 - DEBUG - started volIdx 18
+2025-01-16 11:59:41,848 - DEBUG - received volHeader volIdx 21
+2025-01-16 11:59:41,859 - DEBUG - volIdx: 18 MC proc_time: 2.0233
+2025-01-16 11:59:41,859 - INFO - preprocessed volIdx 18
+2025-01-16 11:59:41,862 - INFO - received volIdx 21
+2025-01-16 11:59:41,934 - DEBUG - started volIdx 18
+2025-01-16 11:59:41,936 - INFO - analyzed volIdx 18
+2025-01-16 11:59:41,936 - DEBUG - volIdx 18 added to resultsServer : {'average': 443.2}
+2025-01-16 11:59:42,003 - DEBUG - started volIdx 19
+2025-01-16 11:59:42,465 - DEBUG - received volHeader volIdx 22
+2025-01-16 11:59:42,477 - INFO - received volIdx 22
+2025-01-16 11:59:44,139 - DEBUG - volIdx: 19 MC proc_time: 1.9958
+2025-01-16 11:59:44,139 - INFO - preprocessed volIdx 19
+2025-01-16 11:59:44,214 - DEBUG - started volIdx 19
+2025-01-16 11:59:44,215 - INFO - analyzed volIdx 19
+2025-01-16 11:59:44,216 - DEBUG - volIdx 19 added to resultsServer : {'average': 440.99}
+2025-01-16 11:59:44,283 - DEBUG - started volIdx 20
+2025-01-16 11:59:44,774 - DEBUG - received volHeader volIdx 23
+2025-01-16 11:59:44,785 - INFO - received volIdx 23
+2025-01-16 11:59:46,420 - DEBUG - volIdx: 20 MC proc_time: 1.9974
+2025-01-16 11:59:46,420 - INFO - preprocessed volIdx 20
+2025-01-16 11:59:46,495 - DEBUG - started volIdx 20
+2025-01-16 11:59:46,497 - INFO - analyzed volIdx 20
+2025-01-16 11:59:46,497 - DEBUG - volIdx 20 added to resultsServer : {'average': 440.26}
+2025-01-16 11:59:46,563 - DEBUG - started volIdx 21
+2025-01-16 11:59:47,131 - DEBUG - received volHeader volIdx 24
+2025-01-16 11:59:47,144 - INFO - received volIdx 24
+2025-01-16 11:59:48,700 - DEBUG - volIdx: 21 MC proc_time: 1.9982
+2025-01-16 11:59:48,700 - INFO - preprocessed volIdx 21
+2025-01-16 11:59:48,775 - DEBUG - started volIdx 21
+2025-01-16 11:59:48,776 - INFO - analyzed volIdx 21
+2025-01-16 11:59:48,776 - DEBUG - volIdx 21 added to resultsServer : {'average': 440.95}
+2025-01-16 11:59:48,843 - DEBUG - started volIdx 22
+2025-01-16 11:59:49,532 - DEBUG - received volHeader volIdx 25
+2025-01-16 11:59:49,545 - INFO - received volIdx 25
+2025-01-16 11:59:50,962 - DEBUG - received volHeader volIdx 26
+2025-01-16 11:59:50,971 - DEBUG - volIdx: 22 MC proc_time: 1.9901
+2025-01-16 11:59:50,972 - INFO - preprocessed volIdx 22
+2025-01-16 11:59:50,977 - INFO - received volIdx 26
+2025-01-16 11:59:51,050 - DEBUG - started volIdx 22
+2025-01-16 11:59:51,051 - INFO - analyzed volIdx 22
+2025-01-16 11:59:51,051 - DEBUG - volIdx 22 added to resultsServer : {'average': 441.22}
+2025-01-16 11:59:51,118 - DEBUG - started volIdx 23
+2025-01-16 11:59:53,266 - DEBUG - volIdx: 23 MC proc_time: 2.0023
+2025-01-16 11:59:53,266 - INFO - preprocessed volIdx 23
+2025-01-16 11:59:53,348 - DEBUG - started volIdx 23
+2025-01-16 11:59:53,349 - INFO - analyzed volIdx 23
+2025-01-16 11:59:53,349 - DEBUG - volIdx 23 added to resultsServer : {'average': 441.98}
+2025-01-16 11:59:53,417 - DEBUG - started volIdx 24
+2025-01-16 11:59:53,970 - DEBUG - received volHeader volIdx 27
+2025-01-16 11:59:53,984 - INFO - received volIdx 27
+2025-01-16 11:59:55,358 - DEBUG - received volHeader volIdx 28
+2025-01-16 11:59:55,372 - INFO - received volIdx 28
+2025-01-16 11:59:55,561 - DEBUG - volIdx: 24 MC proc_time: 2.0051
+2025-01-16 11:59:55,562 - INFO - preprocessed volIdx 24
+2025-01-16 11:59:55,638 - DEBUG - started volIdx 24
+2025-01-16 11:59:55,640 - INFO - analyzed volIdx 24
+2025-01-16 11:59:55,640 - DEBUG - volIdx 24 added to resultsServer : {'average': 441.73}
+2025-01-16 11:59:55,707 - DEBUG - started volIdx 25
+2025-01-16 11:59:57,790 - DEBUG - received volHeader volIdx 29
+2025-01-16 11:59:57,803 - INFO - received volIdx 29
+2025-01-16 11:59:57,846 - DEBUG - volIdx: 25 MC proc_time: 1.9998
+2025-01-16 11:59:57,846 - INFO - preprocessed volIdx 25
+2025-01-16 11:59:57,923 - DEBUG - started volIdx 25
+2025-01-16 11:59:57,924 - INFO - analyzed volIdx 25
+2025-01-16 11:59:57,924 - DEBUG - volIdx 25 added to resultsServer : {'average': 442.95}
+2025-01-16 11:59:57,991 - DEBUG - started volIdx 26
+2025-01-16 11:59:59,030 - DEBUG - received volHeader volIdx 30
+2025-01-16 11:59:59,044 - INFO - received volIdx 30
+2025-01-16 12:00:00,160 - DEBUG - volIdx: 26 MC proc_time: 2.0295
+2025-01-16 12:00:00,160 - INFO - preprocessed volIdx 26
+2025-01-16 12:00:00,235 - DEBUG - started volIdx 26
+2025-01-16 12:00:00,236 - INFO - analyzed volIdx 26
+2025-01-16 12:00:00,236 - DEBUG - volIdx 26 added to resultsServer : {'average': 444.94}
+2025-01-16 12:00:00,303 - DEBUG - started volIdx 27
+2025-01-16 12:00:01,222 - DEBUG - received volHeader volIdx 31
+2025-01-16 12:00:01,236 - INFO - received volIdx 31
+2025-01-16 12:00:02,452 - DEBUG - volIdx: 27 MC proc_time: 2.0076
+2025-01-16 12:00:02,452 - INFO - preprocessed volIdx 27
+2025-01-16 12:00:02,530 - DEBUG - started volIdx 27
+2025-01-16 12:00:02,531 - INFO - analyzed volIdx 27
+2025-01-16 12:00:02,531 - DEBUG - volIdx 27 added to resultsServer : {'average': 444.64}
+2025-01-16 12:00:02,598 - DEBUG - started volIdx 28
+2025-01-16 12:00:03,355 - DEBUG - received volHeader volIdx 32
+2025-01-16 12:00:03,369 - INFO - received volIdx 32
+2025-01-16 12:00:04,761 - DEBUG - volIdx: 28 MC proc_time: 2.0240
+2025-01-16 12:00:04,761 - INFO - preprocessed volIdx 28
+2025-01-16 12:00:04,840 - DEBUG - started volIdx 28
+2025-01-16 12:00:04,841 - INFO - analyzed volIdx 28
+2025-01-16 12:00:04,841 - DEBUG - volIdx 28 added to resultsServer : {'average': 443.65}
+2025-01-16 12:00:04,908 - DEBUG - started volIdx 29
+2025-01-16 12:00:05,409 - DEBUG - received volHeader volIdx 33
+2025-01-16 12:00:05,423 - INFO - received volIdx 33
+2025-01-16 12:00:07,056 - DEBUG - volIdx: 29 MC proc_time: 2.0080
+2025-01-16 12:00:07,056 - INFO - preprocessed volIdx 29
+2025-01-16 12:00:07,137 - DEBUG - started volIdx 29
+2025-01-16 12:00:07,139 - INFO - analyzed volIdx 29
+2025-01-16 12:00:07,139 - DEBUG - volIdx 29 added to resultsServer : {'average': 443.79}
+2025-01-16 12:00:07,206 - DEBUG - started volIdx 30
+2025-01-16 12:00:07,231 - DEBUG - received volHeader volIdx 34
+2025-01-16 12:00:07,245 - INFO - received volIdx 34
+2025-01-16 12:00:09,349 - DEBUG - volIdx: 30 MC proc_time: 2.0015
+2025-01-16 12:00:09,349 - INFO - preprocessed volIdx 30
+2025-01-16 12:00:09,428 - DEBUG - started volIdx 30
+2025-01-16 12:00:09,429 - INFO - analyzed volIdx 30
+2025-01-16 12:00:09,429 - DEBUG - volIdx 30 added to resultsServer : {'average': 443.91}
+2025-01-16 12:00:09,495 - DEBUG - started volIdx 31
+2025-01-16 12:00:09,774 - DEBUG - received volHeader volIdx 35
+2025-01-16 12:00:09,793 - INFO - received volIdx 35
+2025-01-16 12:00:10,579 - DEBUG - received volHeader volIdx 36
+2025-01-16 12:00:10,591 - INFO - received volIdx 36
+2025-01-16 12:00:11,644 - DEBUG - volIdx: 31 MC proc_time: 2.0086
+2025-01-16 12:00:11,644 - INFO - preprocessed volIdx 31
+2025-01-16 12:00:11,719 - DEBUG - started volIdx 31
+2025-01-16 12:00:11,720 - INFO - analyzed volIdx 31
+2025-01-16 12:00:11,721 - DEBUG - volIdx 31 added to resultsServer : {'average': 444.87}
+2025-01-16 12:00:11,787 - DEBUG - started volIdx 32
+2025-01-16 12:00:12,188 - DEBUG - received volHeader volIdx 37
+2025-01-16 12:00:12,200 - INFO - received volIdx 37
+2025-01-16 12:00:13,931 - DEBUG - volIdx: 32 MC proc_time: 2.0014
+2025-01-16 12:00:13,931 - INFO - preprocessed volIdx 32
+2025-01-16 12:00:14,006 - DEBUG - started volIdx 32
+2025-01-16 12:00:14,008 - INFO - analyzed volIdx 32
+2025-01-16 12:00:14,008 - DEBUG - volIdx 32 added to resultsServer : {'average': 444.63}
+2025-01-16 12:00:14,075 - DEBUG - started volIdx 33
+2025-01-16 12:00:14,385 - DEBUG - received volHeader volIdx 38
+2025-01-16 12:00:14,402 - INFO - received volIdx 38
+2025-01-16 12:00:16,243 - DEBUG - volIdx: 33 MC proc_time: 2.0251
+2025-01-16 12:00:16,243 - INFO - preprocessed volIdx 33
+2025-01-16 12:00:16,323 - DEBUG - started volIdx 33
+2025-01-16 12:00:16,324 - INFO - analyzed volIdx 33
+2025-01-16 12:00:16,324 - DEBUG - volIdx 33 added to resultsServer : {'average': 444.37}
+2025-01-16 12:00:16,392 - DEBUG - started volIdx 34
+2025-01-16 12:00:16,438 - DEBUG - received volHeader volIdx 39
+2025-01-16 12:00:16,451 - INFO - received volIdx 39
+2025-01-16 12:00:18,276 - DEBUG - received volHeader volIdx 40
+2025-01-16 12:00:18,287 - INFO - received volIdx 40
+2025-01-16 12:00:18,540 - DEBUG - volIdx: 34 MC proc_time: 2.0061
+2025-01-16 12:00:18,540 - INFO - preprocessed volIdx 34
+2025-01-16 12:00:18,616 - DEBUG - started volIdx 34
+2025-01-16 12:00:18,617 - INFO - analyzed volIdx 34
+2025-01-16 12:00:18,617 - DEBUG - volIdx 34 added to resultsServer : {'average': 443.7}
+2025-01-16 12:00:18,684 - DEBUG - started volIdx 35
+2025-01-16 12:00:20,832 - DEBUG - volIdx: 35 MC proc_time: 2.0039
+2025-01-16 12:00:20,832 - INFO - preprocessed volIdx 35
+2025-01-16 12:00:20,915 - DEBUG - started volIdx 35
+2025-01-16 12:00:20,916 - INFO - analyzed volIdx 35
+2025-01-16 12:00:20,917 - DEBUG - volIdx 35 added to resultsServer : {'average': 441.76}
+2025-01-16 12:00:20,984 - DEBUG - started volIdx 36
+2025-01-16 12:00:21,115 - DEBUG - received volHeader volIdx 41
+2025-01-16 12:00:21,129 - INFO - received volIdx 41
+2025-01-16 12:00:23,130 - DEBUG - volIdx: 36 MC proc_time: 2.0051
+2025-01-16 12:00:23,130 - INFO - preprocessed volIdx 36
+2025-01-16 12:00:23,180 - DEBUG - received volHeader volIdx 42
+2025-01-16 12:00:23,193 - INFO - received volIdx 42
+2025-01-16 12:00:23,211 - DEBUG - started volIdx 36
+2025-01-16 12:00:23,212 - INFO - analyzed volIdx 36
+2025-01-16 12:00:23,212 - DEBUG - volIdx 36 added to resultsServer : {'average': 441.1}
+2025-01-16 12:00:23,280 - DEBUG - started volIdx 37
+2025-01-16 12:00:25,444 - DEBUG - volIdx: 37 MC proc_time: 2.0234
+2025-01-16 12:00:25,444 - INFO - preprocessed volIdx 37
+2025-01-16 12:00:25,520 - DEBUG - started volIdx 37
+2025-01-16 12:00:25,521 - INFO - analyzed volIdx 37
+2025-01-16 12:00:25,521 - DEBUG - volIdx 37 added to resultsServer : {'average': 442.35}
+2025-01-16 12:00:25,590 - DEBUG - started volIdx 38
+2025-01-16 12:00:25,899 - DEBUG - received volHeader volIdx 43
+2025-01-16 12:00:25,916 - INFO - received volIdx 43
+2025-01-16 12:00:26,572 - DEBUG - received volHeader volIdx 44
+2025-01-16 12:00:26,584 - INFO - received volIdx 44
+2025-01-16 12:00:27,742 - DEBUG - volIdx: 38 MC proc_time: 2.0130
+2025-01-16 12:00:27,742 - INFO - preprocessed volIdx 38
+2025-01-16 12:00:27,818 - DEBUG - started volIdx 38
+2025-01-16 12:00:27,820 - INFO - analyzed volIdx 38
+2025-01-16 12:00:27,820 - DEBUG - volIdx 38 added to resultsServer : {'average': 441.55}
+2025-01-16 12:00:27,887 - DEBUG - started volIdx 39
+2025-01-16 12:00:28,499 - DEBUG - received volHeader volIdx 45
+2025-01-16 12:00:28,510 - INFO - received volIdx 45
+2025-01-16 12:00:30,055 - DEBUG - volIdx: 39 MC proc_time: 2.0284
+2025-01-16 12:00:30,055 - INFO - preprocessed volIdx 39
+2025-01-16 12:00:30,130 - DEBUG - started volIdx 39
+2025-01-16 12:00:30,132 - INFO - analyzed volIdx 39
+2025-01-16 12:00:30,132 - DEBUG - volIdx 39 added to resultsServer : {'average': 440.97}
+2025-01-16 12:00:30,200 - DEBUG - started volIdx 40
+2025-01-16 12:00:31,461 - DEBUG - received volHeader volIdx 46
+2025-01-16 12:00:31,475 - INFO - received volIdx 46
+2025-01-16 12:00:32,336 - DEBUG - volIdx: 40 MC proc_time: 1.9946
+2025-01-16 12:00:32,336 - INFO - preprocessed volIdx 40
+2025-01-16 12:00:32,412 - DEBUG - started volIdx 40
+2025-01-16 12:00:32,413 - INFO - analyzed volIdx 40
+2025-01-16 12:00:32,413 - DEBUG - volIdx 40 added to resultsServer : {'average': 441.7}
+2025-01-16 12:00:32,483 - DEBUG - started volIdx 41
+2025-01-16 12:00:32,826 - DEBUG - received volHeader volIdx 47
+2025-01-16 12:00:32,837 - INFO - received volIdx 47
+2025-01-16 12:00:34,625 - DEBUG - volIdx: 41 MC proc_time: 2.0009
+2025-01-16 12:00:34,626 - INFO - preprocessed volIdx 41
+2025-01-16 12:00:34,704 - DEBUG - started volIdx 41
+2025-01-16 12:00:34,705 - INFO - analyzed volIdx 41
+2025-01-16 12:00:34,706 - DEBUG - volIdx 41 added to resultsServer : {'average': 443.33}
+2025-01-16 12:00:34,774 - DEBUG - started volIdx 42
+2025-01-16 12:00:35,047 - DEBUG - received volHeader volIdx 48
+2025-01-16 12:00:35,065 - INFO - received volIdx 48
+2025-01-16 12:00:36,925 - DEBUG - volIdx: 42 MC proc_time: 2.0093
+2025-01-16 12:00:36,925 - INFO - preprocessed volIdx 42
+2025-01-16 12:00:37,004 - DEBUG - started volIdx 42
+2025-01-16 12:00:37,006 - INFO - analyzed volIdx 42
+2025-01-16 12:00:37,006 - DEBUG - volIdx 42 added to resultsServer : {'average': 444.74}
+2025-01-16 12:00:37,074 - DEBUG - started volIdx 43
+2025-01-16 12:00:37,217 - DEBUG - received volHeader volIdx 49
+2025-01-16 12:00:37,231 - INFO - received volIdx 49
+2025-01-16 12:00:39,248 - DEBUG - volIdx: 43 MC proc_time: 2.0303
+2025-01-16 12:00:39,248 - INFO - preprocessed volIdx 43
+2025-01-16 12:00:39,281 - DEBUG - received volHeader volIdx 50
+2025-01-16 12:00:39,295 - INFO - received volIdx 50
+2025-01-16 12:00:39,327 - DEBUG - started volIdx 43
+2025-01-16 12:00:39,328 - INFO - analyzed volIdx 43
+2025-01-16 12:00:39,328 - DEBUG - volIdx 43 added to resultsServer : {'average': 444.53}
+2025-01-16 12:00:39,396 - DEBUG - started volIdx 44
+2025-01-16 12:00:41,185 - DEBUG - received volHeader volIdx 51
+2025-01-16 12:00:41,198 - INFO - received volIdx 51
+2025-01-16 12:00:41,538 - DEBUG - volIdx: 44 MC proc_time: 2.0026
+2025-01-16 12:00:41,539 - INFO - preprocessed volIdx 44
+2025-01-16 12:00:41,614 - DEBUG - started volIdx 44
+2025-01-16 12:00:41,615 - INFO - analyzed volIdx 44
+2025-01-16 12:00:41,615 - DEBUG - volIdx 44 added to resultsServer : {'average': 444.11}
+2025-01-16 12:00:41,684 - DEBUG - started volIdx 45
+2025-01-16 12:00:42,970 - DEBUG - received volHeader volIdx 52
+2025-01-16 12:00:42,984 - INFO - received volIdx 52
+2025-01-16 12:00:43,819 - DEBUG - volIdx: 45 MC proc_time: 1.9932
+2025-01-16 12:00:43,819 - INFO - preprocessed volIdx 45
+2025-01-16 12:00:43,894 - DEBUG - started volIdx 45
+2025-01-16 12:00:43,896 - INFO - analyzed volIdx 45
+2025-01-16 12:00:43,896 - DEBUG - volIdx 45 added to resultsServer : {'average': 443.56}
+2025-01-16 12:00:43,964 - DEBUG - started volIdx 46
+2025-01-16 12:00:45,875 - DEBUG - received volHeader volIdx 53
+2025-01-16 12:00:45,889 - INFO - received volIdx 53
+2025-01-16 12:00:46,124 - DEBUG - volIdx: 46 MC proc_time: 2.0166
+2025-01-16 12:00:46,124 - INFO - preprocessed volIdx 46
+2025-01-16 12:00:46,202 - DEBUG - started volIdx 46
+2025-01-16 12:00:46,204 - INFO - analyzed volIdx 46
+2025-01-16 12:00:46,204 - DEBUG - volIdx 46 added to resultsServer : {'average': 443.82}
+2025-01-16 12:00:46,271 - DEBUG - started volIdx 47
+2025-01-16 12:00:47,240 - DEBUG - received volHeader volIdx 54
+2025-01-16 12:00:47,252 - INFO - received volIdx 54
+2025-01-16 12:00:48,435 - DEBUG - volIdx: 47 MC proc_time: 2.0220
+2025-01-16 12:00:48,435 - INFO - preprocessed volIdx 47
+2025-01-16 12:00:48,513 - DEBUG - started volIdx 47
+2025-01-16 12:00:48,514 - INFO - analyzed volIdx 47
+2025-01-16 12:00:48,514 - DEBUG - volIdx 47 added to resultsServer : {'average': 444.22}
+2025-01-16 12:00:48,582 - DEBUG - started volIdx 48
+2025-01-16 12:00:49,140 - DEBUG - received volHeader volIdx 55
+2025-01-16 12:00:49,152 - INFO - received volIdx 55
+2025-01-16 12:00:50,731 - DEBUG - volIdx: 48 MC proc_time: 2.0081
+2025-01-16 12:00:50,731 - INFO - preprocessed volIdx 48
+2025-01-16 12:00:50,809 - DEBUG - started volIdx 48
+2025-01-16 12:00:50,810 - INFO - analyzed volIdx 48
+2025-01-16 12:00:50,811 - DEBUG - volIdx 48 added to resultsServer : {'average': 445.54}
+2025-01-16 12:00:50,878 - DEBUG - started volIdx 49
+2025-01-16 12:00:51,157 - DEBUG - received volHeader volIdx 56
+2025-01-16 12:00:51,176 - INFO - received volIdx 56
+2025-01-16 12:00:53,056 - DEBUG - volIdx: 49 MC proc_time: 2.0370
+2025-01-16 12:00:53,056 - INFO - preprocessed volIdx 49
+2025-01-16 12:00:53,136 - DEBUG - started volIdx 49
+2025-01-16 12:00:53,137 - DEBUG - received volHeader volIdx 57
+2025-01-16 12:00:53,138 - INFO - analyzed volIdx 49
+2025-01-16 12:00:53,138 - DEBUG - volIdx 49 added to resultsServer : {'average': 445.64}
+2025-01-16 12:00:53,195 - INFO - received volIdx 57
+2025-01-16 12:00:53,208 - DEBUG - started volIdx 50
+2025-01-16 12:00:55,348 - DEBUG - volIdx: 50 MC proc_time: 1.9989
+2025-01-16 12:00:55,348 - INFO - preprocessed volIdx 50
+2025-01-16 12:00:55,423 - DEBUG - started volIdx 50
+2025-01-16 12:00:55,425 - INFO - analyzed volIdx 50
+2025-01-16 12:00:55,425 - DEBUG - volIdx 50 added to resultsServer : {'average': 445.51}
+2025-01-16 12:00:55,492 - DEBUG - started volIdx 51
+2025-01-16 12:00:55,839 - DEBUG - received volHeader volIdx 58
+2025-01-16 12:00:55,850 - INFO - received volIdx 58
+2025-01-16 12:00:56,249 - DEBUG - received volHeader volIdx 59
+2025-01-16 12:00:56,263 - INFO - received volIdx 59
+2025-01-16 12:00:57,665 - DEBUG - volIdx: 51 MC proc_time: 2.0286
+2025-01-16 12:00:57,665 - INFO - preprocessed volIdx 51
+2025-01-16 12:00:57,743 - DEBUG - started volIdx 51
+2025-01-16 12:00:57,744 - INFO - analyzed volIdx 51
+2025-01-16 12:00:57,744 - DEBUG - volIdx 51 added to resultsServer : {'average': 443.25}
+2025-01-16 12:00:57,811 - DEBUG - started volIdx 52
+2025-01-16 12:00:58,247 - DEBUG - received volHeader volIdx 60
+2025-01-16 12:00:58,258 - INFO - received volIdx 60
+2025-01-16 12:00:59,952 - DEBUG - volIdx: 52 MC proc_time: 2.0009
+2025-01-16 12:00:59,952 - INFO - preprocessed volIdx 52
+2025-01-16 12:01:00,027 - DEBUG - started volIdx 52
+2025-01-16 12:01:00,028 - INFO - analyzed volIdx 52
+2025-01-16 12:01:00,028 - DEBUG - volIdx 52 added to resultsServer : {'average': 441.76}
+2025-01-16 12:01:00,096 - DEBUG - started volIdx 53
+2025-01-16 12:01:00,250 - DEBUG - received volHeader volIdx 61
+2025-01-16 12:01:00,264 - INFO - received volIdx 61
+2025-01-16 12:01:02,250 - DEBUG - volIdx: 53 MC proc_time: 2.0101
+2025-01-16 12:01:02,250 - INFO - preprocessed volIdx 53
+2025-01-16 12:01:02,331 - DEBUG - started volIdx 53
+2025-01-16 12:01:02,332 - INFO - analyzed volIdx 53
+2025-01-16 12:01:02,332 - DEBUG - volIdx 53 added to resultsServer : {'average': 441.73}
+2025-01-16 12:01:02,400 - DEBUG - started volIdx 54
+2025-01-16 12:01:03,938 - DEBUG - received volHeader volIdx 62
+2025-01-16 12:01:03,951 - INFO - received volIdx 62
+2025-01-16 12:01:04,562 - DEBUG - volIdx: 54 MC proc_time: 2.0212
+2025-01-16 12:01:04,562 - INFO - preprocessed volIdx 54
+2025-01-16 12:01:04,644 - DEBUG - started volIdx 54
+2025-01-16 12:01:04,646 - INFO - analyzed volIdx 54
+2025-01-16 12:01:04,646 - DEBUG - volIdx 54 added to resultsServer : {'average': 441.95}
+2025-01-16 12:01:04,713 - DEBUG - started volIdx 55
+2025-01-16 12:01:05,230 - DEBUG - received volHeader volIdx 63
+2025-01-16 12:01:05,241 - INFO - received volIdx 63
+2025-01-16 12:01:06,856 - DEBUG - volIdx: 55 MC proc_time: 2.0029
+2025-01-16 12:01:06,856 - INFO - preprocessed volIdx 55
+2025-01-16 12:01:06,933 - DEBUG - started volIdx 55
+2025-01-16 12:01:06,935 - INFO - analyzed volIdx 55
+2025-01-16 12:01:06,935 - DEBUG - volIdx 55 added to resultsServer : {'average': 441.55}
+2025-01-16 12:01:07,002 - DEBUG - started volIdx 56
+2025-01-16 12:01:07,314 - DEBUG - received volHeader volIdx 64
+2025-01-16 12:01:07,331 - INFO - received volIdx 64
+2025-01-16 12:01:08,766 - DEBUG - received volHeader volIdx 65
+2025-01-16 12:01:08,780 - INFO - received volIdx 65
+2025-01-16 12:01:09,178 - DEBUG - volIdx: 56 MC proc_time: 2.0326
+2025-01-16 12:01:09,178 - INFO - preprocessed volIdx 56
+2025-01-16 12:01:09,257 - DEBUG - started volIdx 56
+2025-01-16 12:01:09,258 - INFO - analyzed volIdx 56
+2025-01-16 12:01:09,258 - DEBUG - volIdx 56 added to resultsServer : {'average': 441.88}
+2025-01-16 12:01:09,326 - DEBUG - started volIdx 57
+2025-01-16 12:01:52,154 - INFO - Setting: analysisChoice: Average
+2025-01-16 12:01:52,154 - INFO - Setting: dashboardClientPort: 5558
+2025-01-16 12:01:52,154 - INFO - Setting: dashboardPort: 5557
+2025-01-16 12:01:52,154 - INFO - Setting: dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
+2025-01-16 12:01:52,154 - INFO - Setting: estimateMotion: True
+2025-01-16 12:01:52,154 - INFO - Setting: launchDashboard: False
+2025-01-16 12:01:52,154 - INFO - Setting: layerMaskDeep: None
+2025-01-16 12:01:52,154 - INFO - Setting: layerMaskMiddle: None
+2025-01-16 12:01:52,154 - INFO - Setting: layerMaskSuperior: None
+2025-01-16 12:01:52,154 - INFO - Setting: maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
+2025-01-16 12:01:52,154 - INFO - Setting: maskIsWeighted: False
+2025-01-16 12:01:52,154 - INFO - Setting: numTimepts: 168
+2025-01-16 12:01:52,154 - INFO - Setting: outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+2025-01-16 12:01:52,154 - INFO - Setting: preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
+2025-01-16 12:01:52,154 - INFO - Setting: pynealHost: 127.0.0.1
+2025-01-16 12:01:52,154 - INFO - Setting: pynealHostIP: 127.0.1.1
+2025-01-16 12:01:52,154 - INFO - Setting: pynealScannerPort: 5556
+2025-01-16 12:01:52,154 - INFO - Setting: referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
+2025-01-16 12:01:52,154 - INFO - Setting: referenceVolume: 2
+2025-01-16 12:01:52,154 - INFO - Setting: resultsServerPort: 5555
+2025-01-16 12:01:52,154 - INFO - Setting: pynealDir: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal
+2025-01-16 12:01:52,154 - INFO - Setting: seriesOutputDir: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_066
+2025-01-16 12:01:52,154 - INFO - Setting: run_ref_img: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_066/ref_img.nii
+2025-01-16 12:01:52,154 - INFO - Setting: xfrm_file: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_066/ref2run_ref.mat
+2025-01-16 12:01:52,155 - DEBUG - bound to 127.0.0.1:5556
+2025-01-16 12:01:52,155 - INFO - Scan Receiver Server alive and listening....
+2025-01-16 12:01:52,156 - DEBUG - Starting Scan Receiver
+2025-01-16 12:01:52,156 - DEBUG - bound to 0.0.0.0:5555
+2025-01-16 12:01:52,156 - INFO - Results Server alive and listening....
+2025-01-16 12:01:52,156 - DEBUG - Starting Results Server
+2025-01-16 12:01:52,251 - DEBUG - scanner socket connected to Pyneal-Scanner
+2025-01-16 12:01:57,980 - DEBUG - received volHeader volIdx 0
+2025-01-16 12:01:57,981 - DEBUG - Image Matrix dims: (240, 240, 36, 168)
+2025-01-16 12:01:58,164 - DEBUG - Scan started
+2025-01-16 12:01:58,477 - INFO - received volIdx 0
+2025-01-16 12:01:59,079 - DEBUG - started volIdx 0
+2025-01-16 12:01:59,217 - INFO - preprocessed volIdx 0
+2025-01-16 12:01:59,252 - DEBUG - started volIdx 0
+2025-01-16 12:01:59,252 - INFO - Skipped Analysis volIdx 0
+2025-01-16 12:01:59,253 - DEBUG - volIdx 0 added to resultsServer : {'average': nan}
+2025-01-16 12:01:59,875 - DEBUG - received volHeader volIdx 1
+2025-01-16 12:02:00,671 - INFO - received volIdx 1
+2025-01-16 12:02:00,781 - DEBUG - started volIdx 1
+2025-01-16 12:02:00,918 - INFO - preprocessed volIdx 1
+2025-01-16 12:02:00,946 - DEBUG - started volIdx 1
+2025-01-16 12:02:00,946 - INFO - Skipped Analysis volIdx 1
+2025-01-16 12:02:00,946 - DEBUG - volIdx 1 added to resultsServer : {'average': nan}
+2025-01-16 12:02:01,868 - DEBUG - received volHeader volIdx 2
+2025-01-16 12:02:01,882 - INFO - received volIdx 2
+2025-01-16 12:02:01,985 - DEBUG - started volIdx 2
+2025-01-16 12:02:02,668 - INFO - preprocessed 2 reference and mask proc_time 0.6637
+2025-01-16 12:02:02,809 - INFO - preprocessed volIdx 2
+2025-01-16 12:02:02,839 - DEBUG - started volIdx 2
+2025-01-16 12:02:02,839 - INFO - Skipped Analysis volIdx 2
+2025-01-16 12:02:02,839 - DEBUG - volIdx 2 added to resultsServer : {'average': nan}
+2025-01-16 12:02:03,918 - DEBUG - received volHeader volIdx 3
+2025-01-16 12:02:03,932 - INFO - received volIdx 3
+2025-01-16 12:02:04,093 - DEBUG - started volIdx 3
+2025-01-16 12:02:06,232 - DEBUG - volIdx: 3 MC proc_time: 1.9995
+2025-01-16 12:02:06,233 - INFO - preprocessed volIdx 3
+2025-01-16 12:02:06,325 - DEBUG - started volIdx 3
+2025-01-16 12:02:06,326 - INFO - analyzed volIdx 3
+2025-01-16 12:02:06,327 - DEBUG - volIdx 3 added to resultsServer : {'average': 444.91}
+2025-01-16 12:02:08,226 - DEBUG - received volHeader volIdx 4
+2025-01-16 12:02:08,240 - INFO - received volIdx 4
+2025-01-16 12:02:08,403 - DEBUG - started volIdx 4
+2025-01-16 12:02:09,360 - DEBUG - received volHeader volIdx 5
+2025-01-16 12:02:09,372 - INFO - received volIdx 5
+2025-01-16 12:02:10,564 - DEBUG - volIdx: 4 MC proc_time: 2.0177
+2025-01-16 12:02:10,564 - INFO - preprocessed volIdx 4
+2025-01-16 12:02:10,653 - DEBUG - started volIdx 4
+2025-01-16 12:02:10,655 - INFO - analyzed volIdx 4
+2025-01-16 12:02:10,655 - DEBUG - volIdx 4 added to resultsServer : {'average': 443.85}
+2025-01-16 12:02:10,737 - DEBUG - started volIdx 5
+2025-01-16 12:02:11,011 - DEBUG - received volHeader volIdx 6
+2025-01-16 12:02:11,029 - INFO - received volIdx 6
+2025-01-16 12:02:12,022 - DEBUG - received volHeader volIdx 7
+2025-01-16 12:02:12,033 - INFO - received volIdx 7
+2025-01-16 12:02:12,903 - DEBUG - volIdx: 5 MC proc_time: 2.0260
+2025-01-16 12:02:12,903 - INFO - preprocessed volIdx 5
+2025-01-16 12:02:12,990 - DEBUG - started volIdx 5
+2025-01-16 12:02:12,991 - INFO - analyzed volIdx 5
+2025-01-16 12:02:12,991 - DEBUG - volIdx 5 added to resultsServer : {'average': 443.31}
+2025-01-16 12:02:13,066 - DEBUG - started volIdx 6
+2025-01-16 12:02:15,070 - DEBUG - received volHeader volIdx 8
+2025-01-16 12:02:15,082 - INFO - received volIdx 8
+2025-01-16 12:02:15,221 - DEBUG - volIdx: 6 MC proc_time: 2.0138
+2025-01-16 12:02:15,222 - INFO - preprocessed volIdx 6
+2025-01-16 12:02:15,312 - DEBUG - started volIdx 6
+2025-01-16 12:02:15,313 - INFO - analyzed volIdx 6
+2025-01-16 12:02:15,314 - DEBUG - volIdx 6 added to resultsServer : {'average': 443.29}
+2025-01-16 12:02:15,392 - DEBUG - started volIdx 7
+2025-01-16 12:02:17,034 - DEBUG - received volHeader volIdx 9
+2025-01-16 12:02:17,048 - INFO - received volIdx 9
+2025-01-16 12:02:17,535 - DEBUG - volIdx: 7 MC proc_time: 2.0013
+2025-01-16 12:02:17,535 - INFO - preprocessed volIdx 7
+2025-01-16 12:02:17,625 - DEBUG - started volIdx 7
+2025-01-16 12:02:17,626 - INFO - analyzed volIdx 7
+2025-01-16 12:02:17,626 - DEBUG - volIdx 7 added to resultsServer : {'average': 443.33}
+2025-01-16 12:02:17,717 - DEBUG - started volIdx 8
+2025-01-16 12:02:18,289 - DEBUG - received volHeader volIdx 10
+2025-01-16 12:02:18,300 - INFO - received volIdx 10
+2025-01-16 12:02:19,865 - DEBUG - volIdx: 8 MC proc_time: 2.0025
+2025-01-16 12:02:19,865 - INFO - preprocessed volIdx 8
+2025-01-16 12:02:19,952 - DEBUG - started volIdx 8
+2025-01-16 12:02:19,954 - INFO - analyzed volIdx 8
+2025-01-16 12:02:19,954 - DEBUG - volIdx 8 added to resultsServer : {'average': 443.5}
+2025-01-16 12:02:20,032 - DEBUG - started volIdx 9
+2025-01-16 12:02:20,348 - DEBUG - received volHeader volIdx 11
+2025-01-16 12:02:20,365 - INFO - received volIdx 11
+2025-01-16 12:02:22,192 - DEBUG - volIdx: 9 MC proc_time: 2.0158
+2025-01-16 12:02:22,192 - INFO - preprocessed volIdx 9
+2025-01-16 12:02:22,278 - DEBUG - started volIdx 9
+2025-01-16 12:02:22,280 - INFO - analyzed volIdx 9
+2025-01-16 12:02:22,280 - DEBUG - volIdx 9 added to resultsServer : {'average': 444.34}
+2025-01-16 12:02:22,357 - DEBUG - started volIdx 10
+2025-01-16 12:02:22,656 - DEBUG - received volHeader volIdx 12
+2025-01-16 12:02:22,675 - INFO - received volIdx 12
+2025-01-16 12:02:24,545 - DEBUG - volIdx: 10 MC proc_time: 2.0458
+2025-01-16 12:02:24,545 - INFO - preprocessed volIdx 10
+2025-01-16 12:02:24,629 - DEBUG - started volIdx 10
+2025-01-16 12:02:24,630 - INFO - analyzed volIdx 10
+2025-01-16 12:02:24,631 - DEBUG - volIdx 10 added to resultsServer : {'average': 445.39}
+2025-01-16 12:02:24,706 - DEBUG - started volIdx 11
+2025-01-16 12:02:25,075 - DEBUG - received volHeader volIdx 13
+2025-01-16 12:02:25,087 - INFO - received volIdx 13
+2025-01-16 12:02:26,299 - DEBUG - received volHeader volIdx 14
+2025-01-16 12:02:26,311 - INFO - received volIdx 14
+2025-01-16 12:02:26,859 - DEBUG - volIdx: 11 MC proc_time: 2.0120
+2025-01-16 12:02:26,859 - INFO - preprocessed volIdx 11
+2025-01-16 12:02:26,945 - DEBUG - started volIdx 11
+2025-01-16 12:02:26,946 - INFO - analyzed volIdx 11
+2025-01-16 12:02:26,946 - DEBUG - volIdx 11 added to resultsServer : {'average': 445.22}
+2025-01-16 12:02:27,024 - DEBUG - started volIdx 12
+2025-01-16 12:02:27,935 - DEBUG - received volHeader volIdx 15
+2025-01-16 12:02:27,947 - INFO - received volIdx 15
+2025-01-16 12:02:29,164 - DEBUG - volIdx: 12 MC proc_time: 1.9989
+2025-01-16 12:02:29,164 - INFO - preprocessed volIdx 12
+2025-01-16 12:02:29,250 - DEBUG - started volIdx 12
+2025-01-16 12:02:29,252 - INFO - analyzed volIdx 12
+2025-01-16 12:02:29,252 - DEBUG - volIdx 12 added to resultsServer : {'average': 444.79}
+2025-01-16 12:02:29,328 - DEBUG - started volIdx 13
+2025-01-16 12:02:30,175 - DEBUG - received volHeader volIdx 16
+2025-01-16 12:02:30,187 - INFO - received volIdx 16
+2025-01-16 12:02:31,476 - DEBUG - volIdx: 13 MC proc_time: 2.0084
+2025-01-16 12:02:31,476 - INFO - preprocessed volIdx 13
+2025-01-16 12:02:31,563 - DEBUG - started volIdx 13
+2025-01-16 12:02:31,564 - INFO - analyzed volIdx 13
+2025-01-16 12:02:31,564 - DEBUG - volIdx 13 added to resultsServer : {'average': 444.51}
+2025-01-16 12:02:31,640 - DEBUG - started volIdx 14
+2025-01-16 12:02:31,929 - DEBUG - received volHeader volIdx 17
+2025-01-16 12:02:31,948 - INFO - received volIdx 17
+2025-01-16 12:02:33,844 - DEBUG - volIdx: 14 MC proc_time: 2.0631
+2025-01-16 12:02:33,845 - INFO - preprocessed volIdx 14
+2025-01-16 12:02:33,931 - DEBUG - started volIdx 14
+2025-01-16 12:02:33,932 - INFO - analyzed volIdx 14
+2025-01-16 12:02:33,932 - DEBUG - volIdx 14 added to resultsServer : {'average': 444.07}
+2025-01-16 12:02:34,008 - DEBUG - started volIdx 15
+2025-01-16 12:02:34,156 - DEBUG - received volHeader volIdx 18
+2025-01-16 12:02:34,170 - INFO - received volIdx 18
+2025-01-16 12:02:36,155 - DEBUG - volIdx: 15 MC proc_time: 2.0078
+2025-01-16 12:02:36,155 - INFO - preprocessed volIdx 15
+2025-01-16 12:02:36,239 - DEBUG - started volIdx 15
+2025-01-16 12:02:36,240 - INFO - analyzed volIdx 15
+2025-01-16 12:02:36,240 - DEBUG - volIdx 15 added to resultsServer : {'average': 443.49}
+2025-01-16 12:02:36,309 - DEBUG - started volIdx 16
+2025-01-16 12:02:37,074 - DEBUG - received volHeader volIdx 19
+2025-01-16 12:02:37,086 - INFO - received volIdx 19
+2025-01-16 12:02:38,466 - DEBUG - volIdx: 16 MC proc_time: 2.0183
+2025-01-16 12:02:38,466 - INFO - preprocessed volIdx 16
+2025-01-16 12:02:38,550 - DEBUG - started volIdx 16
+2025-01-16 12:02:38,551 - INFO - analyzed volIdx 16
+2025-01-16 12:02:38,551 - DEBUG - volIdx 16 added to resultsServer : {'average': 443.54}
+2025-01-16 12:02:38,621 - DEBUG - started volIdx 17
+2025-01-16 12:02:38,989 - DEBUG - received volHeader volIdx 20
+2025-01-16 12:02:39,001 - INFO - received volIdx 20
+2025-01-16 12:02:40,764 - DEBUG - volIdx: 17 MC proc_time: 2.0035
+2025-01-16 12:02:40,764 - INFO - preprocessed volIdx 17
+2025-01-16 12:02:40,843 - DEBUG - started volIdx 17
+2025-01-16 12:02:40,844 - INFO - analyzed volIdx 17
+2025-01-16 12:02:40,844 - DEBUG - volIdx 17 added to resultsServer : {'average': 443.87}
+2025-01-16 12:02:40,915 - DEBUG - started volIdx 18
+2025-01-16 12:02:41,245 - DEBUG - received volHeader volIdx 21
+2025-01-16 12:02:41,257 - INFO - received volIdx 21
+2025-01-16 12:02:43,075 - DEBUG - volIdx: 18 MC proc_time: 2.0218
+2025-01-16 12:02:43,075 - INFO - preprocessed volIdx 18
+2025-01-16 12:02:43,155 - DEBUG - started volIdx 18
+2025-01-16 12:02:43,156 - INFO - analyzed volIdx 18
+2025-01-16 12:02:43,156 - DEBUG - volIdx 18 added to resultsServer : {'average': 443.2}
+2025-01-16 12:02:43,224 - DEBUG - started volIdx 19
+2025-01-16 12:02:43,485 - DEBUG - received volHeader volIdx 22
+2025-01-16 12:02:43,504 - INFO - received volIdx 22
+2025-01-16 12:02:44,093 - DEBUG - received volHeader volIdx 23
+2025-01-16 12:02:44,104 - INFO - received volIdx 23
+2025-01-16 12:02:45,357 - DEBUG - volIdx: 19 MC proc_time: 1.9946
+2025-01-16 12:02:45,357 - INFO - preprocessed volIdx 19
+2025-01-16 12:02:45,433 - DEBUG - started volIdx 19
+2025-01-16 12:02:45,434 - INFO - analyzed volIdx 19
+2025-01-16 12:02:45,434 - DEBUG - volIdx 19 added to resultsServer : {'average': 440.99}
+2025-01-16 12:02:45,502 - DEBUG - started volIdx 20
+2025-01-16 12:02:47,656 - DEBUG - volIdx: 20 MC proc_time: 2.0156
+2025-01-16 12:02:47,656 - INFO - preprocessed volIdx 20
+2025-01-16 12:02:47,666 - DEBUG - received volHeader volIdx 24
+2025-01-16 12:02:47,680 - INFO - received volIdx 24
+2025-01-16 12:02:47,734 - DEBUG - started volIdx 20
+2025-01-16 12:02:47,736 - INFO - analyzed volIdx 20
+2025-01-16 12:02:47,736 - DEBUG - volIdx 20 added to resultsServer : {'average': 440.26}
+2025-01-16 12:02:47,803 - DEBUG - started volIdx 21
+2025-01-16 12:02:48,165 - DEBUG - received volHeader volIdx 25
+2025-01-16 12:02:48,177 - INFO - received volIdx 25
+2025-01-16 12:02:49,938 - DEBUG - volIdx: 21 MC proc_time: 1.9964
+2025-01-16 12:02:49,938 - INFO - preprocessed volIdx 21
+2025-01-16 12:02:49,995 - DEBUG - received volHeader volIdx 26
+2025-01-16 12:02:50,010 - INFO - received volIdx 26
+2025-01-16 12:02:50,015 - DEBUG - started volIdx 21
+2025-01-16 12:02:50,016 - INFO - analyzed volIdx 21
+2025-01-16 12:02:50,016 - DEBUG - volIdx 21 added to resultsServer : {'average': 440.95}
+2025-01-16 12:02:50,084 - DEBUG - started volIdx 22
+2025-01-16 12:03:43,282 - INFO - Setting: analysisChoice: Average
+2025-01-16 12:03:43,282 - INFO - Setting: dashboardClientPort: 5558
+2025-01-16 12:03:43,282 - INFO - Setting: dashboardPort: 5557
+2025-01-16 12:03:43,282 - INFO - Setting: dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
+2025-01-16 12:03:43,282 - INFO - Setting: estimateMotion: True
+2025-01-16 12:03:43,282 - INFO - Setting: launchDashboard: False
+2025-01-16 12:03:43,282 - INFO - Setting: layerMaskDeep: None
+2025-01-16 12:03:43,282 - INFO - Setting: layerMaskMiddle: None
+2025-01-16 12:03:43,282 - INFO - Setting: layerMaskSuperior: None
+2025-01-16 12:03:43,282 - INFO - Setting: maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
+2025-01-16 12:03:43,282 - INFO - Setting: maskIsWeighted: False
+2025-01-16 12:03:43,282 - INFO - Setting: numTimepts: 168
+2025-01-16 12:03:43,282 - INFO - Setting: outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+2025-01-16 12:03:43,282 - INFO - Setting: preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
+2025-01-16 12:03:43,282 - INFO - Setting: pynealHost: 127.0.0.1
+2025-01-16 12:03:43,282 - INFO - Setting: pynealHostIP: 127.0.1.1
+2025-01-16 12:03:43,282 - INFO - Setting: pynealScannerPort: 5556
+2025-01-16 12:03:43,282 - INFO - Setting: referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
+2025-01-16 12:03:43,282 - INFO - Setting: referenceVolume: 0
+2025-01-16 12:03:43,283 - INFO - Setting: resultsServerPort: 5555
+2025-01-16 12:03:43,283 - INFO - Setting: pynealDir: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal
+2025-01-16 12:03:43,283 - INFO - Setting: seriesOutputDir: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_067
+2025-01-16 12:03:43,283 - INFO - Setting: run_ref_img: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_067/ref_img.nii
+2025-01-16 12:03:43,283 - INFO - Setting: xfrm_file: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_067/ref2run_ref.mat
+2025-01-16 12:03:43,284 - DEBUG - bound to 127.0.0.1:5556
+2025-01-16 12:03:43,284 - INFO - Scan Receiver Server alive and listening....
+2025-01-16 12:03:43,284 - DEBUG - Starting Scan Receiver
+2025-01-16 12:03:43,284 - DEBUG - bound to 0.0.0.0:5555
+2025-01-16 12:03:43,284 - INFO - Results Server alive and listening....
+2025-01-16 12:03:43,284 - DEBUG - Starting Results Server
+2025-01-16 12:04:22,546 - INFO - Setting: analysisChoice: Average
+2025-01-16 12:04:22,546 - INFO - Setting: dashboardClientPort: 5558
+2025-01-16 12:04:22,546 - INFO - Setting: dashboardPort: 5557
+2025-01-16 12:04:22,546 - INFO - Setting: dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
+2025-01-16 12:04:22,546 - INFO - Setting: estimateMotion: True
+2025-01-16 12:04:22,546 - INFO - Setting: launchDashboard: False
+2025-01-16 12:04:22,546 - INFO - Setting: layerMaskDeep: None
+2025-01-16 12:04:22,546 - INFO - Setting: layerMaskMiddle: None
+2025-01-16 12:04:22,546 - INFO - Setting: layerMaskSuperior: None
+2025-01-16 12:04:22,546 - INFO - Setting: maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
+2025-01-16 12:04:22,546 - INFO - Setting: maskIsWeighted: False
+2025-01-16 12:04:22,546 - INFO - Setting: numTimepts: 168
+2025-01-16 12:04:22,546 - INFO - Setting: outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+2025-01-16 12:04:22,546 - INFO - Setting: preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
+2025-01-16 12:04:22,546 - INFO - Setting: pynealHost: 127.0.0.1
+2025-01-16 12:04:22,546 - INFO - Setting: pynealHostIP: 127.0.1.1
+2025-01-16 12:04:22,546 - INFO - Setting: pynealScannerPort: 5556
+2025-01-16 12:04:22,546 - INFO - Setting: referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
+2025-01-16 12:04:22,546 - INFO - Setting: referenceVolume: 0
+2025-01-16 12:04:22,547 - INFO - Setting: resultsServerPort: 5555
+2025-01-16 12:04:22,547 - INFO - Setting: pynealDir: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal
+2025-01-16 12:04:22,547 - INFO - Setting: seriesOutputDir: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_068
+2025-01-16 12:04:22,547 - INFO - Setting: run_ref_img: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_068/ref_img.nii
+2025-01-16 12:04:22,547 - INFO - Setting: xfrm_file: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_068/ref2run_ref.mat
+2025-01-16 12:04:22,548 - DEBUG - bound to 127.0.0.1:5556
+2025-01-16 12:04:22,548 - INFO - Scan Receiver Server alive and listening....
+2025-01-16 12:04:22,548 - DEBUG - Starting Scan Receiver
+2025-01-16 12:04:22,548 - DEBUG - bound to 0.0.0.0:5555
+2025-01-16 12:04:22,548 - INFO - Results Server alive and listening....
+2025-01-16 12:04:22,548 - DEBUG - Starting Results Server
+2025-01-16 12:04:22,589 - DEBUG - scanner socket connected to Pyneal-Scanner
+2025-01-16 12:04:28,183 - DEBUG - received volHeader volIdx 0
+2025-01-16 12:04:28,183 - DEBUG - Image Matrix dims: (240, 240, 36, 168)
+2025-01-16 12:04:28,556 - DEBUG - Scan started
+2025-01-16 12:04:28,681 - INFO - received volIdx 0
+2025-01-16 12:04:29,280 - DEBUG - started volIdx 0
+2025-01-16 12:04:29,975 - INFO - preprocessed 0 reference and mask proc_time 0.6748
+2025-01-16 12:04:30,117 - INFO - preprocessed volIdx 0
+2025-01-16 12:04:30,149 - DEBUG - started volIdx 0
+2025-01-16 12:04:30,149 - INFO - Skipped Analysis volIdx 0
+2025-01-16 12:04:30,149 - DEBUG - volIdx 0 added to resultsServer : {'average': nan}
+2025-01-16 12:04:31,441 - DEBUG - received volHeader volIdx 1
+2025-01-16 12:04:32,239 - INFO - received volIdx 1
+2025-01-16 12:04:32,384 - DEBUG - started volIdx 1
+2025-01-16 12:04:32,797 - DEBUG - received volHeader volIdx 2
+2025-01-16 12:04:32,809 - INFO - received volIdx 2
+2025-01-16 12:04:34,532 - DEBUG - volIdx: 1 MC proc_time: 2.0083
+2025-01-16 12:04:34,532 - INFO - preprocessed volIdx 1
+2025-01-16 12:04:34,623 - DEBUG - started volIdx 1
+2025-01-16 12:04:34,624 - INFO - analyzed volIdx 1
+2025-01-16 12:04:34,624 - DEBUG - volIdx 1 added to resultsServer : {'average': 445.5}
+2025-01-16 12:04:34,701 - DEBUG - started volIdx 2
+2025-01-16 12:04:35,005 - DEBUG - received volHeader volIdx 3
+2025-01-16 12:04:35,023 - INFO - received volIdx 3
+2025-01-16 12:04:36,862 - DEBUG - volIdx: 2 MC proc_time: 2.0221
+2025-01-16 12:04:36,862 - INFO - preprocessed volIdx 2
+2025-01-16 12:04:36,957 - DEBUG - started volIdx 2
+2025-01-16 12:04:36,958 - INFO - analyzed volIdx 2
+2025-01-16 12:04:36,958 - DEBUG - volIdx 2 added to resultsServer : {'average': 445.85}
+2025-01-16 12:04:37,035 - DEBUG - started volIdx 3
+2025-01-16 12:04:37,319 - DEBUG - received volHeader volIdx 4
+2025-01-16 12:04:37,338 - INFO - received volIdx 4
+2025-01-16 12:04:39,183 - DEBUG - volIdx: 3 MC proc_time: 2.0075
+2025-01-16 12:04:39,184 - INFO - preprocessed volIdx 3
+2025-01-16 12:04:39,269 - DEBUG - started volIdx 3
+2025-01-16 12:04:39,271 - INFO - analyzed volIdx 3
+2025-01-16 12:04:39,271 - DEBUG - volIdx 3 added to resultsServer : {'average': 444.9}
+2025-01-16 12:04:39,350 - DEBUG - started volIdx 4
+2025-01-16 12:04:39,516 - DEBUG - received volHeader volIdx 5
+2025-01-16 12:04:39,529 - INFO - received volIdx 5
+2025-01-16 12:04:41,158 - DEBUG - received volHeader volIdx 6
+2025-01-16 12:04:41,170 - INFO - received volIdx 6
+2025-01-16 12:04:41,493 - DEBUG - volIdx: 4 MC proc_time: 2.0033
+2025-01-16 12:04:41,493 - INFO - preprocessed volIdx 4
+2025-01-16 12:04:41,580 - DEBUG - started volIdx 4
+2025-01-16 12:04:41,581 - INFO - analyzed volIdx 4
+2025-01-16 12:04:41,581 - DEBUG - volIdx 4 added to resultsServer : {'average': 443.85}
+2025-01-16 12:04:41,661 - DEBUG - started volIdx 5
+2025-01-16 12:04:43,101 - DEBUG - received volHeader volIdx 7
+2025-01-16 12:04:43,115 - INFO - received volIdx 7
+2025-01-16 12:04:43,796 - DEBUG - volIdx: 5 MC proc_time: 1.9950
+2025-01-16 12:04:43,796 - INFO - preprocessed volIdx 5
+2025-01-16 12:04:43,881 - DEBUG - started volIdx 5
+2025-01-16 12:04:43,883 - INFO - analyzed volIdx 5
+2025-01-16 12:04:43,883 - DEBUG - volIdx 5 added to resultsServer : {'average': 443.34}
+2025-01-16 12:04:43,959 - DEBUG - started volIdx 6
+2025-01-16 12:04:44,770 - DEBUG - received volHeader volIdx 8
+2025-01-16 12:04:44,782 - INFO - received volIdx 8
+2025-01-16 12:04:46,125 - DEBUG - volIdx: 6 MC proc_time: 2.0279
+2025-01-16 12:04:46,126 - INFO - preprocessed volIdx 6
+2025-01-16 12:04:46,214 - DEBUG - started volIdx 6
+2025-01-16 12:04:46,215 - INFO - analyzed volIdx 6
+2025-01-16 12:04:46,215 - DEBUG - volIdx 6 added to resultsServer : {'average': 443.19}
+2025-01-16 12:04:46,295 - DEBUG - started volIdx 7
+2025-01-16 12:04:47,015 - DEBUG - received volHeader volIdx 9
+2025-01-16 12:04:47,027 - INFO - received volIdx 9
+2025-01-16 12:04:48,463 - DEBUG - volIdx: 7 MC proc_time: 2.0285
+2025-01-16 12:04:48,463 - INFO - preprocessed volIdx 7
+2025-01-16 12:04:48,547 - DEBUG - started volIdx 7
+2025-01-16 12:04:48,548 - INFO - analyzed volIdx 7
+2025-01-16 12:04:48,548 - DEBUG - volIdx 7 added to resultsServer : {'average': 443.28}
+2025-01-16 12:04:48,625 - DEBUG - started volIdx 8
+2025-01-16 12:04:49,040 - DEBUG - received volHeader volIdx 10
+2025-01-16 12:04:49,052 - INFO - received volIdx 10
+2025-01-16 12:04:50,759 - DEBUG - volIdx: 8 MC proc_time: 1.9970
+2025-01-16 12:04:50,760 - INFO - preprocessed volIdx 8
+2025-01-16 12:04:50,843 - DEBUG - started volIdx 8
+2025-01-16 12:04:50,845 - INFO - analyzed volIdx 8
+2025-01-16 12:04:50,845 - DEBUG - volIdx 8 added to resultsServer : {'average': 443.47}
+2025-01-16 12:04:50,921 - DEBUG - started volIdx 9
+2025-01-16 12:04:51,011 - DEBUG - received volHeader volIdx 11
+2025-01-16 12:04:51,025 - INFO - received volIdx 11
+2025-01-16 12:04:52,601 - DEBUG - received volHeader volIdx 12
+2025-01-16 12:04:52,613 - INFO - received volIdx 12
+2025-01-16 12:04:53,075 - DEBUG - volIdx: 9 MC proc_time: 2.0140
+2025-01-16 12:04:53,075 - INFO - preprocessed volIdx 9
+2025-01-16 12:04:53,159 - DEBUG - started volIdx 9
+2025-01-16 12:04:53,161 - INFO - analyzed volIdx 9
+2025-01-16 12:04:53,161 - DEBUG - volIdx 9 added to resultsServer : {'average': 444.31}
+2025-01-16 12:04:53,237 - DEBUG - started volIdx 10
+2025-01-16 12:04:54,728 - DEBUG - received volHeader volIdx 13
+2025-01-16 12:04:54,742 - INFO - received volIdx 13
+2025-01-16 12:04:55,395 - DEBUG - volIdx: 10 MC proc_time: 2.0192
+2025-01-16 12:04:55,395 - INFO - preprocessed volIdx 10
+2025-01-16 12:04:55,479 - DEBUG - started volIdx 10
+2025-01-16 12:04:55,480 - INFO - analyzed volIdx 10
+2025-01-16 12:04:55,480 - DEBUG - volIdx 10 added to resultsServer : {'average': 445.37}
+2025-01-16 12:04:55,557 - DEBUG - started volIdx 11
+2025-01-16 12:04:56,442 - DEBUG - received volHeader volIdx 14
+2025-01-16 12:04:56,453 - INFO - received volIdx 14
+2025-01-16 12:04:57,727 - DEBUG - volIdx: 11 MC proc_time: 2.0304
+2025-01-16 12:04:57,727 - INFO - preprocessed volIdx 11
+2025-01-16 12:04:57,814 - DEBUG - started volIdx 11
+2025-01-16 12:04:57,815 - INFO - analyzed volIdx 11
+2025-01-16 12:04:57,816 - DEBUG - volIdx 11 added to resultsServer : {'average': 445.26}
+2025-01-16 12:04:57,891 - DEBUG - started volIdx 12
+2025-01-16 12:04:58,869 - DEBUG - received volHeader volIdx 15
+2025-01-16 12:04:58,887 - INFO - received volIdx 15
+2025-01-16 12:05:00,050 - DEBUG - volIdx: 12 MC proc_time: 2.0187
+2025-01-16 12:05:00,050 - INFO - preprocessed volIdx 12
+2025-01-16 12:05:00,141 - DEBUG - started volIdx 12
+2025-01-16 12:05:00,142 - INFO - analyzed volIdx 12
+2025-01-16 12:05:00,142 - DEBUG - volIdx 12 added to resultsServer : {'average': 444.77}
+2025-01-16 12:05:00,218 - DEBUG - started volIdx 13
+2025-01-16 12:05:01,027 - DEBUG - received volHeader volIdx 16
+2025-01-16 12:05:01,041 - INFO - received volIdx 16
+2025-01-16 12:05:02,366 - DEBUG - volIdx: 13 MC proc_time: 2.0086
+2025-01-16 12:05:02,366 - INFO - preprocessed volIdx 13
+2025-01-16 12:05:02,450 - DEBUG - started volIdx 13
+2025-01-16 12:05:02,451 - INFO - analyzed volIdx 13
+2025-01-16 12:05:02,451 - DEBUG - volIdx 13 added to resultsServer : {'average': 444.57}
+2025-01-16 12:05:02,530 - DEBUG - started volIdx 14
+2025-01-16 12:05:02,809 - DEBUG - received volHeader volIdx 17
+2025-01-16 12:05:02,827 - INFO - received volIdx 17
+2025-01-16 12:05:04,698 - DEBUG - volIdx: 14 MC proc_time: 2.0279
+2025-01-16 12:05:04,698 - INFO - preprocessed volIdx 14
+2025-01-16 12:05:04,785 - DEBUG - started volIdx 14
+2025-01-16 12:05:04,786 - INFO - analyzed volIdx 14
+2025-01-16 12:05:04,786 - DEBUG - volIdx 14 added to resultsServer : {'average': 444.06}
+2025-01-16 12:05:04,862 - DEBUG - started volIdx 15
+2025-01-16 12:05:05,221 - DEBUG - received volHeader volIdx 18
+2025-01-16 12:05:05,232 - INFO - received volIdx 18
+2025-01-16 12:05:06,789 - DEBUG - received volHeader volIdx 19
+2025-01-16 12:05:06,801 - INFO - received volIdx 19
+2025-01-16 12:05:07,011 - DEBUG - volIdx: 15 MC proc_time: 2.0085
+2025-01-16 12:05:07,011 - INFO - preprocessed volIdx 15
+2025-01-16 12:05:07,095 - DEBUG - started volIdx 15
+2025-01-16 12:05:07,096 - INFO - analyzed volIdx 15
+2025-01-16 12:05:07,096 - DEBUG - volIdx 15 added to resultsServer : {'average': 443.49}
+2025-01-16 12:05:07,167 - DEBUG - started volIdx 16
+2025-01-16 12:05:09,330 - DEBUG - volIdx: 16 MC proc_time: 2.0224
+2025-01-16 12:05:09,330 - INFO - preprocessed volIdx 16
+2025-01-16 12:05:09,415 - DEBUG - started volIdx 16
+2025-01-16 12:05:09,416 - INFO - analyzed volIdx 16
+2025-01-16 12:05:09,416 - DEBUG - volIdx 16 added to resultsServer : {'average': 443.5}
+2025-01-16 12:05:09,484 - DEBUG - started volIdx 17
+2025-01-16 12:05:09,662 - DEBUG - received volHeader volIdx 20
+2025-01-16 12:05:09,676 - INFO - received volIdx 20
+2025-01-16 12:05:11,368 - DEBUG - received volHeader volIdx 21
+2025-01-16 12:05:11,380 - INFO - received volIdx 21
+2025-01-16 12:05:11,649 - DEBUG - volIdx: 17 MC proc_time: 2.0251
+2025-01-16 12:05:11,649 - INFO - preprocessed volIdx 17
+2025-01-16 12:05:11,727 - DEBUG - started volIdx 17
+2025-01-16 12:05:11,728 - INFO - analyzed volIdx 17
+2025-01-16 12:05:11,728 - DEBUG - volIdx 17 added to resultsServer : {'average': 443.89}
+2025-01-16 12:05:11,796 - DEBUG - started volIdx 18
+2025-01-16 12:05:13,874 - DEBUG - received volHeader volIdx 22
+2025-01-16 12:05:13,886 - INFO - received volIdx 22
+2025-01-16 12:05:13,940 - DEBUG - volIdx: 18 MC proc_time: 2.0031
+2025-01-16 12:05:13,940 - INFO - preprocessed volIdx 18
+2025-01-16 12:05:14,018 - DEBUG - started volIdx 18
+2025-01-16 12:05:14,019 - INFO - analyzed volIdx 18
+2025-01-16 12:05:14,019 - DEBUG - volIdx 18 added to resultsServer : {'average': 443.16}
+2025-01-16 12:05:14,087 - DEBUG - started volIdx 19
+2025-01-16 12:05:15,020 - DEBUG - received volHeader volIdx 23
+2025-01-16 12:05:15,033 - INFO - received volIdx 23
+2025-01-16 12:05:16,240 - DEBUG - volIdx: 19 MC proc_time: 2.0078
+2025-01-16 12:05:16,240 - INFO - preprocessed volIdx 19
+2025-01-16 12:05:16,315 - DEBUG - started volIdx 19
+2025-01-16 12:05:16,316 - INFO - analyzed volIdx 19
+2025-01-16 12:05:16,316 - DEBUG - volIdx 19 added to resultsServer : {'average': 441.0}
+2025-01-16 12:05:16,384 - DEBUG - started volIdx 20
+2025-01-16 12:05:17,167 - DEBUG - received volHeader volIdx 24
+2025-01-16 12:05:17,180 - INFO - received volIdx 24
+2025-01-16 12:05:18,551 - DEBUG - volIdx: 20 MC proc_time: 2.0288
+2025-01-16 12:05:18,551 - INFO - preprocessed volIdx 20
+2025-01-16 12:05:18,626 - DEBUG - started volIdx 20
+2025-01-16 12:05:18,627 - INFO - analyzed volIdx 20
+2025-01-16 12:05:18,627 - DEBUG - volIdx 20 added to resultsServer : {'average': 440.29}
+2025-01-16 12:05:18,695 - DEBUG - started volIdx 21
+2025-01-16 12:05:18,985 - DEBUG - received volHeader volIdx 25
+2025-01-16 12:05:19,004 - INFO - received volIdx 25
+2025-01-16 12:05:20,832 - DEBUG - volIdx: 21 MC proc_time: 1.9999
+2025-01-16 12:05:20,832 - INFO - preprocessed volIdx 21
+2025-01-16 12:05:20,910 - DEBUG - started volIdx 21
+2025-01-16 12:05:20,911 - INFO - analyzed volIdx 21
+2025-01-16 12:05:20,911 - DEBUG - volIdx 21 added to resultsServer : {'average': 440.99}
+2025-01-16 12:05:20,980 - DEBUG - started volIdx 22
+2025-01-16 12:05:21,075 - DEBUG - received volHeader volIdx 26
+2025-01-16 12:05:21,089 - INFO - received volIdx 26
+2025-01-16 12:05:23,127 - DEBUG - volIdx: 22 MC proc_time: 2.0075
+2025-01-16 12:05:23,127 - INFO - preprocessed volIdx 22
+2025-01-16 12:05:23,205 - DEBUG - started volIdx 22
+2025-01-16 12:05:23,206 - INFO - analyzed volIdx 22
+2025-01-16 12:05:23,207 - DEBUG - volIdx 22 added to resultsServer : {'average': 441.26}
+2025-01-16 12:05:23,275 - DEBUG - started volIdx 23
+2025-01-16 12:05:23,556 - DEBUG - received volHeader volIdx 27
+2025-01-16 12:05:23,574 - INFO - received volIdx 27
+2025-01-16 12:05:25,261 - DEBUG - received volHeader volIdx 28
+2025-01-16 12:05:25,275 - INFO - received volIdx 28
+2025-01-16 12:05:25,397 - DEBUG - volIdx: 23 MC proc_time: 1.9825
+2025-01-16 12:05:25,397 - INFO - preprocessed volIdx 23
+2025-01-16 12:05:25,471 - DEBUG - started volIdx 23
+2025-01-16 12:05:25,473 - INFO - analyzed volIdx 23
+2025-01-16 12:05:25,473 - DEBUG - volIdx 23 added to resultsServer : {'average': 441.96}
+2025-01-16 12:05:25,540 - DEBUG - started volIdx 24
+2025-01-16 12:05:27,522 - DEBUG - received volHeader volIdx 29
+2025-01-16 12:05:27,536 - INFO - received volIdx 29
+2025-01-16 12:05:27,690 - DEBUG - volIdx: 24 MC proc_time: 2.0125
+2025-01-16 12:05:27,690 - INFO - preprocessed volIdx 24
+2025-01-16 12:05:27,770 - DEBUG - started volIdx 24
+2025-01-16 12:05:27,772 - INFO - analyzed volIdx 24
+2025-01-16 12:05:27,772 - DEBUG - volIdx 24 added to resultsServer : {'average': 441.7}
+2025-01-16 12:05:27,841 - DEBUG - started volIdx 25
+2025-01-16 12:05:29,751 - DEBUG - received volHeader volIdx 30
+2025-01-16 12:05:29,765 - INFO - received volIdx 30
+2025-01-16 12:05:30,002 - DEBUG - volIdx: 25 MC proc_time: 2.0162
+2025-01-16 12:05:30,002 - INFO - preprocessed volIdx 25
+2025-01-16 12:05:30,084 - DEBUG - started volIdx 25
+2025-01-16 12:05:30,086 - INFO - analyzed volIdx 25
+2025-01-16 12:05:30,086 - DEBUG - volIdx 25 added to resultsServer : {'average': 442.99}
+2025-01-16 12:05:30,154 - DEBUG - started volIdx 26
+2025-01-16 12:05:30,961 - DEBUG - received volHeader volIdx 31
+2025-01-16 12:05:30,973 - INFO - received volIdx 31
+2025-01-16 12:05:32,329 - DEBUG - volIdx: 26 MC proc_time: 2.0361
+2025-01-16 12:05:32,329 - INFO - preprocessed volIdx 26
+2025-01-16 12:05:32,404 - DEBUG - started volIdx 26
+2025-01-16 12:05:32,405 - INFO - analyzed volIdx 26
+2025-01-16 12:05:32,405 - DEBUG - volIdx 26 added to resultsServer : {'average': 444.92}
+2025-01-16 12:05:32,474 - DEBUG - started volIdx 27
+2025-01-16 12:05:32,819 - DEBUG - received volHeader volIdx 32
+2025-01-16 12:05:32,831 - INFO - received volIdx 32
+2025-01-16 12:05:34,642 - DEBUG - volIdx: 27 MC proc_time: 2.0245
+2025-01-16 12:05:34,642 - INFO - preprocessed volIdx 27
+2025-01-16 12:05:34,722 - DEBUG - started volIdx 27
+2025-01-16 12:05:34,724 - INFO - analyzed volIdx 27
+2025-01-16 12:05:34,724 - DEBUG - volIdx 27 added to resultsServer : {'average': 444.71}
+2025-01-16 12:05:34,791 - DEBUG - started volIdx 28
+2025-01-16 12:05:35,403 - DEBUG - received volHeader volIdx 33
+2025-01-16 12:05:35,415 - INFO - received volIdx 33
+2025-01-16 12:05:36,939 - DEBUG - volIdx: 28 MC proc_time: 2.0093
+2025-01-16 12:05:36,939 - INFO - preprocessed volIdx 28
+2025-01-16 12:05:37,015 - DEBUG - started volIdx 28
+2025-01-16 12:05:37,016 - INFO - analyzed volIdx 28
+2025-01-16 12:05:37,016 - DEBUG - volIdx 28 added to resultsServer : {'average': 443.68}
+2025-01-16 12:05:37,084 - DEBUG - started volIdx 29
+2025-01-16 12:05:37,247 - DEBUG - received volHeader volIdx 34
+2025-01-16 12:05:37,261 - INFO - received volIdx 34
+2025-01-16 12:05:38,275 - DEBUG - received volHeader volIdx 35
+2025-01-16 12:05:38,286 - INFO - received volIdx 35
+2025-01-16 12:05:39,236 - DEBUG - volIdx: 29 MC proc_time: 2.0106
+2025-01-16 12:05:39,236 - INFO - preprocessed volIdx 29
+2025-01-16 12:05:39,314 - DEBUG - started volIdx 29
+2025-01-16 12:05:39,315 - INFO - analyzed volIdx 29
+2025-01-16 12:05:39,315 - DEBUG - volIdx 29 added to resultsServer : {'average': 443.78}
+2025-01-16 12:05:39,383 - DEBUG - started volIdx 30
+2025-01-16 12:05:41,456 - DEBUG - received volHeader volIdx 36
+2025-01-16 12:05:41,467 - INFO - received volIdx 36
+2025-01-16 12:05:41,524 - DEBUG - volIdx: 30 MC proc_time: 2.0028
+2025-01-16 12:05:41,524 - INFO - preprocessed volIdx 30
+2025-01-16 12:05:41,600 - DEBUG - started volIdx 30
+2025-01-16 12:05:41,601 - INFO - analyzed volIdx 30
+2025-01-16 12:05:41,601 - DEBUG - volIdx 30 added to resultsServer : {'average': 443.99}
+2025-01-16 12:05:41,670 - DEBUG - started volIdx 31
+2025-01-16 12:05:42,962 - DEBUG - received volHeader volIdx 37
+2025-01-16 12:05:42,974 - INFO - received volIdx 37
+2025-01-16 12:05:43,852 - DEBUG - volIdx: 31 MC proc_time: 2.0418
+2025-01-16 12:05:43,852 - INFO - preprocessed volIdx 31
+2025-01-16 12:05:43,931 - DEBUG - started volIdx 31
+2025-01-16 12:05:43,932 - INFO - analyzed volIdx 31
+2025-01-16 12:05:43,933 - DEBUG - volIdx 31 added to resultsServer : {'average': 444.88}
+2025-01-16 12:05:44,001 - DEBUG - started volIdx 32
+2025-01-16 12:05:44,453 - DEBUG - received volHeader volIdx 38
+2025-01-16 12:05:44,464 - INFO - received volIdx 38
+2025-01-16 12:05:46,160 - DEBUG - volIdx: 32 MC proc_time: 2.0152
+2025-01-16 12:05:46,160 - INFO - preprocessed volIdx 32
+2025-01-16 12:05:46,235 - DEBUG - started volIdx 32
+2025-01-16 12:05:46,237 - INFO - analyzed volIdx 32
+2025-01-16 12:05:46,237 - DEBUG - volIdx 32 added to resultsServer : {'average': 444.63}
+2025-01-16 12:05:46,304 - DEBUG - started volIdx 33
+2025-01-16 12:05:46,545 - DEBUG - received volHeader volIdx 39
+2025-01-16 12:05:46,563 - INFO - received volIdx 39
+2025-01-16 12:05:48,460 - DEBUG - volIdx: 33 MC proc_time: 2.0158
+2025-01-16 12:05:48,460 - INFO - preprocessed volIdx 33
+2025-01-16 12:05:48,535 - DEBUG - started volIdx 33
+2025-01-16 12:05:48,536 - INFO - analyzed volIdx 33
+2025-01-16 12:05:48,536 - DEBUG - volIdx 33 added to resultsServer : {'average': 444.37}
+2025-01-16 12:05:48,606 - DEBUG - started volIdx 34
+2025-01-16 12:05:48,865 - DEBUG - received volHeader volIdx 40
+2025-01-16 12:05:48,883 - INFO - received volIdx 40
+2025-01-16 12:05:50,078 - DEBUG - received volHeader volIdx 41
+2025-01-16 12:05:50,091 - INFO - received volIdx 41
+2025-01-16 12:05:50,760 - DEBUG - volIdx: 34 MC proc_time: 2.0108
+2025-01-16 12:05:50,760 - INFO - preprocessed volIdx 34
+2025-01-16 12:05:50,835 - DEBUG - started volIdx 34
+2025-01-16 12:05:50,836 - INFO - analyzed volIdx 34
+2025-01-16 12:05:50,836 - DEBUG - volIdx 34 added to resultsServer : {'average': 443.69}
+2025-01-16 12:05:50,904 - DEBUG - started volIdx 35
+2025-01-16 12:05:52,117 - DEBUG - received volHeader volIdx 42
+2025-01-16 12:05:52,134 - INFO - received volIdx 42
+2025-01-16 12:05:53,049 - DEBUG - volIdx: 35 MC proc_time: 2.0050
+2025-01-16 12:05:53,049 - INFO - preprocessed volIdx 35
+2025-01-16 12:05:53,125 - DEBUG - started volIdx 35
+2025-01-16 12:05:53,127 - INFO - analyzed volIdx 35
+2025-01-16 12:05:53,127 - DEBUG - volIdx 35 added to resultsServer : {'average': 441.78}
+2025-01-16 12:05:53,195 - DEBUG - started volIdx 36
+2025-01-16 12:05:53,974 - DEBUG - received volHeader volIdx 43
+2025-01-16 12:05:53,985 - INFO - received volIdx 43
+2025-01-16 12:05:55,366 - DEBUG - volIdx: 36 MC proc_time: 2.0298
+2025-01-16 12:05:55,366 - INFO - preprocessed volIdx 36
+2025-01-16 12:05:55,441 - DEBUG - started volIdx 36
+2025-01-16 12:05:55,442 - INFO - analyzed volIdx 36
+2025-01-16 12:05:55,443 - DEBUG - volIdx 36 added to resultsServer : {'average': 441.1}
+2025-01-16 12:05:55,511 - DEBUG - started volIdx 37
+2025-01-16 12:05:56,189 - DEBUG - received volHeader volIdx 44
+2025-01-16 12:05:56,201 - INFO - received volIdx 44
+2025-01-16 12:05:57,682 - DEBUG - volIdx: 37 MC proc_time: 2.0322
+2025-01-16 12:05:57,682 - INFO - preprocessed volIdx 37
+2025-01-16 12:05:57,763 - DEBUG - started volIdx 37
+2025-01-16 12:05:57,764 - INFO - analyzed volIdx 37
+2025-01-16 12:05:57,764 - DEBUG - volIdx 37 added to resultsServer : {'average': 442.34}
+2025-01-16 12:05:57,832 - DEBUG - started volIdx 38
+2025-01-16 12:05:58,477 - DEBUG - received volHeader volIdx 45
+2025-01-16 12:05:58,489 - INFO - received volIdx 45
+2025-01-16 12:05:59,991 - DEBUG - volIdx: 38 MC proc_time: 2.0209
+2025-01-16 12:05:59,992 - INFO - preprocessed volIdx 38
+2025-01-16 12:06:00,070 - DEBUG - started volIdx 38
+2025-01-16 12:06:00,071 - INFO - analyzed volIdx 38
+2025-01-16 12:06:00,072 - DEBUG - volIdx 38 added to resultsServer : {'average': 441.6}
+2025-01-16 12:06:00,140 - DEBUG - started volIdx 39
+2025-01-16 12:06:00,589 - DEBUG - received volHeader volIdx 46
+2025-01-16 12:06:00,601 - INFO - received volIdx 46
+2025-01-16 12:06:02,272 - DEBUG - volIdx: 39 MC proc_time: 1.9932
+2025-01-16 12:06:02,272 - INFO - preprocessed volIdx 39
+2025-01-16 12:06:02,347 - DEBUG - started volIdx 39
+2025-01-16 12:06:02,348 - INFO - analyzed volIdx 39
+2025-01-16 12:06:02,348 - DEBUG - volIdx 39 added to resultsServer : {'average': 441.02}
+2025-01-16 12:06:02,416 - DEBUG - started volIdx 40
+2025-01-16 12:06:03,018 - DEBUG - received volHeader volIdx 47
+2025-01-16 12:06:03,030 - INFO - received volIdx 47
+2025-01-16 12:06:04,568 - DEBUG - volIdx: 40 MC proc_time: 2.0121
+2025-01-16 12:06:04,568 - INFO - preprocessed volIdx 40
+2025-01-16 12:06:04,646 - DEBUG - started volIdx 40
+2025-01-16 12:06:04,647 - INFO - analyzed volIdx 40
+2025-01-16 12:06:04,647 - DEBUG - volIdx 40 added to resultsServer : {'average': 441.72}
+2025-01-16 12:06:04,716 - DEBUG - started volIdx 41
+2025-01-16 12:06:05,000 - DEBUG - received volHeader volIdx 48
+2025-01-16 12:06:05,020 - INFO - received volIdx 48
+2025-01-16 12:06:06,847 - DEBUG - volIdx: 41 MC proc_time: 1.9925
+2025-01-16 12:06:06,847 - INFO - preprocessed volIdx 41
+2025-01-16 12:06:06,923 - DEBUG - started volIdx 41
+2025-01-16 12:06:06,924 - INFO - analyzed volIdx 41
+2025-01-16 12:06:06,924 - DEBUG - volIdx 41 added to resultsServer : {'average': 443.31}
+2025-01-16 12:06:06,993 - DEBUG - started volIdx 42
+2025-01-16 12:06:07,802 - DEBUG - received volHeader volIdx 49
+2025-01-16 12:06:07,814 - INFO - received volIdx 49
+2025-01-16 12:06:08,749 - DEBUG - received volHeader volIdx 50
+2025-01-16 12:06:08,761 - INFO - received volIdx 50
+2025-01-16 12:06:09,143 - DEBUG - volIdx: 42 MC proc_time: 2.0097
+2025-01-16 12:06:09,143 - INFO - preprocessed volIdx 42
+2025-01-16 12:06:09,221 - DEBUG - started volIdx 42
+2025-01-16 12:06:09,222 - INFO - analyzed volIdx 42
+2025-01-16 12:06:09,222 - DEBUG - volIdx 42 added to resultsServer : {'average': 444.73}
+2025-01-16 12:06:09,290 - DEBUG - started volIdx 43
+2025-01-16 12:06:11,115 - DEBUG - received volHeader volIdx 51
+2025-01-16 12:06:11,127 - INFO - received volIdx 51
+2025-01-16 12:06:11,426 - DEBUG - volIdx: 43 MC proc_time: 1.9958
+2025-01-16 12:06:11,426 - INFO - preprocessed volIdx 43
+2025-01-16 12:06:11,507 - DEBUG - started volIdx 43
+2025-01-16 12:06:11,508 - INFO - analyzed volIdx 43
+2025-01-16 12:06:11,508 - DEBUG - volIdx 43 added to resultsServer : {'average': 444.52}
+2025-01-16 12:06:11,577 - DEBUG - started volIdx 44
+2025-01-16 12:06:12,290 - DEBUG - received volHeader volIdx 52
+2025-01-16 12:06:12,301 - INFO - received volIdx 52
+2025-01-16 12:06:13,728 - DEBUG - volIdx: 44 MC proc_time: 2.0113
+2025-01-16 12:06:13,729 - INFO - preprocessed volIdx 44
+2025-01-16 12:06:13,804 - DEBUG - started volIdx 44
+2025-01-16 12:06:13,805 - INFO - analyzed volIdx 44
+2025-01-16 12:06:13,805 - DEBUG - volIdx 44 added to resultsServer : {'average': 444.1}
+2025-01-16 12:06:13,874 - DEBUG - started volIdx 45
+2025-01-16 12:06:14,443 - DEBUG - received volHeader volIdx 53
+2025-01-16 12:06:14,454 - INFO - received volIdx 53
+2025-01-16 12:06:16,020 - DEBUG - volIdx: 45 MC proc_time: 2.0066
+2025-01-16 12:06:16,021 - INFO - preprocessed volIdx 45
+2025-01-16 12:06:16,099 - DEBUG - started volIdx 45
+2025-01-16 12:06:16,100 - INFO - analyzed volIdx 45
+2025-01-16 12:06:16,100 - DEBUG - volIdx 45 added to resultsServer : {'average': 443.56}
+2025-01-16 12:06:16,169 - DEBUG - started volIdx 46
+2025-01-16 12:06:17,601 - DEBUG - received volHeader volIdx 54
+2025-01-16 12:06:17,613 - INFO - received volIdx 54
+2025-01-16 12:06:18,314 - DEBUG - volIdx: 46 MC proc_time: 2.0051
+2025-01-16 12:06:18,314 - INFO - preprocessed volIdx 46
+2025-01-16 12:06:18,399 - DEBUG - started volIdx 46
+2025-01-16 12:06:18,400 - INFO - analyzed volIdx 46
+2025-01-16 12:06:18,400 - DEBUG - volIdx 46 added to resultsServer : {'average': 443.81}
+2025-01-16 12:06:18,468 - DEBUG - started volIdx 47
+2025-01-16 12:06:19,262 - DEBUG - received volHeader volIdx 55
+2025-01-16 12:06:19,273 - INFO - received volIdx 55
+2025-01-16 12:06:20,610 - DEBUG - volIdx: 47 MC proc_time: 2.0035
+2025-01-16 12:06:20,611 - INFO - preprocessed volIdx 47
+2025-01-16 12:06:20,658 - DEBUG - received volHeader volIdx 56
+2025-01-16 12:06:20,672 - INFO - received volIdx 56
+2025-01-16 12:06:20,689 - DEBUG - started volIdx 47
+2025-01-16 12:06:20,691 - INFO - analyzed volIdx 47
+2025-01-16 12:06:20,691 - DEBUG - volIdx 47 added to resultsServer : {'average': 444.21}
+2025-01-16 12:06:20,760 - DEBUG - started volIdx 48
+2025-01-16 12:06:22,671 - DEBUG - received volHeader volIdx 57
+2025-01-16 12:06:22,683 - INFO - received volIdx 57
+2025-01-16 12:06:22,910 - DEBUG - volIdx: 48 MC proc_time: 2.0103
+2025-01-16 12:06:22,911 - INFO - preprocessed volIdx 48
+2025-01-16 12:06:22,989 - DEBUG - started volIdx 48
+2025-01-16 12:06:22,991 - INFO - analyzed volIdx 48
+2025-01-16 12:06:22,991 - DEBUG - volIdx 48 added to resultsServer : {'average': 445.59}
+2025-01-16 12:06:23,060 - DEBUG - started volIdx 49
+2025-01-16 12:06:25,201 - DEBUG - volIdx: 49 MC proc_time: 2.0011
+2025-01-16 12:06:25,201 - INFO - preprocessed volIdx 49
+2025-01-16 12:06:25,281 - DEBUG - started volIdx 49
+2025-01-16 12:06:25,282 - INFO - analyzed volIdx 49
+2025-01-16 12:06:25,282 - DEBUG - volIdx 49 added to resultsServer : {'average': 445.67}
+2025-01-16 12:06:25,351 - DEBUG - started volIdx 50
+2025-01-16 12:06:25,618 - DEBUG - received volHeader volIdx 58
+2025-01-16 12:06:25,636 - INFO - received volIdx 58
+2025-01-16 12:06:26,932 - DEBUG - received volHeader volIdx 59
+2025-01-16 12:06:26,944 - INFO - received volIdx 59
+2025-01-16 12:06:27,502 - DEBUG - volIdx: 50 MC proc_time: 2.0101
+2025-01-16 12:06:27,502 - INFO - preprocessed volIdx 50
+2025-01-16 12:06:27,583 - DEBUG - started volIdx 50
+2025-01-16 12:06:27,584 - INFO - analyzed volIdx 50
+2025-01-16 12:06:27,584 - DEBUG - volIdx 50 added to resultsServer : {'average': 445.56}
+2025-01-16 12:06:27,655 - DEBUG - started volIdx 51
+2025-01-16 12:06:28,572 - DEBUG - received volHeader volIdx 60
+2025-01-16 12:06:28,585 - INFO - received volIdx 60
+2025-01-16 12:06:29,827 - DEBUG - volIdx: 51 MC proc_time: 2.0322
+2025-01-16 12:06:29,828 - INFO - preprocessed volIdx 51
+2025-01-16 12:06:29,909 - DEBUG - started volIdx 51
+2025-01-16 12:06:29,910 - INFO - analyzed volIdx 51
+2025-01-16 12:06:29,910 - DEBUG - volIdx 51 added to resultsServer : {'average': 443.26}
+2025-01-16 12:06:29,979 - DEBUG - started volIdx 52
+2025-01-16 12:06:30,201 - DEBUG - received volHeader volIdx 61
+2025-01-16 12:06:30,218 - INFO - received volIdx 61
+2025-01-16 12:06:32,132 - DEBUG - volIdx: 52 MC proc_time: 2.0132
+2025-01-16 12:06:32,132 - INFO - preprocessed volIdx 52
+2025-01-16 12:06:32,210 - DEBUG - started volIdx 52
+2025-01-16 12:06:32,211 - INFO - analyzed volIdx 52
+2025-01-16 12:06:32,211 - DEBUG - volIdx 52 added to resultsServer : {'average': 441.82}
+2025-01-16 12:06:32,279 - DEBUG - started volIdx 53
+2025-01-16 12:06:32,577 - DEBUG - received volHeader volIdx 62
+2025-01-16 12:06:32,600 - INFO - received volIdx 62
+2025-01-16 12:06:34,410 - DEBUG - received volHeader volIdx 63
+2025-01-16 12:06:34,422 - INFO - received volIdx 63
+2025-01-16 12:06:34,465 - DEBUG - volIdx: 53 MC proc_time: 2.0467
+2025-01-16 12:06:34,465 - INFO - preprocessed volIdx 53
+2025-01-16 12:06:34,543 - DEBUG - started volIdx 53
+2025-01-16 12:06:34,544 - INFO - analyzed volIdx 53
+2025-01-16 12:06:34,544 - DEBUG - volIdx 53 added to resultsServer : {'average': 441.74}
+2025-01-16 12:06:34,613 - DEBUG - started volIdx 54
+2025-01-16 12:06:36,258 - DEBUG - received volHeader volIdx 64
+2025-01-16 12:06:36,272 - INFO - received volIdx 64
+2025-01-16 12:06:36,770 - DEBUG - volIdx: 54 MC proc_time: 2.0098
+2025-01-16 12:06:36,770 - INFO - preprocessed volIdx 54
+2025-01-16 12:06:36,847 - DEBUG - started volIdx 54
+2025-01-16 12:06:36,848 - INFO - analyzed volIdx 54
+2025-01-16 12:06:36,849 - DEBUG - volIdx 54 added to resultsServer : {'average': 442.01}
+2025-01-16 12:06:36,917 - DEBUG - started volIdx 55
+2025-01-16 12:06:38,479 - DEBUG - received volHeader volIdx 65
+2025-01-16 12:06:38,493 - INFO - received volIdx 65
+2025-01-16 12:06:39,077 - DEBUG - volIdx: 55 MC proc_time: 2.0205
+2025-01-16 12:06:39,078 - INFO - preprocessed volIdx 55
+2025-01-16 12:06:39,158 - DEBUG - started volIdx 55
+2025-01-16 12:06:39,159 - INFO - analyzed volIdx 55
+2025-01-16 12:06:39,159 - DEBUG - volIdx 55 added to resultsServer : {'average': 441.56}
+2025-01-16 12:06:39,228 - DEBUG - started volIdx 56
+2025-01-16 12:06:40,739 - DEBUG - received volHeader volIdx 66
+2025-01-16 12:06:40,751 - INFO - received volIdx 66
+2025-01-16 12:06:41,399 - DEBUG - volIdx: 56 MC proc_time: 2.0327
+2025-01-16 12:06:41,399 - INFO - preprocessed volIdx 56
+2025-01-16 12:06:41,475 - DEBUG - started volIdx 56
+2025-01-16 12:06:41,476 - INFO - analyzed volIdx 56
+2025-01-16 12:06:41,476 - DEBUG - volIdx 56 added to resultsServer : {'average': 441.88}
+2025-01-16 12:06:41,546 - DEBUG - started volIdx 57
+2025-01-16 12:06:42,404 - DEBUG - received volHeader volIdx 67
+2025-01-16 12:06:42,416 - INFO - received volIdx 67
+2025-01-16 12:06:43,683 - DEBUG - volIdx: 57 MC proc_time: 1.9961
+2025-01-16 12:06:43,683 - INFO - preprocessed volIdx 57
+2025-01-16 12:06:43,762 - DEBUG - started volIdx 57
+2025-01-16 12:06:43,763 - INFO - analyzed volIdx 57
+2025-01-16 12:06:43,763 - DEBUG - volIdx 57 added to resultsServer : {'average': 442.27}
+2025-01-16 12:06:43,832 - DEBUG - started volIdx 58
+2025-01-16 12:06:45,612 - DEBUG - received volHeader volIdx 68
+2025-01-16 12:06:45,624 - INFO - received volIdx 68
+2025-01-16 12:06:45,977 - DEBUG - volIdx: 58 MC proc_time: 2.0072
+2025-01-16 12:06:45,977 - INFO - preprocessed volIdx 58
+2025-01-16 12:06:46,056 - DEBUG - started volIdx 58
+2025-01-16 12:06:46,058 - INFO - analyzed volIdx 58
+2025-01-16 12:06:46,058 - DEBUG - volIdx 58 added to resultsServer : {'average': 443.87}
+2025-01-16 12:06:46,127 - DEBUG - started volIdx 59
+2025-01-16 12:06:46,819 - DEBUG - received volHeader volIdx 69
+2025-01-16 12:06:46,833 - INFO - received volIdx 69
+2025-01-16 12:06:48,280 - DEBUG - volIdx: 59 MC proc_time: 2.0098
+2025-01-16 12:06:48,280 - INFO - preprocessed volIdx 59
+2025-01-16 12:06:48,358 - DEBUG - started volIdx 59
+2025-01-16 12:06:48,359 - INFO - analyzed volIdx 59
+2025-01-16 12:06:48,359 - DEBUG - volIdx 59 added to resultsServer : {'average': 444.7}
+2025-01-16 12:06:48,428 - DEBUG - started volIdx 60
+2025-01-16 12:06:48,960 - DEBUG - received volHeader volIdx 70
+2025-01-16 12:06:48,972 - INFO - received volIdx 70
+2025-01-16 12:06:50,558 - DEBUG - volIdx: 60 MC proc_time: 1.9906
+2025-01-16 12:06:50,558 - INFO - preprocessed volIdx 60
+2025-01-16 12:06:50,638 - DEBUG - started volIdx 60
+2025-01-16 12:06:50,640 - INFO - analyzed volIdx 60
+2025-01-16 12:06:50,640 - DEBUG - volIdx 60 added to resultsServer : {'average': 444.78}
+2025-01-16 12:06:50,709 - DEBUG - started volIdx 61
+2025-01-16 12:06:50,996 - DEBUG - received volHeader volIdx 71
+2025-01-16 12:06:51,014 - INFO - received volIdx 71
+2025-01-16 12:06:52,415 - DEBUG - received volHeader volIdx 72
+2025-01-16 12:06:52,427 - INFO - received volIdx 72
+2025-01-16 12:06:52,863 - DEBUG - volIdx: 61 MC proc_time: 2.0147
+2025-01-16 12:06:52,864 - INFO - preprocessed volIdx 61
+2025-01-16 12:06:52,939 - DEBUG - started volIdx 61
+2025-01-16 12:06:52,941 - INFO - analyzed volIdx 61
+2025-01-16 12:06:52,941 - DEBUG - volIdx 61 added to resultsServer : {'average': 444.74}
+2025-01-16 12:06:53,008 - DEBUG - started volIdx 62
+2025-01-16 12:06:55,156 - DEBUG - volIdx: 62 MC proc_time: 2.0067
+2025-01-16 12:06:55,156 - INFO - preprocessed volIdx 62
+2025-01-16 12:06:55,231 - DEBUG - started volIdx 62
+2025-01-16 12:06:55,232 - INFO - analyzed volIdx 62
+2025-01-16 12:06:55,232 - DEBUG - volIdx 62 added to resultsServer : {'average': 445.01}
+2025-01-16 12:06:55,300 - DEBUG - started volIdx 63
+2025-01-16 12:06:55,588 - DEBUG - received volHeader volIdx 73
+2025-01-16 12:06:55,606 - INFO - received volIdx 73
+2025-01-16 12:06:56,267 - DEBUG - received volHeader volIdx 74
+2025-01-16 12:06:56,279 - INFO - received volIdx 74
+2025-01-16 12:06:57,465 - DEBUG - volIdx: 63 MC proc_time: 2.0236
+2025-01-16 12:06:57,466 - INFO - preprocessed volIdx 63
+2025-01-16 12:06:57,545 - DEBUG - started volIdx 63
+2025-01-16 12:06:57,546 - INFO - analyzed volIdx 63
+2025-01-16 12:06:57,546 - DEBUG - volIdx 63 added to resultsServer : {'average': 445.21}
+2025-01-16 12:06:57,614 - DEBUG - started volIdx 64
+2025-01-16 12:06:58,814 - DEBUG - received volHeader volIdx 75
+2025-01-16 12:06:58,828 - INFO - received volIdx 75
+2025-01-16 12:06:59,791 - DEBUG - volIdx: 64 MC proc_time: 2.0370
+2025-01-16 12:06:59,791 - INFO - preprocessed volIdx 64
+2025-01-16 12:06:59,866 - DEBUG - started volIdx 64
+2025-01-16 12:06:59,867 - INFO - analyzed volIdx 64
+2025-01-16 12:06:59,868 - DEBUG - volIdx 64 added to resultsServer : {'average': 444.84}
+2025-01-16 12:06:59,935 - DEBUG - started volIdx 65
+2025-01-16 12:07:00,669 - DEBUG - received volHeader volIdx 76
+2025-01-16 12:07:00,681 - INFO - received volIdx 76
+2025-01-16 12:07:02,114 - DEBUG - volIdx: 65 MC proc_time: 2.0380
+2025-01-16 12:07:02,114 - INFO - preprocessed volIdx 65
+2025-01-16 12:07:02,196 - DEBUG - started volIdx 65
+2025-01-16 12:07:02,197 - INFO - analyzed volIdx 65
+2025-01-16 12:07:02,197 - DEBUG - volIdx 65 added to resultsServer : {'average': 445.27}
+2025-01-16 12:07:02,264 - DEBUG - started volIdx 66
+2025-01-16 12:07:02,317 - DEBUG - received volHeader volIdx 77
+2025-01-16 12:07:02,330 - INFO - received volIdx 77
+2025-01-16 12:07:04,437 - DEBUG - volIdx: 66 MC proc_time: 2.0285
+2025-01-16 12:07:04,437 - INFO - preprocessed volIdx 66
+2025-01-16 12:07:04,515 - DEBUG - started volIdx 66
+2025-01-16 12:07:04,517 - INFO - analyzed volIdx 66
+2025-01-16 12:07:04,517 - DEBUG - volIdx 66 added to resultsServer : {'average': 444.47}
+2025-01-16 12:07:04,585 - DEBUG - started volIdx 67
+2025-01-16 12:07:04,870 - DEBUG - received volHeader volIdx 78
+2025-01-16 12:07:04,889 - INFO - received volIdx 78
+2025-01-16 12:07:06,731 - DEBUG - volIdx: 67 MC proc_time: 2.0047
+2025-01-16 12:07:06,731 - INFO - preprocessed volIdx 67
+2025-01-16 12:07:06,807 - DEBUG - started volIdx 67
+2025-01-16 12:07:06,808 - INFO - analyzed volIdx 67
+2025-01-16 12:07:06,808 - DEBUG - volIdx 67 added to resultsServer : {'average': 442.35}
+2025-01-16 12:07:06,887 - DEBUG - started volIdx 68
+2025-01-16 12:07:07,161 - DEBUG - received volHeader volIdx 79
+2025-01-16 12:07:07,179 - INFO - received volIdx 79
+2025-01-16 12:07:09,053 - DEBUG - volIdx: 68 MC proc_time: 2.0249
+2025-01-16 12:07:09,053 - INFO - preprocessed volIdx 68
+2025-01-16 12:07:09,132 - DEBUG - started volIdx 68
+2025-01-16 12:07:09,133 - INFO - analyzed volIdx 68
+2025-01-16 12:07:09,133 - DEBUG - volIdx 68 added to resultsServer : {'average': 441.35}
+2025-01-16 12:07:09,200 - DEBUG - started volIdx 69
+2025-01-16 12:07:09,267 - DEBUG - received volHeader volIdx 80
+2025-01-16 12:07:09,281 - INFO - received volIdx 80
+2025-01-16 12:07:11,353 - DEBUG - volIdx: 69 MC proc_time: 2.0103
+2025-01-16 12:07:11,353 - INFO - preprocessed volIdx 69
+2025-01-16 12:07:11,431 - DEBUG - started volIdx 69
+2025-01-16 12:07:11,433 - INFO - analyzed volIdx 69
+2025-01-16 12:07:11,433 - DEBUG - volIdx 69 added to resultsServer : {'average': 442.58}
+2025-01-16 12:07:11,501 - DEBUG - started volIdx 70
+2025-01-16 12:07:11,768 - DEBUG - received volHeader volIdx 81
+2025-01-16 12:07:11,787 - INFO - received volIdx 81
+2025-01-16 12:07:13,098 - DEBUG - received volHeader volIdx 82
+2025-01-16 12:07:13,113 - INFO - received volIdx 82
+2025-01-16 12:07:13,655 - DEBUG - volIdx: 70 MC proc_time: 2.0140
+2025-01-16 12:07:13,655 - INFO - preprocessed volIdx 70
+2025-01-16 12:07:13,730 - DEBUG - started volIdx 70
+2025-01-16 12:07:13,732 - INFO - analyzed volIdx 70
+2025-01-16 12:07:13,732 - DEBUG - volIdx 70 added to resultsServer : {'average': 442.3}
+2025-01-16 12:07:13,797 - DEBUG - started volIdx 71
+2025-01-16 12:07:14,860 - DEBUG - received volHeader volIdx 83
+2025-01-16 12:07:14,872 - INFO - received volIdx 83
+2025-01-16 12:07:15,944 - DEBUG - volIdx: 71 MC proc_time: 2.0064
+2025-01-16 12:07:15,944 - INFO - preprocessed volIdx 71
+2025-01-16 12:07:16,020 - DEBUG - started volIdx 71
+2025-01-16 12:07:16,021 - INFO - analyzed volIdx 71
+2025-01-16 12:07:16,021 - DEBUG - volIdx 71 added to resultsServer : {'average': 441.19}
+2025-01-16 12:07:16,089 - DEBUG - started volIdx 72
+2025-01-16 12:07:16,477 - DEBUG - received volHeader volIdx 84
+2025-01-16 12:07:16,489 - INFO - received volIdx 84
+2025-01-16 12:07:18,224 - DEBUG - volIdx: 72 MC proc_time: 1.9958
+2025-01-16 12:07:18,224 - INFO - preprocessed volIdx 72
+2025-01-16 12:07:18,300 - DEBUG - started volIdx 72
+2025-01-16 12:07:18,301 - INFO - analyzed volIdx 72
+2025-01-16 12:07:18,301 - DEBUG - volIdx 72 added to resultsServer : {'average': 441.27}
+2025-01-16 12:07:18,369 - DEBUG - started volIdx 73
+2025-01-16 12:07:19,406 - DEBUG - received volHeader volIdx 85
+2025-01-16 12:07:19,417 - INFO - received volIdx 85
+2025-01-16 12:07:20,516 - DEBUG - volIdx: 73 MC proc_time: 2.0066
+2025-01-16 12:07:20,516 - INFO - preprocessed volIdx 73
+2025-01-16 12:07:20,594 - DEBUG - started volIdx 73
+2025-01-16 12:07:20,595 - INFO - analyzed volIdx 73
+2025-01-16 12:07:20,595 - DEBUG - volIdx 73 added to resultsServer : {'average': 443.48}
+2025-01-16 12:07:20,663 - DEBUG - started volIdx 74
+2025-01-16 12:07:21,040 - DEBUG - received volHeader volIdx 86
+2025-01-16 12:07:21,052 - INFO - received volIdx 86
+2025-01-16 12:07:22,272 - DEBUG - received volHeader volIdx 87
+2025-01-16 12:07:22,285 - INFO - received volIdx 87
+2025-01-16 12:07:22,812 - DEBUG - volIdx: 74 MC proc_time: 2.0085
+2025-01-16 12:07:22,812 - INFO - preprocessed volIdx 74
+2025-01-16 12:07:22,887 - DEBUG - started volIdx 74
+2025-01-16 12:07:22,888 - INFO - analyzed volIdx 74
+2025-01-16 12:07:22,888 - DEBUG - volIdx 74 added to resultsServer : {'average': 445.03}
+2025-01-16 12:07:22,957 - DEBUG - started volIdx 75
+2025-01-16 12:07:24,312 - DEBUG - received volHeader volIdx 88
+2025-01-16 12:07:24,323 - INFO - received volIdx 88
+2025-01-16 12:07:25,100 - DEBUG - volIdx: 75 MC proc_time: 2.0021
+2025-01-16 12:07:25,100 - INFO - preprocessed volIdx 75
+2025-01-16 12:07:25,175 - DEBUG - started volIdx 75
+2025-01-16 12:07:25,176 - INFO - analyzed volIdx 75
+2025-01-16 12:07:25,176 - DEBUG - volIdx 75 added to resultsServer : {'average': 445.05}
+2025-01-16 12:07:25,245 - DEBUG - started volIdx 76
+2025-01-16 12:07:27,388 - DEBUG - volIdx: 76 MC proc_time: 2.0025
+2025-01-16 12:07:27,388 - INFO - preprocessed volIdx 76
+2025-01-16 12:07:27,466 - DEBUG - started volIdx 76
+2025-01-16 12:07:27,468 - INFO - analyzed volIdx 76
+2025-01-16 12:07:27,468 - DEBUG - volIdx 76 added to resultsServer : {'average': 444.9}
+2025-01-16 12:07:27,537 - DEBUG - started volIdx 77
+2025-01-16 12:07:28,135 - DEBUG - received volHeader volIdx 89
+2025-01-16 12:07:28,147 - INFO - received volIdx 89
+2025-01-16 12:07:28,511 - DEBUG - received volHeader volIdx 90
+2025-01-16 12:07:28,523 - INFO - received volIdx 90
+2025-01-16 12:07:29,686 - DEBUG - volIdx: 77 MC proc_time: 2.0092
+2025-01-16 12:07:29,687 - INFO - preprocessed volIdx 77
+2025-01-16 12:07:29,768 - DEBUG - started volIdx 77
+2025-01-16 12:07:29,769 - INFO - analyzed volIdx 77
+2025-01-16 12:07:29,769 - DEBUG - volIdx 77 added to resultsServer : {'average': 444.34}
+2025-01-16 12:07:29,838 - DEBUG - started volIdx 78
+2025-01-16 12:07:30,305 - DEBUG - received volHeader volIdx 91
+2025-01-16 12:07:30,317 - INFO - received volIdx 91
+2025-01-16 12:07:32,005 - DEBUG - volIdx: 78 MC proc_time: 2.0261
+2025-01-16 12:07:32,005 - INFO - preprocessed volIdx 78
+2025-01-16 12:07:32,080 - DEBUG - started volIdx 78
+2025-01-16 12:07:32,081 - INFO - analyzed volIdx 78
+2025-01-16 12:07:32,081 - DEBUG - volIdx 78 added to resultsServer : {'average': 445.01}
+2025-01-16 12:07:32,150 - DEBUG - started volIdx 79
+2025-01-16 12:07:32,654 - DEBUG - received volHeader volIdx 92
+2025-01-16 12:07:32,665 - INFO - received volIdx 92
+2025-01-16 12:07:34,290 - DEBUG - volIdx: 79 MC proc_time: 2.0009
+2025-01-16 12:07:34,290 - INFO - preprocessed volIdx 79
+2025-01-16 12:07:34,365 - DEBUG - started volIdx 79
+2025-01-16 12:07:34,366 - INFO - analyzed volIdx 79
+2025-01-16 12:07:34,367 - DEBUG - volIdx 79 added to resultsServer : {'average': 444.76}
+2025-01-16 12:07:34,435 - DEBUG - started volIdx 80
+2025-01-16 12:07:34,951 - DEBUG - received volHeader volIdx 93
+2025-01-16 12:07:34,963 - INFO - received volIdx 93
+2025-01-16 12:07:36,602 - DEBUG - volIdx: 80 MC proc_time: 2.0280
+2025-01-16 12:07:36,602 - INFO - preprocessed volIdx 80
+2025-01-16 12:07:36,683 - DEBUG - started volIdx 80
+2025-01-16 12:07:36,684 - INFO - analyzed volIdx 80
+2025-01-16 12:07:36,684 - DEBUG - volIdx 80 added to resultsServer : {'average': 444.45}
+2025-01-16 12:07:36,752 - DEBUG - started volIdx 81
+2025-01-16 12:07:37,027 - DEBUG - received volHeader volIdx 94
+2025-01-16 12:07:37,045 - INFO - received volIdx 94
+2025-01-16 12:07:38,904 - DEBUG - volIdx: 81 MC proc_time: 2.0105
+2025-01-16 12:07:38,904 - INFO - preprocessed volIdx 81
+2025-01-16 12:07:38,921 - DEBUG - received volHeader volIdx 95
+2025-01-16 12:07:38,935 - INFO - received volIdx 95
+2025-01-16 12:07:38,979 - DEBUG - started volIdx 81
+2025-01-16 12:07:38,981 - INFO - analyzed volIdx 81
+2025-01-16 12:07:38,981 - DEBUG - volIdx 81 added to resultsServer : {'average': 444.46}
+2025-01-16 12:07:39,049 - DEBUG - started volIdx 82
+2025-01-16 12:07:41,191 - DEBUG - volIdx: 82 MC proc_time: 2.0005
+2025-01-16 12:07:41,191 - INFO - preprocessed volIdx 82
+2025-01-16 12:07:41,266 - DEBUG - started volIdx 82
+2025-01-16 12:07:41,268 - INFO - analyzed volIdx 82
+2025-01-16 12:07:41,268 - DEBUG - volIdx 82 added to resultsServer : {'average': 443.64}
+2025-01-16 12:07:41,336 - DEBUG - started volIdx 83
+2025-01-16 12:07:41,646 - DEBUG - received volHeader volIdx 96
+2025-01-16 12:07:41,663 - INFO - received volIdx 96
+2025-01-16 12:07:43,256 - DEBUG - received volHeader volIdx 97
+2025-01-16 12:07:43,269 - INFO - received volIdx 97
+2025-01-16 12:07:43,472 - DEBUG - volIdx: 83 MC proc_time: 1.9975
+2025-01-16 12:07:43,472 - INFO - preprocessed volIdx 83
+2025-01-16 12:07:43,547 - DEBUG - started volIdx 83
+2025-01-16 12:07:43,549 - INFO - analyzed volIdx 83
+2025-01-16 12:07:43,549 - DEBUG - volIdx 83 added to resultsServer : {'average': 441.27}
+2025-01-16 12:07:43,617 - DEBUG - started volIdx 84
+2025-01-16 12:07:45,608 - DEBUG - received volHeader volIdx 98
+2025-01-16 12:07:45,621 - INFO - received volIdx 98
+2025-01-16 12:07:45,751 - DEBUG - volIdx: 84 MC proc_time: 1.9958
+2025-01-16 12:07:45,751 - INFO - preprocessed volIdx 84
+2025-01-16 12:07:45,827 - DEBUG - started volIdx 84
+2025-01-16 12:07:45,828 - INFO - analyzed volIdx 84
+2025-01-16 12:07:45,828 - DEBUG - volIdx 84 added to resultsServer : {'average': 441.07}
+2025-01-16 12:07:45,896 - DEBUG - started volIdx 85
+2025-01-16 12:07:47,979 - DEBUG - received volHeader volIdx 99
+2025-01-16 12:07:47,993 - INFO - received volIdx 99
+2025-01-16 12:07:48,044 - DEBUG - volIdx: 85 MC proc_time: 2.0095
+2025-01-16 12:07:48,045 - INFO - preprocessed volIdx 85
+2025-01-16 12:07:48,126 - DEBUG - started volIdx 85
+2025-01-16 12:07:48,127 - INFO - analyzed volIdx 85
+2025-01-16 12:07:48,127 - DEBUG - volIdx 85 added to resultsServer : {'average': 442.29}
+2025-01-16 12:07:48,196 - DEBUG - started volIdx 86
+2025-01-16 12:07:49,042 - DEBUG - received volHeader volIdx 100
+2025-01-16 12:07:49,054 - INFO - received volIdx 100
+2025-01-16 12:07:50,327 - DEBUG - volIdx: 86 MC proc_time: 1.9924
+2025-01-16 12:07:50,328 - INFO - preprocessed volIdx 86
+2025-01-16 12:07:50,403 - DEBUG - started volIdx 86
+2025-01-16 12:07:50,404 - INFO - analyzed volIdx 86
+2025-01-16 12:07:50,404 - DEBUG - volIdx 86 added to resultsServer : {'average': 441.48}
+2025-01-16 12:07:50,473 - DEBUG - started volIdx 87
+2025-01-16 12:07:50,899 - DEBUG - received volHeader volIdx 101
+2025-01-16 12:07:50,911 - INFO - received volIdx 101
+2025-01-16 12:07:52,608 - DEBUG - volIdx: 87 MC proc_time: 1.9942
+2025-01-16 12:07:52,608 - INFO - preprocessed volIdx 87
+2025-01-16 12:07:52,683 - DEBUG - started volIdx 87
+2025-01-16 12:07:52,685 - INFO - analyzed volIdx 87
+2025-01-16 12:07:52,685 - DEBUG - volIdx 87 added to resultsServer : {'average': 441.36}
+2025-01-16 12:07:52,754 - DEBUG - started volIdx 88
+2025-01-16 12:07:53,186 - DEBUG - received volHeader volIdx 102
+2025-01-16 12:07:53,197 - INFO - received volIdx 102
+2025-01-16 12:07:54,413 - DEBUG - received volHeader volIdx 103
+2025-01-16 12:07:54,426 - INFO - received volIdx 103
+2025-01-16 12:07:54,902 - DEBUG - volIdx: 88 MC proc_time: 2.0108
+2025-01-16 12:07:54,902 - INFO - preprocessed volIdx 88
+2025-01-16 12:07:54,982 - DEBUG - started volIdx 88
+2025-01-16 12:07:54,983 - INFO - analyzed volIdx 88
+2025-01-16 12:07:54,983 - DEBUG - volIdx 88 added to resultsServer : {'average': 442.04}
+2025-01-16 12:07:55,052 - DEBUG - started volIdx 89
+2025-01-16 12:07:56,665 - DEBUG - received volHeader volIdx 104
+2025-01-16 12:07:56,679 - INFO - received volIdx 104
+2025-01-16 12:07:57,185 - DEBUG - volIdx: 89 MC proc_time: 1.9918
+2025-01-16 12:07:57,185 - INFO - preprocessed volIdx 89
+2025-01-16 12:07:57,264 - DEBUG - started volIdx 89
+2025-01-16 12:07:57,265 - INFO - analyzed volIdx 89
+2025-01-16 12:07:57,265 - DEBUG - volIdx 89 added to resultsServer : {'average': 442.79}
+2025-01-16 12:07:57,334 - DEBUG - started volIdx 90
+2025-01-16 12:07:58,502 - DEBUG - received volHeader volIdx 105
+2025-01-16 12:07:58,515 - INFO - received volIdx 105
+2025-01-16 12:07:59,482 - DEBUG - volIdx: 90 MC proc_time: 2.0051
+2025-01-16 12:07:59,483 - INFO - preprocessed volIdx 90
+2025-01-16 12:07:59,561 - DEBUG - started volIdx 90
+2025-01-16 12:07:59,562 - INFO - analyzed volIdx 90
+2025-01-16 12:07:59,563 - DEBUG - volIdx 90 added to resultsServer : {'average': 443.95}
+2025-01-16 12:07:59,631 - DEBUG - started volIdx 91
+2025-01-16 12:08:01,772 - DEBUG - volIdx: 91 MC proc_time: 2.0001
+2025-01-16 12:08:01,772 - INFO - preprocessed volIdx 91
+2025-01-16 12:08:01,847 - DEBUG - started volIdx 91
+2025-01-16 12:08:01,848 - INFO - analyzed volIdx 91
+2025-01-16 12:08:01,849 - DEBUG - volIdx 91 added to resultsServer : {'average': 445.29}
+2025-01-16 12:08:01,916 - DEBUG - started volIdx 92
+2025-01-16 12:08:02,153 - DEBUG - received volHeader volIdx 106
+2025-01-16 12:08:02,172 - INFO - received volIdx 106
+2025-01-16 12:08:04,065 - DEBUG - volIdx: 92 MC proc_time: 2.0093
+2025-01-16 12:08:04,065 - INFO - preprocessed volIdx 92
+2025-01-16 12:08:04,094 - DEBUG - received volHeader volIdx 107
+2025-01-16 12:08:04,108 - INFO - received volIdx 107
+2025-01-16 12:08:04,148 - DEBUG - started volIdx 92
+2025-01-16 12:08:04,149 - INFO - analyzed volIdx 92
+2025-01-16 12:08:04,149 - DEBUG - volIdx 92 added to resultsServer : {'average': 445.05}
+2025-01-16 12:08:04,217 - DEBUG - started volIdx 93
+2025-01-16 12:08:04,719 - DEBUG - received volHeader volIdx 108
+2025-01-16 12:08:04,731 - INFO - received volIdx 108
+2025-01-16 12:08:06,354 - DEBUG - volIdx: 93 MC proc_time: 1.9965
+2025-01-16 12:08:06,354 - INFO - preprocessed volIdx 93
+2025-01-16 12:08:06,434 - DEBUG - started volIdx 93
+2025-01-16 12:08:06,435 - INFO - analyzed volIdx 93
+2025-01-16 12:08:06,436 - DEBUG - volIdx 93 added to resultsServer : {'average': 444.72}
+2025-01-16 12:08:06,504 - DEBUG - started volIdx 94
+2025-01-16 12:08:06,631 - DEBUG - received volHeader volIdx 109
+2025-01-16 12:08:06,646 - INFO - received volIdx 109
+2025-01-16 12:08:08,642 - DEBUG - volIdx: 94 MC proc_time: 1.9962
+2025-01-16 12:08:08,642 - INFO - preprocessed volIdx 94
+2025-01-16 12:08:08,724 - DEBUG - started volIdx 94
+2025-01-16 12:08:08,725 - INFO - analyzed volIdx 94
+2025-01-16 12:08:08,725 - DEBUG - volIdx 94 added to resultsServer : {'average': 445.01}
+2025-01-16 12:08:08,794 - DEBUG - started volIdx 95
+2025-01-16 12:08:08,922 - DEBUG - received volHeader volIdx 110
+2025-01-16 12:08:08,937 - INFO - received volIdx 110
+2025-01-16 12:08:10,959 - DEBUG - volIdx: 95 MC proc_time: 2.0255
+2025-01-16 12:08:10,959 - INFO - preprocessed volIdx 95
+2025-01-16 12:08:11,035 - DEBUG - started volIdx 95
+2025-01-16 12:08:11,037 - INFO - analyzed volIdx 95
+2025-01-16 12:08:11,037 - DEBUG - volIdx 95 added to resultsServer : {'average': 444.41}
+2025-01-16 12:08:11,105 - DEBUG - started volIdx 96
+2025-01-16 12:08:11,379 - DEBUG - received volHeader volIdx 111
+2025-01-16 12:08:11,398 - INFO - received volIdx 111
+2025-01-16 12:08:13,253 - DEBUG - volIdx: 96 MC proc_time: 2.0022
+2025-01-16 12:08:13,253 - INFO - preprocessed volIdx 96
+2025-01-16 12:08:13,333 - DEBUG - started volIdx 96
+2025-01-16 12:08:13,335 - INFO - analyzed volIdx 96
+2025-01-16 12:08:13,335 - DEBUG - volIdx 96 added to resultsServer : {'average': 445.33}
+2025-01-16 12:08:13,403 - DEBUG - started volIdx 97
+2025-01-16 12:08:14,254 - DEBUG - received volHeader volIdx 112
+2025-01-16 12:08:14,268 - INFO - received volIdx 112
+2025-01-16 12:08:14,947 - DEBUG - received volHeader volIdx 113
+2025-01-16 12:08:14,959 - INFO - received volIdx 113
+2025-01-16 12:08:15,535 - DEBUG - volIdx: 97 MC proc_time: 1.9928
+2025-01-16 12:08:15,535 - INFO - preprocessed volIdx 97
+2025-01-16 12:08:15,613 - DEBUG - started volIdx 97
+2025-01-16 12:08:15,615 - INFO - analyzed volIdx 97
+2025-01-16 12:08:15,615 - DEBUG - volIdx 97 added to resultsServer : {'average': 444.52}
+2025-01-16 12:08:15,684 - DEBUG - started volIdx 98
+2025-01-16 12:08:16,154 - DEBUG - received volHeader volIdx 114
+2025-01-16 12:08:16,166 - INFO - received volIdx 114
+2025-01-16 12:08:17,838 - DEBUG - volIdx: 98 MC proc_time: 2.0129
+2025-01-16 12:08:17,839 - INFO - preprocessed volIdx 98
+2025-01-16 12:08:17,914 - DEBUG - started volIdx 98
+2025-01-16 12:08:17,916 - INFO - analyzed volIdx 98
+2025-01-16 12:08:17,916 - DEBUG - volIdx 98 added to resultsServer : {'average': 444.06}
+2025-01-16 12:08:17,985 - DEBUG - started volIdx 99
+2025-01-16 12:08:18,268 - DEBUG - received volHeader volIdx 115
+2025-01-16 12:08:18,286 - INFO - received volIdx 115
+2025-01-16 12:08:20,124 - DEBUG - volIdx: 99 MC proc_time: 1.9994
+2025-01-16 12:08:20,124 - INFO - preprocessed volIdx 99
+2025-01-16 12:08:20,202 - DEBUG - started volIdx 99
+2025-01-16 12:08:20,204 - INFO - analyzed volIdx 99
+2025-01-16 12:08:20,204 - DEBUG - volIdx 99 added to resultsServer : {'average': 443.18}
+2025-01-16 12:08:20,273 - DEBUG - started volIdx 100
+2025-01-16 12:08:20,896 - DEBUG - received volHeader volIdx 116
+2025-01-16 12:08:20,908 - INFO - received volIdx 116
+2025-01-16 12:08:22,428 - DEBUG - volIdx: 100 MC proc_time: 2.0175
+2025-01-16 12:08:22,428 - INFO - preprocessed volIdx 100
+2025-01-16 12:08:22,505 - DEBUG - started volIdx 100
+2025-01-16 12:08:22,506 - INFO - analyzed volIdx 100
+2025-01-16 12:08:22,507 - DEBUG - volIdx 100 added to resultsServer : {'average': 441.66}
+2025-01-16 12:08:22,575 - DEBUG - started volIdx 101
+2025-01-16 12:08:22,917 - DEBUG - received volHeader volIdx 117
+2025-01-16 12:08:22,929 - INFO - received volIdx 117
+2025-01-16 12:08:24,546 - DEBUG - received volHeader volIdx 118
+2025-01-16 12:08:24,558 - INFO - received volIdx 118
+2025-01-16 12:08:24,692 - DEBUG - volIdx: 101 MC proc_time: 1.9773
+2025-01-16 12:08:24,692 - INFO - preprocessed volIdx 101
+2025-01-16 12:08:24,770 - DEBUG - started volIdx 101
+2025-01-16 12:08:24,771 - INFO - analyzed volIdx 101
+2025-01-16 12:08:24,771 - DEBUG - volIdx 101 added to resultsServer : {'average': 441.45}
+2025-01-16 12:08:24,840 - DEBUG - started volIdx 102
+2025-01-16 12:08:26,608 - DEBUG - received volHeader volIdx 119
+2025-01-16 12:08:26,621 - INFO - received volIdx 119
+2025-01-16 12:08:26,992 - DEBUG - volIdx: 102 MC proc_time: 2.0101
+2025-01-16 12:08:26,992 - INFO - preprocessed volIdx 102
+2025-01-16 12:08:27,070 - DEBUG - started volIdx 102
+2025-01-16 12:08:27,072 - INFO - analyzed volIdx 102
+2025-01-16 12:08:27,072 - DEBUG - volIdx 102 added to resultsServer : {'average': 440.12}
+2025-01-16 12:08:27,140 - DEBUG - started volIdx 103
+2025-01-16 12:08:29,266 - DEBUG - volIdx: 103 MC proc_time: 1.9838
+2025-01-16 12:08:29,266 - INFO - preprocessed volIdx 103
+2025-01-16 12:08:29,348 - DEBUG - started volIdx 103
+2025-01-16 12:08:29,349 - INFO - analyzed volIdx 103
+2025-01-16 12:08:29,349 - DEBUG - volIdx 103 added to resultsServer : {'average': 439.36}
+2025-01-16 12:08:29,417 - DEBUG - started volIdx 104
+2025-01-16 12:08:29,809 - DEBUG - received volHeader volIdx 120
+2025-01-16 12:08:29,821 - INFO - received volIdx 120
+2025-01-16 12:08:31,551 - DEBUG - volIdx: 104 MC proc_time: 1.9970
+2025-01-16 12:08:31,551 - INFO - preprocessed volIdx 104
+2025-01-16 12:08:31,627 - DEBUG - started volIdx 104
+2025-01-16 12:08:31,628 - INFO - analyzed volIdx 104
+2025-01-16 12:08:31,628 - DEBUG - volIdx 104 added to resultsServer : {'average': 439.2}
+2025-01-16 12:08:31,696 - DEBUG - started volIdx 105
+2025-01-16 12:08:31,701 - DEBUG - received volHeader volIdx 121
+2025-01-16 12:08:31,714 - INFO - received volIdx 121
+2025-01-16 12:08:33,194 - DEBUG - received volHeader volIdx 122
+2025-01-16 12:08:33,206 - INFO - received volIdx 122
+2025-01-16 12:08:33,832 - DEBUG - volIdx: 105 MC proc_time: 1.9954
+2025-01-16 12:08:33,833 - INFO - preprocessed volIdx 105
+2025-01-16 12:08:33,908 - DEBUG - started volIdx 105
+2025-01-16 12:08:33,909 - INFO - analyzed volIdx 105
+2025-01-16 12:08:33,910 - DEBUG - volIdx 105 added to resultsServer : {'average': 440.18}
+2025-01-16 12:08:33,978 - DEBUG - started volIdx 106
+2025-01-16 12:08:34,354 - DEBUG - received volHeader volIdx 123
+2025-01-16 12:08:34,365 - INFO - received volIdx 123
+2025-01-16 12:08:36,112 - DEBUG - volIdx: 106 MC proc_time: 1.9962
+2025-01-16 12:08:36,112 - INFO - preprocessed volIdx 106
+2025-01-16 12:08:36,187 - DEBUG - started volIdx 106
+2025-01-16 12:08:36,188 - INFO - analyzed volIdx 106
+2025-01-16 12:08:36,188 - DEBUG - volIdx 106 added to resultsServer : {'average': 441.25}
+2025-01-16 12:08:36,256 - DEBUG - started volIdx 107
+2025-01-16 12:08:38,411 - DEBUG - volIdx: 107 MC proc_time: 2.0166
+2025-01-16 12:08:38,411 - INFO - preprocessed volIdx 107
+2025-01-16 12:08:38,430 - DEBUG - received volHeader volIdx 124
+2025-01-16 12:08:38,444 - INFO - received volIdx 124
+2025-01-16 12:08:38,487 - DEBUG - started volIdx 107
+2025-01-16 12:08:38,489 - INFO - analyzed volIdx 107
+2025-01-16 12:08:38,489 - DEBUG - volIdx 107 added to resultsServer : {'average': 442.04}
+2025-01-16 12:08:38,558 - DEBUG - started volIdx 108
+2025-01-16 12:08:39,205 - DEBUG - received volHeader volIdx 125
+2025-01-16 12:08:39,217 - INFO - received volIdx 125
+2025-01-16 12:08:40,490 - DEBUG - received volHeader volIdx 126
+2025-01-16 12:08:40,501 - INFO - received volIdx 126
+2025-01-16 12:08:40,721 - DEBUG - volIdx: 108 MC proc_time: 2.0228
+2025-01-16 12:08:40,722 - INFO - preprocessed volIdx 108
+2025-01-16 12:08:40,798 - DEBUG - started volIdx 108
+2025-01-16 12:08:40,799 - INFO - analyzed volIdx 108
+2025-01-16 12:08:40,799 - DEBUG - volIdx 108 added to resultsServer : {'average': 442.82}
+2025-01-16 12:08:40,867 - DEBUG - started volIdx 109
+2025-01-16 12:08:42,997 - DEBUG - volIdx: 109 MC proc_time: 1.9892
+2025-01-16 12:08:42,997 - INFO - preprocessed volIdx 109
+2025-01-16 12:08:43,075 - DEBUG - started volIdx 109
+2025-01-16 12:08:43,076 - INFO - analyzed volIdx 109
+2025-01-16 12:08:43,076 - DEBUG - volIdx 109 added to resultsServer : {'average': 444.23}
+2025-01-16 12:08:43,144 - DEBUG - started volIdx 110
+2025-01-16 12:08:43,935 - DEBUG - received volHeader volIdx 127
+2025-01-16 12:08:43,947 - INFO - received volIdx 127
+2025-01-16 12:08:45,298 - DEBUG - volIdx: 110 MC proc_time: 2.0087
+2025-01-16 12:08:45,298 - INFO - preprocessed volIdx 110
+2025-01-16 12:08:45,380 - DEBUG - started volIdx 110
+2025-01-16 12:08:45,381 - INFO - analyzed volIdx 110
+2025-01-16 12:08:45,381 - DEBUG - volIdx 110 added to resultsServer : {'average': 444.53}
+2025-01-16 12:08:45,450 - DEBUG - started volIdx 111
+2025-01-16 12:08:45,752 - DEBUG - received volHeader volIdx 128
+2025-01-16 12:08:45,771 - INFO - received volIdx 128
+2025-01-16 12:08:46,362 - DEBUG - received volHeader volIdx 129
+2025-01-16 12:08:46,374 - INFO - received volIdx 129
+2025-01-16 12:08:47,600 - DEBUG - volIdx: 111 MC proc_time: 2.0063
+2025-01-16 12:08:47,601 - INFO - preprocessed volIdx 111
+2025-01-16 12:08:47,679 - DEBUG - started volIdx 111
+2025-01-16 12:08:47,680 - INFO - analyzed volIdx 111
+2025-01-16 12:08:47,680 - DEBUG - volIdx 111 added to resultsServer : {'average': 443.69}
+2025-01-16 12:08:47,748 - DEBUG - started volIdx 112
+2025-01-16 12:08:49,596 - DEBUG - received volHeader volIdx 130
+2025-01-16 12:08:49,608 - INFO - received volIdx 130
+2025-01-16 12:08:49,876 - DEBUG - volIdx: 112 MC proc_time: 1.9856
+2025-01-16 12:08:49,876 - INFO - preprocessed volIdx 112
+2025-01-16 12:08:49,952 - DEBUG - started volIdx 112
+2025-01-16 12:08:49,953 - INFO - analyzed volIdx 112
+2025-01-16 12:08:49,953 - DEBUG - volIdx 112 added to resultsServer : {'average': 443.22}
+2025-01-16 12:08:50,022 - DEBUG - started volIdx 113
+2025-01-16 12:08:50,921 - DEBUG - received volHeader volIdx 131
+2025-01-16 12:08:50,933 - INFO - received volIdx 131
+2025-01-16 12:08:52,169 - DEBUG - volIdx: 113 MC proc_time: 2.0065
+2025-01-16 12:08:52,169 - INFO - preprocessed volIdx 113
+2025-01-16 12:08:52,248 - DEBUG - started volIdx 113
+2025-01-16 12:08:52,249 - INFO - analyzed volIdx 113
+2025-01-16 12:08:52,249 - DEBUG - volIdx 113 added to resultsServer : {'average': 443.16}
+2025-01-16 12:08:52,318 - DEBUG - started volIdx 114
+2025-01-16 12:08:52,989 - DEBUG - received volHeader volIdx 132
+2025-01-16 12:08:53,001 - INFO - received volIdx 132
+2025-01-16 12:08:54,459 - DEBUG - volIdx: 114 MC proc_time: 1.9995
+2025-01-16 12:08:54,460 - INFO - preprocessed volIdx 114
+2025-01-16 12:08:54,538 - DEBUG - started volIdx 114
+2025-01-16 12:08:54,539 - INFO - analyzed volIdx 114
+2025-01-16 12:08:54,539 - DEBUG - volIdx 114 added to resultsServer : {'average': 442.81}
+2025-01-16 12:08:54,607 - DEBUG - started volIdx 115
+2025-01-16 12:08:54,872 - DEBUG - received volHeader volIdx 133
+2025-01-16 12:08:54,890 - INFO - received volIdx 133
+2025-01-16 12:08:56,318 - DEBUG - received volHeader volIdx 134
+2025-01-16 12:08:56,330 - INFO - received volIdx 134
+2025-01-16 12:08:56,754 - DEBUG - volIdx: 115 MC proc_time: 2.0065
+2025-01-16 12:08:56,754 - INFO - preprocessed volIdx 115
+2025-01-16 12:08:56,833 - DEBUG - started volIdx 115
+2025-01-16 12:08:56,834 - INFO - analyzed volIdx 115
+2025-01-16 12:08:56,834 - DEBUG - volIdx 115 added to resultsServer : {'average': 441.48}
+2025-01-16 12:08:56,903 - DEBUG - started volIdx 116
+2025-01-16 12:08:58,528 - DEBUG - received volHeader volIdx 135
+2025-01-16 12:08:58,540 - INFO - received volIdx 135
+2025-01-16 12:08:59,058 - DEBUG - volIdx: 116 MC proc_time: 2.0146
+2025-01-16 12:08:59,058 - INFO - preprocessed volIdx 116
+2025-01-16 12:08:59,140 - DEBUG - started volIdx 116
+2025-01-16 12:08:59,141 - INFO - analyzed volIdx 116
+2025-01-16 12:08:59,142 - DEBUG - volIdx 116 added to resultsServer : {'average': 440.43}
+2025-01-16 12:08:59,210 - DEBUG - started volIdx 117
+2025-01-16 12:09:00,544 - DEBUG - received volHeader volIdx 136
+2025-01-16 12:09:00,555 - INFO - received volIdx 136
+2025-01-16 12:09:01,391 - DEBUG - volIdx: 117 MC proc_time: 2.0407
+2025-01-16 12:09:01,391 - INFO - preprocessed volIdx 117
+2025-01-16 12:09:01,472 - DEBUG - started volIdx 117
+2025-01-16 12:09:01,474 - INFO - analyzed volIdx 117
+2025-01-16 12:09:01,474 - DEBUG - volIdx 117 added to resultsServer : {'average': 440.55}
+2025-01-16 12:09:01,543 - DEBUG - started volIdx 118
+2025-01-16 12:09:02,552 - DEBUG - received volHeader volIdx 137
+2025-01-16 12:09:02,563 - INFO - received volIdx 137
+2025-01-16 12:09:03,661 - DEBUG - volIdx: 118 MC proc_time: 1.9764
+2025-01-16 12:09:03,661 - INFO - preprocessed volIdx 118
+2025-01-16 12:09:03,739 - DEBUG - started volIdx 118
+2025-01-16 12:09:03,740 - INFO - analyzed volIdx 118
+2025-01-16 12:09:03,740 - DEBUG - volIdx 118 added to resultsServer : {'average': 440.82}
+2025-01-16 12:09:03,809 - DEBUG - started volIdx 119
+2025-01-16 12:09:04,495 - DEBUG - received volHeader volIdx 138
+2025-01-16 12:09:04,506 - INFO - received volIdx 138
+2025-01-16 12:09:05,981 - DEBUG - volIdx: 119 MC proc_time: 2.0313
+2025-01-16 12:09:05,981 - INFO - preprocessed volIdx 119
+2025-01-16 12:09:06,059 - DEBUG - started volIdx 119
+2025-01-16 12:09:06,060 - INFO - analyzed volIdx 119
+2025-01-16 12:09:06,060 - DEBUG - volIdx 119 added to resultsServer : {'average': 441.33}
+2025-01-16 12:09:06,129 - DEBUG - started volIdx 120
+2025-01-16 12:09:08,212 - DEBUG - received volHeader volIdx 139
+2025-01-16 12:09:08,225 - INFO - received volIdx 139
+2025-01-16 12:09:08,279 - DEBUG - volIdx: 120 MC proc_time: 2.0105
+2025-01-16 12:09:08,279 - INFO - preprocessed volIdx 120
+2025-01-16 12:09:08,358 - DEBUG - started volIdx 120
+2025-01-16 12:09:08,359 - INFO - analyzed volIdx 120
+2025-01-16 12:09:08,359 - DEBUG - volIdx 120 added to resultsServer : {'average': 441.04}
+2025-01-16 12:09:08,429 - DEBUG - started volIdx 121
+2025-01-16 12:09:09,022 - DEBUG - received volHeader volIdx 140
+2025-01-16 12:09:09,034 - INFO - received volIdx 140
+2025-01-16 12:09:10,564 - DEBUG - volIdx: 121 MC proc_time: 1.9940
+2025-01-16 12:09:10,564 - INFO - preprocessed volIdx 121
+2025-01-16 12:09:10,647 - DEBUG - started volIdx 121
+2025-01-16 12:09:10,648 - INFO - analyzed volIdx 121
+2025-01-16 12:09:10,648 - DEBUG - volIdx 121 added to resultsServer : {'average': 441.74}
+2025-01-16 12:09:10,717 - DEBUG - started volIdx 122
+2025-01-16 12:09:11,081 - DEBUG - received volHeader volIdx 141
+2025-01-16 12:09:11,093 - INFO - received volIdx 141
+2025-01-16 12:09:12,568 - DEBUG - received volHeader volIdx 142
+2025-01-16 12:09:12,582 - INFO - received volIdx 142
+2025-01-16 12:09:12,851 - DEBUG - volIdx: 122 MC proc_time: 1.9946
+2025-01-16 12:09:12,851 - INFO - preprocessed volIdx 122
+2025-01-16 12:09:12,930 - DEBUG - started volIdx 122
+2025-01-16 12:09:12,931 - INFO - analyzed volIdx 122
+2025-01-16 12:09:12,931 - DEBUG - volIdx 122 added to resultsServer : {'average': 442.87}
+2025-01-16 12:09:13,000 - DEBUG - started volIdx 123
+2025-01-16 12:09:14,622 - DEBUG - received volHeader volIdx 143
+2025-01-16 12:09:14,633 - INFO - received volIdx 143
+2025-01-16 12:09:15,156 - DEBUG - volIdx: 123 MC proc_time: 2.0150
+2025-01-16 12:09:15,156 - INFO - preprocessed volIdx 123
+2025-01-16 12:09:15,237 - DEBUG - started volIdx 123
+2025-01-16 12:09:15,238 - INFO - analyzed volIdx 123
+2025-01-16 12:09:15,239 - DEBUG - volIdx 123 added to resultsServer : {'average': 443.61}
+2025-01-16 12:09:15,308 - DEBUG - started volIdx 124
+2025-01-16 12:09:16,434 - DEBUG - received volHeader volIdx 144
+2025-01-16 12:09:16,445 - INFO - received volIdx 144
+2025-01-16 12:09:17,472 - DEBUG - volIdx: 124 MC proc_time: 2.0193
+2025-01-16 12:09:17,472 - INFO - preprocessed volIdx 124
+2025-01-16 12:09:17,551 - DEBUG - started volIdx 124
+2025-01-16 12:09:17,552 - INFO - analyzed volIdx 124
+2025-01-16 12:09:17,552 - DEBUG - volIdx 124 added to resultsServer : {'average': 443.86}
+2025-01-16 12:09:17,621 - DEBUG - started volIdx 125
+2025-01-16 12:09:19,539 - DEBUG - received volHeader volIdx 145
+2025-01-16 12:09:19,552 - INFO - received volIdx 145
+2025-01-16 12:09:19,738 - DEBUG - volIdx: 125 MC proc_time: 1.9764
+2025-01-16 12:09:19,738 - INFO - preprocessed volIdx 125
+2025-01-16 12:09:19,820 - DEBUG - started volIdx 125
+2025-01-16 12:09:19,821 - INFO - analyzed volIdx 125
+2025-01-16 12:09:19,821 - DEBUG - volIdx 125 added to resultsServer : {'average': 443.29}
+2025-01-16 12:09:19,891 - DEBUG - started volIdx 126
+2025-01-16 12:09:20,665 - DEBUG - received volHeader volIdx 146
+2025-01-16 12:09:20,677 - INFO - received volIdx 146
+2025-01-16 12:09:22,034 - DEBUG - volIdx: 126 MC proc_time: 2.0021
+2025-01-16 12:09:22,034 - INFO - preprocessed volIdx 126
+2025-01-16 12:09:22,116 - DEBUG - started volIdx 126
+2025-01-16 12:09:22,117 - INFO - analyzed volIdx 126
+2025-01-16 12:09:22,117 - DEBUG - volIdx 126 added to resultsServer : {'average': 442.83}
+2025-01-16 12:09:22,187 - DEBUG - started volIdx 127
+2025-01-16 12:09:22,439 - DEBUG - received volHeader volIdx 147
+2025-01-16 12:09:22,457 - INFO - received volIdx 147
+2025-01-16 12:09:24,353 - DEBUG - volIdx: 127 MC proc_time: 2.0220
+2025-01-16 12:09:24,353 - INFO - preprocessed volIdx 127
+2025-01-16 12:09:24,431 - DEBUG - started volIdx 127
+2025-01-16 12:09:24,432 - INFO - analyzed volIdx 127
+2025-01-16 12:09:24,432 - DEBUG - volIdx 127 added to resultsServer : {'average': 443.36}
+2025-01-16 12:09:24,500 - DEBUG - started volIdx 128
+2025-01-16 12:09:24,744 - DEBUG - received volHeader volIdx 148
+2025-01-16 12:09:24,763 - INFO - received volIdx 148
+2025-01-16 12:09:26,606 - DEBUG - received volHeader volIdx 149
+2025-01-16 12:09:26,620 - INFO - received volIdx 149
+2025-01-16 12:09:26,633 - DEBUG - volIdx: 128 MC proc_time: 1.9915
+2025-01-16 12:09:26,633 - INFO - preprocessed volIdx 128
+2025-01-16 12:09:26,711 - DEBUG - started volIdx 128
+2025-01-16 12:09:26,712 - INFO - analyzed volIdx 128
+2025-01-16 12:09:26,713 - DEBUG - volIdx 128 added to resultsServer : {'average': 443.32}
+2025-01-16 12:09:26,782 - DEBUG - started volIdx 129
+2025-01-16 12:09:28,924 - DEBUG - volIdx: 129 MC proc_time: 2.0013
+2025-01-16 12:09:28,924 - INFO - preprocessed volIdx 129
+2025-01-16 12:09:29,000 - DEBUG - started volIdx 129
+2025-01-16 12:09:29,001 - INFO - analyzed volIdx 129
+2025-01-16 12:09:29,001 - DEBUG - volIdx 129 added to resultsServer : {'average': 443.52}
+2025-01-16 12:09:29,069 - DEBUG - started volIdx 130
+2025-01-16 12:09:29,362 - DEBUG - received volHeader volIdx 150
+2025-01-16 12:09:29,381 - INFO - received volIdx 150
+2025-01-16 12:09:31,201 - DEBUG - volIdx: 130 MC proc_time: 1.9857
+2025-01-16 12:09:31,201 - INFO - preprocessed volIdx 130
+2025-01-16 12:09:31,279 - DEBUG - started volIdx 130
+2025-01-16 12:09:31,280 - INFO - analyzed volIdx 130
+2025-01-16 12:09:31,280 - DEBUG - volIdx 130 added to resultsServer : {'average': 442.71}
+2025-01-16 12:09:31,349 - DEBUG - started volIdx 131
+2025-01-16 12:09:31,690 - DEBUG - received volHeader volIdx 151
+2025-01-16 12:09:31,701 - INFO - received volIdx 151
+2025-01-16 12:09:32,911 - DEBUG - received volHeader volIdx 152
+2025-01-16 12:09:32,925 - INFO - received volIdx 152
+2025-01-16 12:09:33,508 - DEBUG - volIdx: 131 MC proc_time: 2.0180
+2025-01-16 12:09:33,508 - INFO - preprocessed volIdx 131
+2025-01-16 12:09:33,583 - DEBUG - started volIdx 131
+2025-01-16 12:09:33,584 - INFO - analyzed volIdx 131
+2025-01-16 12:09:33,584 - DEBUG - volIdx 131 added to resultsServer : {'average': 440.29}
+2025-01-16 12:09:33,652 - DEBUG - started volIdx 132
+2025-01-16 12:09:35,533 - DEBUG - received volHeader volIdx 153
+2025-01-16 12:09:35,545 - INFO - received volIdx 153
+2025-01-16 12:09:35,786 - DEBUG - volIdx: 132 MC proc_time: 1.9943
+2025-01-16 12:09:35,786 - INFO - preprocessed volIdx 132
+2025-01-16 12:09:35,862 - DEBUG - started volIdx 132
+2025-01-16 12:09:35,864 - INFO - analyzed volIdx 132
+2025-01-16 12:09:35,864 - DEBUG - volIdx 132 added to resultsServer : {'average': 439.96}
+2025-01-16 12:09:35,932 - DEBUG - started volIdx 133
+2025-01-16 12:09:36,257 - DEBUG - received volHeader volIdx 154
+2025-01-16 12:09:36,269 - INFO - received volIdx 154
+2025-01-16 12:09:38,069 - DEBUG - volIdx: 133 MC proc_time: 1.9970
+2025-01-16 12:09:38,069 - INFO - preprocessed volIdx 133
+2025-01-16 12:09:38,147 - DEBUG - started volIdx 133
+2025-01-16 12:09:38,148 - INFO - analyzed volIdx 133
+2025-01-16 12:09:38,148 - DEBUG - volIdx 133 added to resultsServer : {'average': 440.12}
+2025-01-16 12:09:38,218 - DEBUG - started volIdx 134
+2025-01-16 12:09:39,665 - DEBUG - received volHeader volIdx 155
+2025-01-16 12:09:39,677 - INFO - received volIdx 155
+2025-01-16 12:09:40,359 - DEBUG - volIdx: 134 MC proc_time: 2.0017
+2025-01-16 12:09:40,359 - INFO - preprocessed volIdx 134
+2025-01-16 12:09:40,435 - DEBUG - started volIdx 134
+2025-01-16 12:09:40,436 - INFO - analyzed volIdx 134
+2025-01-16 12:09:40,436 - DEBUG - volIdx 134 added to resultsServer : {'average': 440.76}
+2025-01-16 12:09:40,504 - DEBUG - started volIdx 135
+2025-01-16 12:09:41,234 - DEBUG - received volHeader volIdx 156
+2025-01-16 12:09:41,246 - INFO - received volIdx 156
+2025-01-16 12:09:42,674 - DEBUG - volIdx: 135 MC proc_time: 2.0155
+2025-01-16 12:09:42,674 - INFO - preprocessed volIdx 135
+2025-01-16 12:09:42,751 - DEBUG - started volIdx 135
+2025-01-16 12:09:42,752 - INFO - analyzed volIdx 135
+2025-01-16 12:09:42,752 - DEBUG - volIdx 135 added to resultsServer : {'average': 440.9}
+2025-01-16 12:09:42,820 - DEBUG - started volIdx 136
+2025-01-16 12:09:43,879 - DEBUG - received volHeader volIdx 157
+2025-01-16 12:09:43,891 - INFO - received volIdx 157
+2025-01-16 12:09:44,954 - DEBUG - volIdx: 136 MC proc_time: 1.9944
+2025-01-16 12:09:44,954 - INFO - preprocessed volIdx 136
+2025-01-16 12:09:45,034 - DEBUG - started volIdx 136
+2025-01-16 12:09:45,035 - INFO - analyzed volIdx 136
+2025-01-16 12:09:45,035 - DEBUG - volIdx 136 added to resultsServer : {'average': 440.79}
+2025-01-16 12:09:45,103 - DEBUG - started volIdx 137
+2025-01-16 12:09:45,364 - DEBUG - received volHeader volIdx 158
+2025-01-16 12:09:45,382 - INFO - received volIdx 158
+2025-01-16 12:09:47,260 - DEBUG - volIdx: 137 MC proc_time: 2.0170
+2025-01-16 12:09:47,260 - INFO - preprocessed volIdx 137
+2025-01-16 12:09:47,336 - DEBUG - started volIdx 137
+2025-01-16 12:09:47,337 - INFO - analyzed volIdx 137
+2025-01-16 12:09:47,338 - DEBUG - volIdx 137 added to resultsServer : {'average': 442.17}
+2025-01-16 12:09:47,406 - DEBUG - started volIdx 138
+2025-01-16 12:09:48,176 - DEBUG - received volHeader volIdx 159
+2025-01-16 12:09:48,188 - INFO - received volIdx 159
+2025-01-16 12:09:49,553 - DEBUG - volIdx: 138 MC proc_time: 2.0088
+2025-01-16 12:09:49,553 - INFO - preprocessed volIdx 138
+2025-01-16 12:09:49,634 - DEBUG - started volIdx 138
+2025-01-16 12:09:49,636 - INFO - analyzed volIdx 138
+2025-01-16 12:09:49,636 - DEBUG - volIdx 138 added to resultsServer : {'average': 443.86}
+2025-01-16 12:09:49,703 - DEBUG - started volIdx 139
+2025-01-16 12:09:50,200 - DEBUG - received volHeader volIdx 160
+2025-01-16 12:09:50,212 - INFO - received volIdx 160
+2025-01-16 12:09:51,490 - DEBUG - received volHeader volIdx 161
+2025-01-16 12:09:51,502 - INFO - received volIdx 161
+2025-01-16 12:09:51,881 - DEBUG - volIdx: 139 MC proc_time: 2.0385
+2025-01-16 12:09:51,881 - INFO - preprocessed volIdx 139
+2025-01-16 12:09:51,962 - DEBUG - started volIdx 139
+2025-01-16 12:09:51,964 - INFO - analyzed volIdx 139
+2025-01-16 12:09:51,964 - DEBUG - volIdx 139 added to resultsServer : {'average': 444.54}
+2025-01-16 12:09:52,032 - DEBUG - started volIdx 140
+2025-01-16 12:09:54,187 - DEBUG - volIdx: 140 MC proc_time: 2.0137
+2025-01-16 12:09:54,187 - INFO - preprocessed volIdx 140
+2025-01-16 12:09:54,263 - DEBUG - started volIdx 140
+2025-01-16 12:09:54,264 - INFO - analyzed volIdx 140
+2025-01-16 12:09:54,264 - DEBUG - volIdx 140 added to resultsServer : {'average': 444.5}
+2025-01-16 12:09:54,333 - DEBUG - started volIdx 141
+2025-01-16 12:09:54,568 - DEBUG - received volHeader volIdx 162
+2025-01-16 12:09:54,587 - INFO - received volIdx 162
+2025-01-16 12:09:55,310 - DEBUG - received volHeader volIdx 163
+2025-01-16 12:09:55,322 - INFO - received volIdx 163
+2025-01-16 12:09:56,463 - DEBUG - volIdx: 141 MC proc_time: 1.9895
+2025-01-16 12:09:56,463 - INFO - preprocessed volIdx 141
+2025-01-16 12:09:56,546 - DEBUG - started volIdx 141
+2025-01-16 12:09:56,547 - INFO - analyzed volIdx 141
+2025-01-16 12:09:56,547 - DEBUG - volIdx 141 added to resultsServer : {'average': 444.47}
+2025-01-16 12:09:56,615 - DEBUG - started volIdx 142
+2025-01-16 12:09:56,914 - DEBUG - received volHeader volIdx 164
+2025-01-16 12:09:56,932 - INFO - received volIdx 164
+2025-01-16 12:09:58,744 - DEBUG - volIdx: 142 MC proc_time: 1.9856
+2025-01-16 12:09:58,744 - INFO - preprocessed volIdx 142
+2025-01-16 12:09:58,822 - DEBUG - started volIdx 142
+2025-01-16 12:09:58,823 - INFO - analyzed volIdx 142
+2025-01-16 12:09:58,824 - DEBUG - volIdx 142 added to resultsServer : {'average': 444.57}
+2025-01-16 12:09:58,892 - DEBUG - started volIdx 143
+2025-01-16 12:09:59,204 - DEBUG - received volHeader volIdx 165
+2025-01-16 12:09:59,221 - INFO - received volIdx 165
+2025-01-16 12:10:01,014 - DEBUG - volIdx: 143 MC proc_time: 1.9814
+2025-01-16 12:10:01,015 - INFO - preprocessed volIdx 143
+2025-01-16 12:10:01,094 - DEBUG - started volIdx 143
+2025-01-16 12:10:01,096 - INFO - analyzed volIdx 143
+2025-01-16 12:10:01,096 - DEBUG - volIdx 143 added to resultsServer : {'average': 443.3}
+2025-01-16 12:10:01,164 - DEBUG - started volIdx 144
+2025-01-16 12:10:01,669 - DEBUG - received volHeader volIdx 166
+2025-01-16 12:10:01,681 - INFO - received volIdx 166
+2025-01-16 12:10:03,315 - DEBUG - volIdx: 144 MC proc_time: 2.0093
+2025-01-16 12:10:03,315 - INFO - preprocessed volIdx 144
+2025-01-16 12:10:03,394 - DEBUG - started volIdx 144
+2025-01-16 12:10:03,396 - INFO - analyzed volIdx 144
+2025-01-16 12:10:03,396 - DEBUG - volIdx 144 added to resultsServer : {'average': 442.56}
+2025-01-16 12:10:03,464 - DEBUG - started volIdx 145
+2025-01-16 12:10:03,760 - DEBUG - received volHeader volIdx 167
+2025-01-16 12:10:03,779 - INFO - received volIdx 167 STOP
+2025-01-16 12:10:05,600 - DEBUG - volIdx: 145 MC proc_time: 1.9962
+2025-01-16 12:10:05,600 - INFO - preprocessed volIdx 145
+2025-01-16 12:10:05,683 - DEBUG - started volIdx 145
+2025-01-16 12:10:05,685 - INFO - analyzed volIdx 145
+2025-01-16 12:10:05,685 - DEBUG - volIdx 145 added to resultsServer : {'average': 442.74}
+2025-01-16 12:10:05,753 - DEBUG - started volIdx 146
+2025-01-16 12:10:07,916 - DEBUG - volIdx: 146 MC proc_time: 2.0198
+2025-01-16 12:10:07,916 - INFO - preprocessed volIdx 146
+2025-01-16 12:10:07,999 - DEBUG - started volIdx 146
+2025-01-16 12:10:08,000 - INFO - analyzed volIdx 146
+2025-01-16 12:10:08,000 - DEBUG - volIdx 146 added to resultsServer : {'average': 442.38}
+2025-01-16 12:10:08,069 - DEBUG - started volIdx 147
+2025-01-16 12:10:10,224 - DEBUG - volIdx: 147 MC proc_time: 2.0123
+2025-01-16 12:10:10,224 - INFO - preprocessed volIdx 147
+2025-01-16 12:10:10,307 - DEBUG - started volIdx 147
+2025-01-16 12:10:10,308 - INFO - analyzed volIdx 147
+2025-01-16 12:10:10,308 - DEBUG - volIdx 147 added to resultsServer : {'average': 441.29}
+2025-01-16 12:10:10,377 - DEBUG - started volIdx 148
+2025-01-16 12:10:12,517 - DEBUG - volIdx: 148 MC proc_time: 1.9960
+2025-01-16 12:10:12,517 - INFO - preprocessed volIdx 148
+2025-01-16 12:10:12,599 - DEBUG - started volIdx 148
+2025-01-16 12:10:12,600 - INFO - analyzed volIdx 148
+2025-01-16 12:10:12,600 - DEBUG - volIdx 148 added to resultsServer : {'average': 440.5}
+2025-01-16 12:10:12,668 - DEBUG - started volIdx 149
+2025-01-16 12:10:14,800 - DEBUG - volIdx: 149 MC proc_time: 1.9942
+2025-01-16 12:10:14,800 - INFO - preprocessed volIdx 149
+2025-01-16 12:10:14,878 - DEBUG - started volIdx 149
+2025-01-16 12:10:14,879 - INFO - analyzed volIdx 149
+2025-01-16 12:10:14,879 - DEBUG - volIdx 149 added to resultsServer : {'average': 440.46}
+2025-01-16 12:10:14,947 - DEBUG - started volIdx 150
+2025-01-16 12:10:17,072 - DEBUG - volIdx: 150 MC proc_time: 1.9849
+2025-01-16 12:10:17,072 - INFO - preprocessed volIdx 150
+2025-01-16 12:10:17,148 - DEBUG - started volIdx 150
+2025-01-16 12:10:17,150 - INFO - analyzed volIdx 150
+2025-01-16 12:10:17,150 - DEBUG - volIdx 150 added to resultsServer : {'average': 439.61}
+2025-01-16 12:10:17,219 - DEBUG - started volIdx 151
+2025-01-16 12:10:19,357 - DEBUG - volIdx: 151 MC proc_time: 1.9975
+2025-01-16 12:10:19,357 - INFO - preprocessed volIdx 151
+2025-01-16 12:10:19,439 - DEBUG - started volIdx 151
+2025-01-16 12:10:19,441 - INFO - analyzed volIdx 151
+2025-01-16 12:10:19,441 - DEBUG - volIdx 151 added to resultsServer : {'average': 439.25}
+2025-01-16 12:10:19,508 - DEBUG - started volIdx 152
+2025-01-16 12:10:21,675 - DEBUG - volIdx: 152 MC proc_time: 2.0282
+2025-01-16 12:10:21,676 - INFO - preprocessed volIdx 152
+2025-01-16 12:10:21,754 - DEBUG - started volIdx 152
+2025-01-16 12:10:21,755 - INFO - analyzed volIdx 152
+2025-01-16 12:10:21,755 - DEBUG - volIdx 152 added to resultsServer : {'average': 439.76}
+2025-01-16 12:10:21,823 - DEBUG - started volIdx 153
+2025-01-16 12:10:23,952 - DEBUG - volIdx: 153 MC proc_time: 1.9897
+2025-01-16 12:10:23,952 - INFO - preprocessed volIdx 153
+2025-01-16 12:10:24,031 - DEBUG - started volIdx 153
+2025-01-16 12:10:24,032 - INFO - analyzed volIdx 153
+2025-01-16 12:10:24,032 - DEBUG - volIdx 153 added to resultsServer : {'average': 441.19}
+2025-01-16 12:10:24,100 - DEBUG - started volIdx 154
+2025-01-16 12:10:26,209 - DEBUG - volIdx: 154 MC proc_time: 1.9717
+2025-01-16 12:10:26,209 - INFO - preprocessed volIdx 154
+2025-01-16 12:10:26,289 - DEBUG - started volIdx 154
+2025-01-16 12:10:26,290 - INFO - analyzed volIdx 154
+2025-01-16 12:10:26,290 - DEBUG - volIdx 154 added to resultsServer : {'average': 443.95}
+2025-01-16 12:10:26,359 - DEBUG - started volIdx 155
+2025-01-16 12:10:28,472 - DEBUG - volIdx: 155 MC proc_time: 1.9737
+2025-01-16 12:10:28,473 - INFO - preprocessed volIdx 155
+2025-01-16 12:10:28,550 - DEBUG - started volIdx 155
+2025-01-16 12:10:28,552 - INFO - analyzed volIdx 155
+2025-01-16 12:10:28,552 - DEBUG - volIdx 155 added to resultsServer : {'average': 444.52}
+2025-01-16 12:10:28,617 - DEBUG - started volIdx 156
+2025-01-16 12:10:30,768 - DEBUG - volIdx: 156 MC proc_time: 2.0124
+2025-01-16 12:10:30,768 - INFO - preprocessed volIdx 156
+2025-01-16 12:10:30,847 - DEBUG - started volIdx 156
+2025-01-16 12:10:30,848 - INFO - analyzed volIdx 156
+2025-01-16 12:10:30,848 - DEBUG - volIdx 156 added to resultsServer : {'average': 444.08}
+2025-01-16 12:10:30,916 - DEBUG - started volIdx 157
+2025-01-16 12:10:33,051 - DEBUG - volIdx: 157 MC proc_time: 1.9953
+2025-01-16 12:10:33,051 - INFO - preprocessed volIdx 157
+2025-01-16 12:10:33,126 - DEBUG - started volIdx 157
+2025-01-16 12:10:33,128 - INFO - analyzed volIdx 157
+2025-01-16 12:10:33,128 - DEBUG - volIdx 157 added to resultsServer : {'average': 442.93}
+2025-01-16 12:10:33,196 - DEBUG - started volIdx 158
+2025-01-16 12:10:35,339 - DEBUG - volIdx: 158 MC proc_time: 1.9990
+2025-01-16 12:10:35,339 - INFO - preprocessed volIdx 158
+2025-01-16 12:10:35,421 - DEBUG - started volIdx 158
+2025-01-16 12:10:35,422 - INFO - analyzed volIdx 158
+2025-01-16 12:10:35,422 - DEBUG - volIdx 158 added to resultsServer : {'average': 443.23}
+2025-01-16 12:10:35,490 - DEBUG - started volIdx 159
+2025-01-16 12:10:37,629 - DEBUG - volIdx: 159 MC proc_time: 1.9987
+2025-01-16 12:10:37,629 - INFO - preprocessed volIdx 159
+2025-01-16 12:10:37,708 - DEBUG - started volIdx 159
+2025-01-16 12:10:37,709 - INFO - analyzed volIdx 159
+2025-01-16 12:10:37,709 - DEBUG - volIdx 159 added to resultsServer : {'average': 443.9}
+2025-01-16 12:10:37,779 - DEBUG - started volIdx 160
+2025-01-16 12:10:39,905 - DEBUG - volIdx: 160 MC proc_time: 1.9871
+2025-01-16 12:10:39,905 - INFO - preprocessed volIdx 160
+2025-01-16 12:10:39,987 - DEBUG - started volIdx 160
+2025-01-16 12:10:39,988 - INFO - analyzed volIdx 160
+2025-01-16 12:10:39,989 - DEBUG - volIdx 160 added to resultsServer : {'average': 444.22}
+2025-01-16 12:10:40,057 - DEBUG - started volIdx 161
+2025-01-16 12:10:42,194 - DEBUG - volIdx: 161 MC proc_time: 1.9986
+2025-01-16 12:10:42,194 - INFO - preprocessed volIdx 161
+2025-01-16 12:10:42,275 - DEBUG - started volIdx 161
+2025-01-16 12:10:42,276 - INFO - analyzed volIdx 161
+2025-01-16 12:10:42,276 - DEBUG - volIdx 161 added to resultsServer : {'average': 444.43}
+2025-01-16 12:10:42,344 - DEBUG - started volIdx 162
+2025-01-16 12:10:44,492 - DEBUG - volIdx: 162 MC proc_time: 2.0075
+2025-01-16 12:10:44,493 - INFO - preprocessed volIdx 162
+2025-01-16 12:10:44,570 - DEBUG - started volIdx 162
+2025-01-16 12:10:44,571 - INFO - analyzed volIdx 162
+2025-01-16 12:10:44,572 - DEBUG - volIdx 162 added to resultsServer : {'average': 443.62}
+2025-01-16 12:10:44,640 - DEBUG - started volIdx 163
+2025-01-16 12:10:46,774 - DEBUG - volIdx: 163 MC proc_time: 1.9952
+2025-01-16 12:10:46,774 - INFO - preprocessed volIdx 163
+2025-01-16 12:10:46,854 - DEBUG - started volIdx 163
+2025-01-16 12:10:46,855 - INFO - analyzed volIdx 163
+2025-01-16 12:10:46,855 - DEBUG - volIdx 163 added to resultsServer : {'average': 441.53}
+2025-01-16 12:10:46,924 - DEBUG - started volIdx 164
+2025-01-16 12:10:49,040 - DEBUG - volIdx: 164 MC proc_time: 1.9778
+2025-01-16 12:10:49,040 - INFO - preprocessed volIdx 164
+2025-01-16 12:10:49,120 - DEBUG - started volIdx 164
+2025-01-16 12:10:49,122 - INFO - analyzed volIdx 164
+2025-01-16 12:10:49,122 - DEBUG - volIdx 164 added to resultsServer : {'average': 440.23}
+2025-01-16 12:10:49,190 - DEBUG - started volIdx 165
+2025-01-16 12:10:51,320 - DEBUG - volIdx: 165 MC proc_time: 1.9920
+2025-01-16 12:10:51,320 - INFO - preprocessed volIdx 165
+2025-01-16 12:10:51,398 - DEBUG - started volIdx 165
+2025-01-16 12:10:51,399 - INFO - analyzed volIdx 165
+2025-01-16 12:10:51,399 - DEBUG - volIdx 165 added to resultsServer : {'average': 440.08}
+2025-01-16 12:10:51,467 - DEBUG - started volIdx 166
+2025-01-16 12:10:53,589 - DEBUG - volIdx: 166 MC proc_time: 1.9833
+2025-01-16 12:10:53,589 - INFO - preprocessed volIdx 166
+2025-01-16 12:10:53,668 - DEBUG - started volIdx 166
+2025-01-16 12:10:53,670 - INFO - analyzed volIdx 166
+2025-01-16 12:10:53,670 - DEBUG - volIdx 166 added to resultsServer : {'average': 440.23}
+2025-01-16 12:10:53,738 - DEBUG - started volIdx 167
+2025-01-16 12:10:55,868 - DEBUG - volIdx: 167 MC proc_time: 1.9895
+2025-01-16 12:10:55,868 - INFO - preprocessed volIdx 167
+2025-01-16 12:10:55,946 - DEBUG - started volIdx 167
+2025-01-16 12:10:55,947 - INFO - analyzed volIdx 167
+2025-01-16 12:10:55,947 - DEBUG - volIdx 167 added to resultsServer : {'average': 440.18}
+2025-01-16 12:56:25,353 - INFO - Setting: analysisChoice: Average
+2025-01-16 12:56:25,353 - INFO - Setting: dashboardClientPort: 5558
+2025-01-16 12:56:25,353 - INFO - Setting: dashboardPort: 5557
+2025-01-16 12:56:25,354 - INFO - Setting: dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
+2025-01-16 12:56:25,354 - INFO - Setting: estimateMotion: True
+2025-01-16 12:56:25,354 - INFO - Setting: launchDashboard: False
+2025-01-16 12:56:25,354 - INFO - Setting: layerMaskDeep: None
+2025-01-16 12:56:25,354 - INFO - Setting: layerMaskMiddle: None
+2025-01-16 12:56:25,354 - INFO - Setting: layerMaskSuperior: None
+2025-01-16 12:56:25,354 - INFO - Setting: maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
+2025-01-16 12:56:25,354 - INFO - Setting: maskIsWeighted: False
+2025-01-16 12:56:25,354 - INFO - Setting: numTimepts: 168
+2025-01-16 12:56:25,354 - INFO - Setting: outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+2025-01-16 12:56:25,354 - INFO - Setting: preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
+2025-01-16 12:56:25,354 - INFO - Setting: pynealHost: 127.0.0.1
+2025-01-16 12:56:25,354 - INFO - Setting: pynealHostIP: 127.0.1.1
+2025-01-16 12:56:25,354 - INFO - Setting: pynealScannerPort: 5556
+2025-01-16 12:56:25,354 - INFO - Setting: referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
+2025-01-16 12:56:25,354 - INFO - Setting: referenceVolume: 0
+2025-01-16 12:56:25,354 - INFO - Setting: resultsServerPort: 5555
+2025-01-16 12:56:25,354 - INFO - Setting: pynealDir: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal
+2025-01-16 12:56:25,354 - INFO - Setting: seriesOutputDir: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_069
+2025-01-16 12:56:25,354 - INFO - Setting: run_ref_img: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_069/ref_img.nii
+2025-01-16 12:56:25,354 - INFO - Setting: xfrm_file: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_069/ref2run_ref.mat
+2025-01-16 12:56:25,355 - DEBUG - bound to 127.0.0.1:5556
+2025-01-16 12:56:25,355 - INFO - Scan Receiver Server alive and listening....
+2025-01-16 12:56:25,355 - DEBUG - Starting Scan Receiver
+2025-01-16 12:56:25,356 - DEBUG - bound to 0.0.0.0:5555
+2025-01-16 12:56:25,356 - INFO - Results Server alive and listening....
+2025-01-16 12:56:25,356 - DEBUG - Starting Results Server
+2025-01-16 12:57:14,994 - INFO - Setting: analysisChoice: Average
+2025-01-16 12:57:14,994 - INFO - Setting: dashboardClientPort: 5558
+2025-01-16 12:57:14,994 - INFO - Setting: dashboardPort: 5557
+2025-01-16 12:57:14,994 - INFO - Setting: dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
+2025-01-16 12:57:14,994 - INFO - Setting: estimateMotion: True
+2025-01-16 12:57:14,994 - INFO - Setting: launchDashboard: False
+2025-01-16 12:57:14,994 - INFO - Setting: layerMaskDeep: None
+2025-01-16 12:57:14,994 - INFO - Setting: layerMaskMiddle: None
+2025-01-16 12:57:14,994 - INFO - Setting: layerMaskSuperior: None
+2025-01-16 12:57:14,994 - INFO - Setting: maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
+2025-01-16 12:57:14,994 - INFO - Setting: maskIsWeighted: False
+2025-01-16 12:57:14,994 - INFO - Setting: numTimepts: 168
+2025-01-16 12:57:14,994 - INFO - Setting: outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+2025-01-16 12:57:14,994 - INFO - Setting: preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
+2025-01-16 12:57:14,994 - INFO - Setting: pynealHost: 127.0.0.1
+2025-01-16 12:57:14,994 - INFO - Setting: pynealHostIP: 127.0.1.1
+2025-01-16 12:57:14,994 - INFO - Setting: pynealScannerPort: 5556
+2025-01-16 12:57:14,994 - INFO - Setting: referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
+2025-01-16 12:57:14,995 - INFO - Setting: referenceVolume: 0
+2025-01-16 12:57:14,995 - INFO - Setting: resultsServerPort: 5555
+2025-01-16 12:57:14,995 - INFO - Setting: pynealDir: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal
+2025-01-16 12:57:14,995 - INFO - Setting: seriesOutputDir: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_070
+2025-01-16 12:57:14,995 - INFO - Setting: run_ref_img: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_070/ref_img.nii
+2025-01-16 12:57:14,995 - INFO - Setting: xfrm_file: /home/meduser/realTimefMRI/workspace/rttest/data/pyneal_070/ref2run_ref.mat
+2025-01-16 12:57:14,996 - DEBUG - bound to 127.0.0.1:5556
+2025-01-16 12:57:14,996 - INFO - Scan Receiver Server alive and listening....
+2025-01-16 12:57:14,996 - DEBUG - Starting Scan Receiver
+2025-01-16 12:57:14,996 - DEBUG - bound to 0.0.0.0:5555
+2025-01-16 12:57:14,996 - INFO - Results Server alive and listening....
+2025-01-16 12:57:14,996 - DEBUG - Starting Results Server
+2025-01-16 12:57:15,144 - DEBUG - scanner socket connected to Pyneal-Scanner
+2025-01-16 12:57:21,364 - DEBUG - received volHeader volIdx 0
+2025-01-16 12:57:21,364 - DEBUG - Image Matrix dims: (240, 240, 36, 168)
+2025-01-16 12:57:21,505 - DEBUG - Scan started
+2025-01-16 12:57:21,861 - INFO - received volIdx 0

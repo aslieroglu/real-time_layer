@@ -322,49 +322,6 @@ class MotionProcessor():
         rms = np.sqrt((1 / 5) * R**2 * A.T.dot(A).trace() + t.T.dot(t))
 
         return rms
-    
-    #chatgpt
-
-    def process_volume(preprocessor, vol, volIdx):
-        """
-        Wrapper to process a single volume using the preprocessor.
-        This includes motion correction and dashboard updates.
-        """
-        return preprocessor.runPreprocessing(vol, volIdx)
-
-    def main_pipeline(volumes, preprocessor, max_workers=4):
-        """
-        Main pipeline to process volumes in parallel.
-
-        Parameters:
-        ----------
-        volumes : list
-            List of volumes to process.
-        preprocessor : Preprocessor
-            Instance of the Preprocessor class.
-        max_workers : int
-            Number of worker threads for parallel processing.
-
-        """
-        results = []
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            # Submit motion correction tasks for all volumes
-            future_to_volIdx = {
-                executor.submit(process_volume, preprocessor, vol, volIdx): volIdx
-                for volIdx, vol in enumerate(volumes)
-            }
-
-            # Process completed tasks as they finish
-            for future in as_completed(future_to_volIdx):
-                volIdx = future_to_volIdx[future]
-                try:
-                    preprocessed_vol, proc_flag = future.result()
-                    results.append((volIdx, preprocessed_vol, proc_flag))
-                    print(f"Volume {volIdx} processed with flag: {proc_flag}")
-                except Exception as exc:
-                    print(f"Volume {volIdx} generated an exception: {exc}")
-
-        return results
 
 
 # suppress stdOut from verbose functions
