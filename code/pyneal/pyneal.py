@@ -58,35 +58,49 @@ async def produce_volumes(queue, scanReceiver, num_volumes):
     """Add incoming volumes to the queue."""
     for volIdx in range(num_volumes):
         while not scanReceiver.completedVols[volIdx]:
-            await asyncio.sleep(0.1)  # Wait for the volume to arrive
+            await asyncio.sleep(0.01)  # Wait for the volume to arrive
         rawVol = scanReceiver.get_vol(volIdx)
+        logging.info(f"Adding volume {volIdx} to the queue at {time.time()}")
         await queue.put((volIdx, rawVol))  # Add volume to the queue
 
     # Add stop signals for consumers
-    for _ in range(16):  # Number of workers
+    for _ in range(3):  # Number of workers
         await queue.put((None, None))
 
-async def consume_volumes(queue, preprocessor, analyzer, resultsServer):
-    """Process volumes from the queue in parallel."""
+async def consume_volumes(queue, preprocessor, analyzer, resultsServer, max_workers=3):
+    """Process volumes from the queue in a round-robin fashion among workers."""
     loop = asyncio.get_event_loop()
-    with ProcessPoolExecutor(max_workers=16) as pool:  # Use 8 cores
+    current_worker = 0  # To track which worker should process the next task
+
+    # Pre-create worker IDs for logging
+    worker_ids = [f"Worker-{i}" for i in range(max_workers)]
+
+    # Worker task pool
+    with ProcessPoolExecutor(max_workers=max_workers) as pool:
         while True:
+            # Dequeue a task
             volIdx, rawVol = await queue.get()
             if volIdx is None:  # Stop signal
                 break
 
+            # Assign to a worker in round-robin fashion
+            assigned_worker = worker_ids[current_worker]
+            logging.info(f"{assigned_worker} picked up volume {volIdx} at {time.time()}")
 
-            # Wrap the preprocessing function with logging
-            preproc_func = log_worker(preprocessor.runPreprocessing)
+            # Process task using the assigned worker
+            preprocVol, proc_flag = await loop.run_in_executor(pool, preprocessor.runPreprocessing, rawVol, volIdx)
+            logging.info(f"{assigned_worker} preprocessed volume {volIdx}")
 
-            # Run preprocessing in parallel
-            preprocVol, proc_flag = await loop.run_in_executor(pool, preproc_func, rawVol, volIdx)
-
-            # Analyze the preprocessed volume
-            result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
+            # Run analysis
+            result = await loop.run_in_executor(pool, analyzer.runAnalysis, preprocVol, volIdx, proc_flag)
+            logging.info(f"{assigned_worker} analyzed volume {volIdx}")
 
             # Update results server
-            resultsServer.updateResults(volIdx, result)
+            await loop.run_in_executor(None, resultsServer.updateResults, volIdx, result)
+            logging.info(f"{assigned_worker} updated results for volume {volIdx}")
+
+            # Cycle to the next worker
+            current_worker = (current_worker + 1) % max_workers
 
             # Mark queue task as done
             queue.task_done()
