@@ -53,7 +53,8 @@ from threading import Thread
 import logging
 import json
 import atexit
-
+import time
+import multiprocessing as mp
 import numpy as np
 import nibabel as nib
 import zmq
@@ -105,7 +106,8 @@ class ScanReceiver(Thread):
         self.tr = None
 
         # array to keep track of completedVols
-        self.completedVols = np.zeros(self.numTimepts, dtype=bool)
+        #self.completedVols = np.zeros(self.numTimepts, dtype=bool)
+        self.completedVols = mp.Array('b', [False] * self.numTimepts)
 
         # set up socket server to listen for msgs from pyneal-scanner
         self.context = zmq.Context.instance()
@@ -170,6 +172,8 @@ class ScanReceiver(Thread):
 
             # update the completed volumes table
             self.completedVols[volIdx] = True
+            logging.debug(f"ScanReceiver updated completedVols[{volIdx}] to True at {time.time()}")
+
 
             # send response back to Pyneal-Scanner
             if int(volIdx) == self.numTimepts - 1:

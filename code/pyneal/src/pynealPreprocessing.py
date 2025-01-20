@@ -20,6 +20,7 @@ import numpy as np
 import nibabel as nib
 from nipy.algorithms.registration import HistogramRegistration, Rigid, resample
 from concurrent.futures import ThreadPoolExecutor
+from src.scanReceiver import ScanReceiver
 
 
 class Preprocessor:
@@ -204,7 +205,8 @@ class MotionProcessor():
         self.refVolIdx = refVolIdx
         self.refVol = refImageFile
         self.out_dir = out_dir
-        self.out_mc_file = os.path.join(self.out_dir,"temp_mc.nii.gz")
+        #self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{self.volIdx}.nii.gz")
+        #self.out_mc_file = os.path.join(self.out_dir,"temp_mc.nii.gz")
 
         # initialize
         self.refVol_T = Rigid(np.eye(4))
@@ -238,6 +240,8 @@ class MotionProcessor():
             (i.e. time)
 
         """
+        self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{volIdx}.nii.gz")
+        
         do_mc = False
         aligned_img = None
         if volIdx > self.refVolIdx:

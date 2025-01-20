@@ -32,6 +32,7 @@ import numpy as np
 import zmq
 import asyncio
 from concurrent.futures import ProcessPoolExecutor
+import multiprocessing as mp
 
 from src.pynealLogger import createLogger
 from src.scanReceiver import ScanReceiver
@@ -41,101 +42,81 @@ from src.resultsServer import ResultsServer
 import src.GUIs.pynealSetup.setupGUI as setupGUI
 
 
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("processing.log"),  # Log to a file
-        logging.StreamHandler(sys.stdout)       # Also print to the console
-    ]
-)
-
 # Set the Pyneal Root dir based on where this file lives
 pynealDir = os.path.abspath(os.path.dirname(__file__))
 
-async def produce_volumes(queue, scanReceiver, num_volumes):
-    """Add incoming volumes to the queue."""
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.StreamHandler(), logging.FileHandler("multiprocessing_debug.log")]
+)
+
+def produce_volumes(queue, scanReceiver, num_volumes):
+    """Producer process to add volumes to the queue."""
     for volIdx in range(num_volumes):
         while not scanReceiver.completedVols[volIdx]:
-            await asyncio.sleep(0.01)  # Wait for the volume to arrive
+            logging.debug(f"scanReceiver.completedVols[{volIdx}] = {scanReceiver.completedVols[volIdx]}")
+            logging.debug(f"Waiting for volIdx {volIdx} to complete...")
+            time.sleep(0.1)
+        logging.debug(f"Exiting wait loop: completedVols[{volIdx}] is now {scanReceiver.completedVols[volIdx]}")
         rawVol = scanReceiver.get_vol(volIdx)
-        logging.info(f"Adding volume {volIdx} to the queue at {time.time()}")
-        await queue.put((volIdx, rawVol))  # Add volume to the queue
+        logging.info(f"Producer added volume {volIdx} to the queue")
+        queue.put((volIdx, rawVol))
+    # Send stop signals
+    for _ in range(mp.cpu_count()):
+        queue.put((None, None))
+    logging.info("Producer finished adding all tasks.")
 
-    # Add stop signals for consumers
-    for _ in range(3):  # Number of workers
-        await queue.put((None, None))
+def worker(name, queue, preprocessor, analyzer, resultsServer):
+    """Worker process to process volumes from the queue."""
+    while True:
+        volIdx, rawVol = queue.get()
+        if volIdx is None:  # Stop signal
+            logging.info(f"{name} received stop signal.")
+            break
+        logging.info(f"{name} processing volume {volIdx}")
+        try:
+            # Preprocessing
+            preprocVol, proc_flag = preprocessor.runPreprocessing(rawVol, volIdx)
+            logging.info(f"{name} completed preprocessing for volume {volIdx}")
+            # Analysis
+            result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
+            logging.info(f"{name} completed analysis for volume {volIdx}")
+            # Results update
+            resultsServer.updateResults(volIdx, result)
+            logging.info(f"{name} updated results for volume {volIdx}")
+        except Exception as e:
+            logging.error(f"{name} encountered an error with volume {volIdx}: {e}")
 
-async def consume_volumes(queue, preprocessor, analyzer, resultsServer, max_workers=3):
-    """Process volumes from the queue in a round-robin fashion among workers."""
-    loop = asyncio.get_event_loop()
-    current_worker = 0  # To track which worker should process the next task
-
-    # Pre-create worker IDs for logging
-    worker_ids = [f"Worker-{i}" for i in range(max_workers)]
-
-    # Worker task pool
-    with ProcessPoolExecutor(max_workers=max_workers) as pool:
-        while True:
-            # Dequeue a task
-            volIdx, rawVol = await queue.get()
-            if volIdx is None:  # Stop signal
-                break
-
-            # Assign to a worker in round-robin fashion
-            assigned_worker = worker_ids[current_worker]
-            logging.info(f"{assigned_worker} picked up volume {volIdx} at {time.time()}")
-
-            # Process task using the assigned worker
-            preprocVol, proc_flag = await loop.run_in_executor(pool, preprocessor.runPreprocessing, rawVol, volIdx)
-            logging.info(f"{assigned_worker} preprocessed volume {volIdx}")
-
-            # Run analysis
-            result = await loop.run_in_executor(pool, analyzer.runAnalysis, preprocVol, volIdx, proc_flag)
-            logging.info(f"{assigned_worker} analyzed volume {volIdx}")
-
-            # Update results server
-            await loop.run_in_executor(None, resultsServer.updateResults, volIdx, result)
-            logging.info(f"{assigned_worker} updated results for volume {volIdx}")
-
-            # Cycle to the next worker
-            current_worker = (current_worker + 1) % max_workers
-
-            # Mark queue task as done
-            queue.task_done()
-
-async def process_volumes_async(settings, scanReceiver, preprocessor, analyzer, resultsServer):
-    """Orchestrate asynchronous volume processing."""
+def process_volumes_multiprocessing(settings, scanReceiver, preprocessor, analyzer, resultsServer):
+    """Main function to manage producer and workers."""
     num_volumes = settings['numTimepts']
-    queue = asyncio.Queue()
+    queue = mp.Queue()
+    num_workers = min(mp.cpu_count(), 4)  # Use a limited number of workers for testing
 
-    # Run producer and consumer tasks
-    await asyncio.gather(
-        produce_volumes(queue, scanReceiver, num_volumes),
-        consume_volumes(queue, preprocessor, analyzer, resultsServer),
-    )
+    logging.info(f"Starting multiprocessing with {num_workers} workers.")
 
+    # Start producer process
+    producer = mp.Process(target=produce_volumes, args=(queue, scanReceiver, num_volumes))
+    producer.start()
 
-def log_worker(func):
-    """Wrapper to log worker activity."""
-    def wrapper(*args, **kwargs):
+    # Start worker processes
+    workers = []
+    for i in range(num_workers):
+        worker_name = f"Worker-{i}"
+        p = mp.Process(target=worker, args=(worker_name, queue, preprocessor, analyzer, resultsServer))
+        workers.append(p)
+        p.start()
 
-        logging.basicConfig(
-            level=logging.INFO,
-            format="%(asctime)s - %(levelname)s - %(message)s",
-            handlers=[
-                logging.FileHandler("processing.log"),
-                logging.StreamHandler(sys.stdout)
-            ]
-        )
+    # Wait for the producer to finish
+    producer.join()
 
-        pid = os.getpid()
-        logging.info(f"Worker {pid} is processing volume")
-        result = func(*args, **kwargs)
-        logging.info(f"Worker {pid} completed processing")
-        return result
-    return wrapper
+    # Wait for all workers to finish
+    for p in workers:
+        p.join()
+
+    logging.info("All tasks completed.")
 
 def launchPyneal(headless=False, customSettingsFile=None):
     """Main Pyneal Loop.
@@ -271,7 +252,9 @@ def launchPyneal(headless=False, customSettingsFile=None):
 
     ### Process scan  -------------------------------------
     # Launch asynchronous processing
-    asyncio.run(process_volumes_async(settings, scanReceiver, preprocessor, analyzer, resultsServer))
+    process_volumes_multiprocessing(settings, scanReceiver, preprocessor, analyzer, resultsServer)
+
+    #asyncio.run(process_volumes_async(settings, scanReceiver, preprocessor, analyzer, resultsServer))
 
         # # update dashboard (if dashboard is launched)
         # if settings['launchDashboard']:
