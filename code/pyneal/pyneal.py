@@ -56,10 +56,8 @@ def produce_volumes(queue, scanReceiver, num_volumes):
     """Producer process to add volumes to the queue."""
     for volIdx in range(num_volumes):
         while not scanReceiver.completedVols[volIdx]:
-            logging.debug(f"scanReceiver.completedVols[{volIdx}] = {scanReceiver.completedVols[volIdx]}")
             logging.debug(f"Waiting for volIdx {volIdx} to complete...")
             time.sleep(0.1)
-        logging.debug(f"Exiting wait loop: completedVols[{volIdx}] is now {scanReceiver.completedVols[volIdx]}")
         rawVol = scanReceiver.get_vol(volIdx)
         logging.info(f"Producer added volume {volIdx} to the queue")
         queue.put((volIdx, rawVol))

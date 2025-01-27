@@ -19,9 +19,6 @@ import zmq
 import numpy as np
 import nibabel as nib
 from nipy.algorithms.registration import HistogramRegistration, Rigid, resample
-from concurrent.futures import ThreadPoolExecutor
-from src.scanReceiver import ScanReceiver
-
 
 class Preprocessor:
     """ Preprocessing class.
@@ -54,8 +51,7 @@ class Preprocessor:
         # start the motion thread
         self.motionProcessor = MotionProcessor(out_dir=self.settings['seriesOutputDir'],
                                                logger=self.logger,
-                                               refImageFile=self.settings["run_ref_img"],
-                                               refVolIdx=self.settings['referenceVolume']
+                                               refImageFile=self.settings['referenceImage']
                                                )
         # create the socket to send data to dashboard (if dashboard there be)
         if self.settings['launchDashboard']:
@@ -107,22 +103,6 @@ class Preprocessor:
         aligned_img = None
         return_flag = "na"
         #recv_img = nib.Nifti1Image(vol, self.affine)
-        if (self.settings['referenceVolume'] is not None) and (volIdx == self.settings['referenceVolume']):
-            nib.save(nib.Nifti1Image(vol, self.affine), self.settings['run_ref_img'])
-            t_in = datetime.now().timestamp()
-            command = [self.settings['preprocessScript'], 
-                        self.settings['seriesOutputDir'],
-                        self.settings['referenceImage'],
-                        self.settings['maskFile'],
-                        self.settings['run_ref_img'],
-                        self.settings['xfrm_file']]
-                        #self.settings['run_mask']] 
-            subprocess.run(command, check=True)
-            #run_mask = nib.load(self.settings['run_mask'])
-            t_out = datetime.now().timestamp()
-            #nib.save(run_mask, self.settings['run_mask'])
-            self.logger.info(f"preprocessed {volIdx} reference and mask proc_time {t_out-t_in:.4f}")
-            #return run_mask.get_fdata(), "refmask"   
         
         if self.settings['estimateMotion']:
             nib.save(nib.Nifti1Image(vol, self.affine), self.curr_vol_img)
@@ -202,10 +182,9 @@ class MotionProcessor():
 
         """
         self.logger = logger
-        self.refVolIdx = refVolIdx
         self.refVol = refImageFile
         self.out_dir = out_dir
-        #self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{self.volIdx}.nii.gz")
+        self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{self.volIdx}.nii.gz")
         #self.out_mc_file = os.path.join(self.out_dir,"temp_mc.nii.gz")
 
         # initialize
@@ -241,11 +220,11 @@ class MotionProcessor():
 
         """
         self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{volIdx}.nii.gz")
-        
+
         do_mc = False
         aligned_img = None
-        if volIdx > self.refVolIdx:
-            do_mc = True
+        
+        do_mc = True
         
         if do_mc:
             t_in = datetime.now().timestamp()

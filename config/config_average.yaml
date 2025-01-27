@@ -15,6 +15,5 @@ preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyne
 pynealHost: 127.0.0.1
 pynealHostIP: 127.0.1.1
 pynealScannerPort: 5556
-referenceImage: /home/meduser/realTimefMRI/data/20240807.sfassnacht_zyzzyva.24.08.07_10_38_05_DST_1.3.12.2.1107.5.2.0.18951/analysis_s016/s016_bold_mean.nii
-referenceVolume: 0
+referenceImage: /home/meduser/realTimefMRI/workspace/rttest/reference_nifti/reference_image.nii.gz
 resultsServerPort: 5555
