@@ -19,6 +19,7 @@ import zmq
 import numpy as np
 import nibabel as nib
 from nipy.algorithms.registration import HistogramRegistration, Rigid, resample
+import uuid
 
 class Preprocessor:
     """ Preprocessing class.
@@ -47,12 +48,19 @@ class Preprocessor:
         self.skip_volumes = 0 #provision to skip approx. the TRs consumed in the mask preprocessing
         self.src_ref = nib.load(self.settings['referenceImage'])
         self.src_mask = nib.load(self.settings['maskFile'])
+        self.logger.debug(
+            f"Mask stats: mean={np.mean(self.src_mask.get_fdata())}, "
+            f"max={np.max(self.src_mask.get_fdata())}, "
+            f"min={np.min(self.src_mask.get_fdata())}"
+        )
         self.curr_vol_img = os.path.join(self.settings['seriesOutputDir'],"temp.nii.gz")
         # start the motion thread
         self.motionProcessor = MotionProcessor(out_dir=self.settings['seriesOutputDir'],
                                                logger=self.logger,
                                                refImageFile=self.settings['referenceImage']
                                                )
+        
+        
         # create the socket to send data to dashboard (if dashboard there be)
         if self.settings['launchDashboard']:
             self.dashboard = True
@@ -95,6 +103,10 @@ class Preprocessor:
             preprocessed 3D array of voxel data for the current volume
 
         """
+        self.logger.debug(
+            f"runPreprocessing: runPreprocessing: volIdx {volIdx} - Input volume stats: "
+            f"runPreprocessing: mean={np.mean(vol)}, max={np.max(vol)}, min={np.min(vol)}"
+        )
         ### calculate the motion parameters on this volume. motionParams are
         # returned as dictionary with keys for 'rms_abs', and 'rms_rel';
         # NOTE: estimateMotion needs the input vol to be a nibabel nifti obj
@@ -102,14 +114,13 @@ class Preprocessor:
         self.logger.debug('started volIdx {}'.format(volIdx))
         aligned_img = None
         return_flag = "na"
-        #recv_img = nib.Nifti1Image(vol, self.affine)
+        recv_img = nib.Nifti1Image(vol, self.affine)
         
         if self.settings['estimateMotion']:
-            nib.save(nib.Nifti1Image(vol, self.affine), self.curr_vol_img)
+            # nib.save(nib.Nifti1Image(vol, self.affine), self.curr_vol_img)
             with nostdout():
                 motionParams, aligned_img = self.motionProcessor.estimateMotion(
-                    #recv_img,
-                    self.curr_vol_img,
+                    recv_img,
                     volIdx)
 
             ### send to dashboard (if specified)
@@ -181,11 +192,11 @@ class MotionProcessor():
             to. 0-based index (default: 4)
 
         """
-        self.logger = logger
+        self.logger = logger if logger else logging.getLogger('PynealLog')
         self.refVol = refImageFile
         self.out_dir = out_dir
-        self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{self.volIdx}.nii.gz")
-        #self.out_mc_file = os.path.join(self.out_dir,"temp_mc.nii.gz")
+
+        #self.out_mc_file = os.path.join(self.out_dir,"temp_mc.nii.gz")        
 
         # initialize
         self.refVol_T = Rigid(np.eye(4))
@@ -219,7 +230,7 @@ class MotionProcessor():
             (i.e. time)
 
         """
-        self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{volIdx}.nii.gz")
+        # self.out_mc_file = os.path.join(self.out_dir, f"temp_mc_volIdx_{volIdx}.nii.gz")
 
         do_mc = False
         aligned_img = None
@@ -237,14 +248,24 @@ class MotionProcessor():
             #get the MC image
             aligned_img = resample(niiVol, T, self.refVol)
             """
+            # self.logger.debug(
+            #     f"estimateMotion: volIdx {volIdx} - Input volume stats: "
+            #     f"mean={np.mean(nib.load(niiVol).get_fdata())}, "
+            #     f"max={np.max(nib.load(niiVol).get_fdata())}, "
+            #     f"min={np.min(nib.load(niiVol).get_fdata())}"
+            # )            
+            temp_input = f"/dev/shm/input_{uuid.uuid4().hex}.nii.gz"
+            temp_output = f"/dev/shm/out_{uuid.uuid4().hex}.nii.gz"
+            nib.save(niiVol, temp_input)
+
             #FSL subprocess
             command = ["mcflirt",
                        "-in",
-                       niiVol,
+                       temp_input,
                        "-reffile",
                        self.refVol,
                        "-out",
-                       self.out_mc_file,
+                       temp_output,
                        "-spline_final"]
             # command = ["MotionCorrection",
             #             "-referencevolume",
@@ -253,9 +274,21 @@ class MotionProcessor():
             #             self.out_mc_file] #BROCCOLI MC
             subprocess.run(command, check=True)
             t_out = datetime.now().timestamp()
-            aligned_img = nib.load(self.out_mc_file)
+            aligned_img = nib.load(temp_output)
+            self.logger.debug(
+                f"estimateMotion: volIdx {volIdx} - Aligned image stats: "
+                f"mean={np.mean(aligned_img.get_fdata())}, "
+                f"max={np.max(aligned_img.get_fdata())}, "
+                f"min={np.min(aligned_img.get_fdata())}"
+            )
+            # aligned_img.to_filename(f"debug_aligned_volIdx_{volIdx}.nii.gz")
+            # self.logger.debug(f"Saved debug motion-corrected volume: debug_aligned_volIdx_{volIdx}.nii.gz")
             #aligned_img = nib.load("input_mc.nii") #default BROCCOLI outfile has a standard name
             self.logger.debug(f"volIdx: {volIdx} MC proc_time: {t_out - t_in:.4f}")
+            
+            # Cleanup Disk RAM
+            os.remove(temp_input)
+            os.remove(temp_output)
 
         motionParams = {'rms_abs': 0,
                             'rms_rel': 0}

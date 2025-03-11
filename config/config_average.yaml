@@ -3,7 +3,7 @@ dashboardClientPort: 5558
 dashboardPort: 5557
 dicomPath: /home/meduser/realTimefMRI/workspace/rttest/pyneal_test2
 estimateMotion: true
-launchDashboard: false
+launchDashboard: true
 layerMaskDeep: null
 layerMaskMiddle: null
 layerMaskSuperior: null
@@ -11,6 +11,7 @@ maskFile: /home/meduser/realTimefMRI/workspace/rttest/mask.nii
 maskIsWeighted: false
 numTimepts: 168
 outputPath: /home/meduser/realTimefMRI/workspace/rttest/data
+parallel: true
 preprocessScript: /home/meduser/realTimefMRI/workspace/real-time_layer/code/pyneal/src/pynealPreprocessing.py
 pynealHost: 127.0.0.1
 pynealHostIP: 127.0.1.1

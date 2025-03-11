@@ -295,7 +295,7 @@ def initializeSession(pynealScannerDir=None):
     return scannerSettings, scannerDirs
 
 
-def create_pynealSocket(host, port):
+def create_pynealSocket(host, port, get_context=False):
     """ Create a socket that Pyneal Scanner can use to communicate with Pyneal
 
     Create a zero-mq socket to use for communication between
@@ -310,8 +310,12 @@ def create_pynealSocket(host, port):
         messages with Pyneal
 
     """
-    context = zmq.Context.instance()
+    context = zmq.Context.instance()    
     socket = context.socket(zmq.PAIR)
     socket.connect('tcp://{}:{}'.format(host, port))
+    
 
-    return socket
+    if get_context:
+        return socket, context
+    else:
+        return socket

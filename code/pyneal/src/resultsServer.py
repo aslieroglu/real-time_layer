@@ -35,6 +35,7 @@ import json
 import atexit
 import socket
 from threading import Thread
+import multiprocessing as mp
 
 import zmq
 
@@ -61,8 +62,7 @@ class ResultsServer(Thread):
 
         """
         # start the thread upon creation
-        Thread.__init__(self)
-
+        Thread.__init__(self)        
         # set up logger
         self.logger = logging.getLogger('PynealLog')
 

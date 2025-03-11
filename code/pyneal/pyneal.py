@@ -24,15 +24,15 @@ import subprocess
 import atexit
 import webbrowser as web
 import socket
-import logging
+import json
 
 import yaml
 import nibabel as nib
 import numpy as np
 import zmq
-import asyncio
-from concurrent.futures import ProcessPoolExecutor
-import multiprocessing as mp
+import uuid
+import subprocess
+import logging
 
 from src.pynealLogger import createLogger
 from src.scanReceiver import ScanReceiver
@@ -41,81 +41,362 @@ from src.pynealAnalysis import Analyzer
 from src.resultsServer import ResultsServer
 import src.GUIs.pynealSetup.setupGUI as setupGUI
 
+# Parallel Processing Libraries
+import multiprocessing as mp
 
+scan_queue = mp.Queue()              # Queue for incoming scans
+result_queue = mp.Queue()            #
+shared_ns = mp.Manager().Namespace() # shared namespace for sharing common variables across processes
+
+NUM_WORKERS = 2           
+  
 # Set the Pyneal Root dir based on where this file lives
 pynealDir = os.path.abspath(os.path.dirname(__file__))
 
-# Configure logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(), logging.FileHandler("multiprocessing_debug.log")]
-)
+def preProcessVol(vol, volIdx, affine, ref, startTime):
+    logger = logging.getLogger('PynealLog')
+    aligned_img = None
+    niiVol = nib.Nifti1Image(vol, affine)
+    temp_input = f"/dev/shm/input_{uuid.uuid4().hex}.nii.gz"
+    temp_output = f"/dev/shm/out_{uuid.uuid4().hex}.nii.gz"
+    nib.save(niiVol, temp_input)
+    
+    command_start = time.time()
+    #FSL subprocess
+    command = ["mcflirt",
+                "-in",
+                temp_input,
+                "-reffile",
+                ref,
+                "-out",
+                temp_output,
+                "-spline_final"]
+    subprocess.run(command, check=True) # Possibly improve this
+    command_done = time.time()
+    logger.info(f"Ran commmand for vol {volIdx} in time {command_done - command_start:.2f}")
+    aligned_img = nib.load(temp_output)
+    logger.debug(
+                f"estimateMotion: volIdx {volIdx} - Aligned image stats: "
+                f"mean={np.mean(aligned_img.get_fdata())}, "
+                f"max={np.max(aligned_img.get_fdata())}, "
+                f"min={np.min(aligned_img.get_fdata())}"
+        )
+    elapsedTime = time.time() - startTime
+    logger.info(f"Completed processing Vol {volIdx} at t = {np.round(elapsedTime, decimals=2)}")
+    
+    return aligned_img.get_fdata()
 
-def produce_volumes(queue, scanReceiver, num_volumes):
-    """Producer process to add volumes to the queue."""
-    for volIdx in range(num_volumes):
-        while not scanReceiver.completedVols[volIdx]:
-            logging.debug(f"Waiting for volIdx {volIdx} to complete...")
-            time.sleep(0.1)
-        rawVol = scanReceiver.get_vol(volIdx)
-        logging.info(f"Producer added volume {volIdx} to the queue")
-        queue.put((volIdx, rawVol))
-    # Send stop signals
-    for _ in range(mp.cpu_count()):
-        queue.put((None, None))
-    logging.info("Producer finished adding all tasks.")
+def worker_process(scan_queue, result_queue, ref, startTime, shared_ns):
+    """ Worker that continuously listens for scans in queue and 
+    processes them as they are available.
+    
+    Parameters
+    ----------
+    scan_queue : mp.Queue() 
 
-def worker(name, queue, preprocessor, analyzer, resultsServer):
-    """Worker process to process volumes from the queue."""
+    """
+    logger = logging.getLogger('PynealLog')
     while True:
-        volIdx, rawVol = queue.get()
-        if volIdx is None:  # Stop signal
-            logging.info(f"{name} received stop signal.")
+        task = scan_queue.get()
+        if task is None:
             break
-        logging.info(f"{name} processing volume {volIdx}")
-        try:
-            # Preprocessing
-            preprocVol, proc_flag = preprocessor.runPreprocessing(rawVol, volIdx)
-            logging.info(f"{name} completed preprocessing for volume {volIdx}")
-            # Analysis
-            result = analyzer.runAnalysis(preprocVol, volIdx, proc_flag)
-            logging.info(f"{name} completed analysis for volume {volIdx}")
-            # Results update
-            resultsServer.updateResults(volIdx, result)
-            logging.info(f"{name} updated results for volume {volIdx}")
-        except Exception as e:
-            logging.error(f"{name} encountered an error with volume {volIdx}: {e}")
+        
+        volIdx, vol = task
+        logger.info(f"[Worker-{os.getpid()}] Processing scan {volIdx}... at t = {np.round(time.time() - startTime, 2)}")
+        start_time = time.time()
+        processedVol = preProcessVol(vol, volIdx, shared_ns.affine, ref, startTime) # Take care of output later...
+        elapsedTime = time.time() - start_time
+        result_queue.put((volIdx, elapsedTime))
+            
+    logger.info(f"[Worker-{os.getpid()}] Exiting.")
 
-def process_volumes_multiprocessing(settings, scanReceiver, preprocessor, analyzer, resultsServer):
-    """Main function to manage producer and workers."""
-    num_volumes = settings['numTimepts']
-    queue = mp.Queue()
-    num_workers = min(mp.cpu_count(), 4)  # Use a limited number of workers for testing
+def scanner_process(scan_queue, result_queue, settings, shared_ns):
+    logger = logging.getLogger('PynealLog')
+    logger.info("Scanner Process Started!")
+    # get vars from settings dict
+    numTimepts = int(settings['numTimepts'])
+    seriesOutputDir = settings['seriesOutputDir']
+    # set up socket server to listen for msgs from pyneal-scanner
+    host = settings['pynealHost']
+    scannerPort = settings['pynealScannerPort']
+    context = zmq.Context.instance()
+    scannerSocket = context.socket(zmq.PAIR)
+    scannerSocket.setsockopt(zmq.LINGER, 0)
+    scannerSocket.bind('tcp://{}:{}'.format(host, scannerPort))
+    logger.info('bound to {}:{}'.format(host, scannerPort))
+    logger.info('Scan Receiver Server alive and listening....')
+    
+    atexit.register(destroy_context, scannerSocket, context)
 
-    logging.info(f"Starting multiprocessing with {num_workers} workers.")
+    # class config vars
+    scanStarted = False
+    shared_ns.affine = None
+    tr = None
+    
+    while True:
+        print('Waiting for connection from pyneal_scanner')
+        msg = scannerSocket.recv_string()
+        # msg = scannerSocket.recv()
+        print('Received message: ', msg)
+        scannerSocket.send_string(msg)
+        break
+    logger.debug('scanner socket connected to Pyneal-Scanner')
+    
+    while True:
+        volHeader = scannerSocket.recv_json(flags=0)
+        logger.debug(f"Received volHeader: volIdx={volHeader['volIdx']}, "
+                f"dtype={volHeader['dtype']}, shape={volHeader['shape']}, "
+                f"TR={volHeader.get('TR', 'N/A')}")
+        volIdx = volHeader['volIdx']
+        logger.debug('received volHeader volIdx {}'.format(volIdx));
 
-    # Start producer process
-    producer = mp.Process(target=produce_volumes, args=(queue, scanReceiver, num_volumes))
-    producer.start()
+        # if this is the first vol, initialize the matrix and store the affine
+        if not scanStarted:
+            shared_ns.affine = np.array(json.loads(volHeader['affine']))
+            tr = json.loads(volHeader['TR'])
 
-    # Start worker processes
-    workers = []
-    for i in range(num_workers):
-        worker_name = f"Worker-{i}"
-        p = mp.Process(target=worker, args=(worker_name, queue, preprocessor, analyzer, resultsServer))
-        workers.append(p)
+            scanStarted = True     # toggle the scanStarted flag
+
+        # now listen for the image data as a string buffer
+        voxelArray = scannerSocket.recv(flags=0, copy=False, track=False)
+        
+        # send response back to Pyneal-Scanner
+        response = "received volIdx {}".format(volIdx) 
+        response += " STOP" if int(volIdx) == numTimepts - 1 else ""
+        scannerSocket.send_string(response)
+        logger.info(response)
+        
+        # format the voxel array according to params from the vol header
+        voxelArray = np.frombuffer(voxelArray, dtype=volHeader['dtype'])
+        voxelArray = voxelArray.reshape(volHeader['shape'])
+
+        logger.debug(
+            f"Right after voxelArray reshape: Received volume data for volIdx {volIdx}: "
+            f"mean={np.mean(voxelArray)}, max={np.max(voxelArray)}, min={np.min(voxelArray)}"
+        )
+        
+        # Push scanned volIdx into queue for processing
+        scan_queue.put((volIdx, voxelArray))
+        
+        # End Loop if all timepoints have been received
+        if int(volIdx) == numTimepts - 1:
+            break
+    
+     
+    # Signal workers to stop
+    for _ in range(NUM_WORKERS):
+        scan_queue.put(None)  # None signals termination
+    
+    # Signal dashboard to stop
+    result_queue.put(None)
+    
+
+def dashboard_process(result_queue, settings):
+    logger = logging.getLogger('PynealLog')
+    logger.info("Started dashboard process")
+     ### Launch Real-time Scan Monitor GUI
+
+    ### launch the dashboard app as its own separate process. Once called,
+    # it will set up a zmq socket to listen for inter-process messages on
+    # the 'dashboardPort', and will host the dashboard website on the
+    # 'dashboardClientPort'
+    pythonExec = sys.executable     # path to the local python executable
+    p = subprocess.Popen([
+                    pythonExec,
+                    join(pynealDir,
+                            'src/GUIs/pynealDashboard/pynealDashboard.py'),
+                    str(settings['dashboardPort']),
+                    str(settings['dashboardClientPort'])
+                    ])
+
+    # Set up the socket to communicate with the dashboard server
+    dashboardContext = zmq.Context.instance()
+    dashboardSocket = dashboardContext.socket(zmq.REQ)
+    dashboardSocket.connect('tcp://127.0.0.1:{}'.format(settings['dashboardPort']))
+
+    # make sure subprocess and dashboard ports get killed at close
+    atexit.register(cleanup, p, dashboardSocket, dashboardContext)
+
+    # Open dashboard in browser
+    # s = '127.0.0.1:{}'.format(settings['dashboardClientPort'])
+    # print(s)
+    # web.open('127.0.0.1:{}'.format(settings['dashboardClientPort']))
+
+    # send configuration settings to dashboard
+    configDict = {'mask': os.path.split(settings['maskFile'])[1],
+                    'analysisChoice': (settings['analysisChoice'] if settings['analysisChoice'] in ['Average', 'Median'] else 'Custom'),
+                    'volDims': str(nib.load(settings['maskFile']).shape),
+                    'numTimepts': settings['numTimepts'],
+                    'outputPath': settings['seriesOutputDir']}
+    sendToDashboard(dashboardSocket,
+                    topic='configSettings',
+                    content=configDict)
+    while True:
+        task = result_queue.get()
+        if task is None:
+            break
+        volIdx, elapsedTime = task
+        logger.info(f"Dashboard process got {volIdx}")
+        # completed volIdx
+        sendToDashboard(dashboardSocket, topic='volIdx', content=volIdx)
+
+        # timePerVol
+        timingParams = {'volIdx': volIdx,
+                        'processingTime': np.round(elapsedTime, decimals=3)}
+        sendToDashboard(dashboardSocket, topic='timePerVol',
+                        content=timingParams)
+        
+    logger.info("Closing Dashboard.")
+
+def parallelPyneal(settings):
+    logger = logging.getLogger('PynealLog')
+    startTime = time.time()
+    # Start the scan receiver in a separate process
+    logger.info("Starting scanner process...")
+    
+    
+    receiver_proc = mp.Process(target=scanner_process, args=(scan_queue, result_queue, settings, shared_ns))
+    receiver_proc.start()
+    if settings['launchDashboard']:
+        logger.info("Starting dashboard process...")
+        dashboard_proc = mp.Process(target=dashboard_process, args=(result_queue, settings))
+        dashboard_proc.start()
+    
+    worker_procs = []
+    for _ in range(NUM_WORKERS):
+        p = mp.Process(target=worker_process, args=(scan_queue,
+                                                    result_queue, 
+                                                    settings['referenceImage'], 
+                                                    startTime, 
+                                                    shared_ns))
         p.start()
-
-    # Wait for the producer to finish
-    producer.join()
-
-    # Wait for all workers to finish
-    for p in workers:
+        worker_procs.append(p)
+    
+    # Wait for all processes to finish
+    receiver_proc.join()
+    for p in worker_procs:
         p.join()
+    if settings['launchDashboard']:
+        dashboard_proc.join()
+        
+    logger.info("[Main] All processes completed.")
 
-    logging.info("All tasks completed.")
+def serialPyneal(settings):
+    logger = logging.getLogger('PynealLog')
+    ### Launch Threads -------------------------------------
+    # Scan Receiver Thread, listens for incoming volume data, builds matrix
+    scanReceiver = ScanReceiver(settings)
+    scanReceiver.daemon = True
+    scanReceiver.start()
+    logger.debug('Starting Scan Receiver')
 
+    # Results Server Thread, listens for requests from end-user (e.g. task
+    # presentation), and sends back results
+    resultsServer = ResultsServer(settings)
+    resultsServer.daemon = True
+    resultsServer.start()
+    logger.debug('Starting Results Server')
+
+    ### Create processing objects --------------------------
+    # Class to handle all preprocessing
+    preprocessor = Preprocessor(settings)
+    
+     # Class to handle all analysis
+    analyzer = Analyzer(settings)
+
+     ### Launch Real-time Scan Monitor GUI
+    if settings['launchDashboard']:
+        ### launch the dashboard app as its own separate process. Once called,
+        # it will set up a zmq socket to listen for inter-process messages on
+        # the 'dashboardPort', and will host the dashboard website on the
+        # 'dashboardClientPort'
+        pythonExec = sys.executable     # path to the local python executable
+        p = subprocess.Popen([
+                        pythonExec,
+                        join(pynealDir,
+                             'src/GUIs/pynealDashboard/pynealDashboard.py'),
+                        str(settings['dashboardPort']),
+                        str(settings['dashboardClientPort'])
+                        ])
+
+        # Set up the socket to communicate with the dashboard server
+        dashboardContext = zmq.Context.instance()
+        dashboardSocket = dashboardContext.socket(zmq.REQ)
+        dashboardSocket.connect('tcp://127.0.0.1:{}'.format(settings['dashboardPort']))
+
+        # make sure subprocess and dashboard ports get killed at close
+        atexit.register(cleanup, p, dashboardSocket, dashboardContext)
+
+        # Open dashboard in browser
+        # s = '127.0.0.1:{}'.format(settings['dashboardClientPort'])
+        # print(s)
+        # web.open('127.0.0.1:{}'.format(settings['dashboardClientPort']))
+
+        # send configuration settings to dashboard
+        configDict = {'mask': os.path.split(settings['maskFile'])[1],
+                      'analysisChoice': (settings['analysisChoice'] if settings['analysisChoice'] in ['Average', 'Median'] else 'Custom'),
+                      'volDims': str(nib.load(settings['maskFile']).shape),
+                      'numTimepts': settings['numTimepts'],
+                      'outputPath': settings['seriesOutputDir']}
+        sendToDashboard(dashboardSocket,
+                        topic='configSettings',
+                        content=configDict)
+        
+    ### Wait For Scan To Start -----------------------------
+    while not scanReceiver.scanStarted:
+        time.sleep(.5)
+    logger.debug('Scan started')
+
+    ### Set up remaining configuration settings after first volume arrives
+    while not scanReceiver.completedVols[0]:
+        time.sleep(.1)
+    preprocessor.set_affine(scanReceiver.get_affine())
+
+    ### Process scan  -------------------------------------
+    # Loop over all expected volumes
+    for volIdx in range(settings['numTimepts']):
+
+        ### make sure this volume has arrived before continuing
+        while not scanReceiver.completedVols[volIdx]:
+            time.sleep(.1)
+
+        ### start timer
+        startTime = time.time()
+
+        ### Retrieve the raw volume
+        rawVol = scanReceiver.get_vol(volIdx)
+        
+        ### Preprocess the raw volume
+        preprocVol, procflag = preprocessor.runPreprocessing(rawVol, volIdx)
+
+        ### Analyze this volume
+        result = analyzer.runAnalysis(preprocVol, volIdx, procflag)
+
+        # send result to the resultsServer
+        resultsServer.updateResults(volIdx, result)
+
+        ### Calculate processing time for this volume
+        elapsedTime = time.time() - startTime
+
+        # update dashboard (if dashboard is launched)
+        if settings['launchDashboard']:
+            # completed volIdx
+            sendToDashboard(dashboardSocket, topic='volIdx', content=volIdx)
+
+            # timePerVol
+            timingParams = {'volIdx': volIdx,
+                            'processingTime': np.round(elapsedTime, decimals=3)}
+            sendToDashboard(dashboardSocket, topic='timePerVol',
+                            content=timingParams)
+
+    ### Save output files
+    resultsServer.saveResults()
+    scanReceiver.saveResults()
+
+    ### Figure out how to clean everything up nicely at the end
+    resultsServer.killServer()
+    scanReceiver.killServer()
+    
 def launchPyneal(headless=False, customSettingsFile=None):
     """Main Pyneal Loop.
 
@@ -176,108 +457,10 @@ def launchPyneal(headless=False, customSettingsFile=None):
     # write all settings to log
     for k in settings:
         logger.info('Setting: {}: {}'.format(k, settings[k]))
-    print('-'*20)
-
-    ### Launch Threads -------------------------------------
-    # Scan Receiver Thread, listens for incoming volume data, builds matrix
-    scanReceiver = ScanReceiver(settings)
-    scanReceiver.daemon = True
-    scanReceiver.start()
-    logger.debug('Starting Scan Receiver')
-
-    # Results Server Thread, listens for requests from end-user (e.g. task
-    # presentation), and sends back results
-    resultsServer = ResultsServer(settings)
-    resultsServer.daemon = True
-    resultsServer.start()
-    logger.debug('Starting Results Server')
-
-    ### Create processing objects --------------------------
-    # Class to handle all preprocessing
-    preprocessor = Preprocessor(settings)
-
-    # Class to handle all analysis
-    analyzer = Analyzer(settings)
-
-    ### Launch Real-time Scan Monitor GUI
-    if settings['launchDashboard']:
-        ### launch the dashboard app as its own separate process. Once called,
-        # it will set up a zmq socket to listen for inter-process messages on
-        # the 'dashboardPort', and will host the dashboard website on the
-        # 'dashboardClientPort'
-        pythonExec = sys.executable     # path to the local python executable
-        p = subprocess.Popen([
-                        pythonExec,
-                        join(pynealDir,
-                             'src/GUIs/pynealDashboard/pynealDashboard.py'),
-                        str(settings['dashboardPort']),
-                        str(settings['dashboardClientPort'])
-                        ])
-
-        # Set up the socket to communicate with the dashboard server
-        dashboardContext = zmq.Context.instance()
-        dashboardSocket = dashboardContext.socket(zmq.REQ)
-        dashboardSocket.connect('tcp://127.0.0.1:{}'.format(settings['dashboardPort']))
-
-        # make sure subprocess and dashboard ports get killed at close
-        atexit.register(cleanup, p, dashboardContext)
-
-        # Open dashboard in browser
-        s = '127.0.0.1:{}'.format(settings['dashboardClientPort'])
-        print(s)
-        web.open('127.0.0.1:{}'.format(settings['dashboardClientPort']))
-
-        # send configuration settings to dashboard
-        configDict = {'mask': (None if settings['analysisChoice'] == 'Layers' else os.path.split(settings['maskFile'])[1]),
-                      'analysisChoice': (settings['analysisChoice'] if settings['analysisChoice'] in ['Average', 'Median','Layers'] else 'Custom'),
-                      'volDims': str(nib.load(settings['layerMaskSuperior']).shape) if settings['analysisChoice'] == 'Layers' else 
-                                    str(nib.load(settings['maskFile']).shape),
-                      'numTimepts': settings['numTimepts'],
-                      'outputPath': outputDir}
-        sendToDashboard(dashboardSocket,
-                        topic='configSettings',
-                        content=configDict)
-
-    ### Wait For Scan To Start -----------------------------
-    while not scanReceiver.scanStarted:
-        time.sleep(.5)
-    logger.debug('Scan started')
-
-    ### Set up remaining configuration settings after first volume arrives
-    while not scanReceiver.completedVols[0]:
-        time.sleep(.1)
-    preprocessor.set_affine(scanReceiver.get_affine())
-
-    ### Process scan  -------------------------------------
-    # Launch asynchronous processing
-    process_volumes_multiprocessing(settings, scanReceiver, preprocessor, analyzer, resultsServer)
-
-    #asyncio.run(process_volumes_async(settings, scanReceiver, preprocessor, analyzer, resultsServer))
-
-        # # update dashboard (if dashboard is launched)
-        # if settings['launchDashboard']:
-        #     # completed volIdx
-        #     sendToDashboard(dashboardSocket, topic='volIdx', content=volIdx)
-
-        #     # timePerVol
-        #     timingParams = {'volIdx': volIdx,
-        #                     'processingTime': np.round(elapsedTime, decimals=3)}
-        #     sendToDashboard(dashboardSocket, topic='timePerVol',
-        #                     content=timingParams)
-        #     logger.debug(f"volIdx:{volIdx} total_proc_time:{elapsedTime}")
-
-
-    ### Save output files and stop the scanreceiver server
-    # Saurabh: Increased to ensure server not closed before client's last request
-    #time.sleep(2)
-    time.sleep(3)
-    resultsServer.saveResults()
-    scanReceiver.saveResults()
-    ### Figure out how to clean everything up nicely at the end
-    resultsServer.killServer()
-    scanReceiver.killServer()
-    
-
+    print('-'*20)        
+        
+    parallelPyneal(settings) if settings['parallel'] else serialPyneal(settings)
+        
 
 def sendToDashboard(dashboardSocket, topic=None, content=None):
     """ Send a message to the dashboard
@@ -298,6 +481,7 @@ def sendToDashboard(dashboardSocket, topic=None, content=None):
         dtype will vary depending on topic
 
     """
+
     if topic is None:
         raise Exception('Dashboard message has topic set to None')
     if content is None:
@@ -307,17 +491,20 @@ def sendToDashboard(dashboardSocket, topic=None, content=None):
     msg = {'topic': topic, 'content': content}
 
     # send
+    # print("Sending message as json: {}".format(msg))
     dashboardSocket.send_json(msg)
-    #logger.debug('sent to dashboard: {}'.format(msg))
+    # logger.info('sent to dashboard: {}'.format(msg))
 
     # recv the response (should just be 'success')
+    # print("waiting for response from dashboard socket")
     response = dashboardSocket.recv_string()
     if response != 'success':
         print(response)
         raise Exception('Could not send this dashboard: {}'.format(msg))
     #added by Saurabh
     else:
-        print('Sent to dashboard: {}'.format(msg))
+        pass
+        # print('Successfuly sent msg to dashboard')
 
     #logger.debug('response from dashboard: {}'.format(response))
 
@@ -355,15 +542,21 @@ def createOutputDir(parentDir):
     os.makedirs(outputDir)
     return outputDir
 
+def destroy_context(socket, context):
+    print("Destroying context")
+    socket.close()
+    context.term()
 
-def cleanup(pid, context):
+def cleanup(pid, socket,  context):
 
     # kill dashboard server subprocess
     print('stopping dashboard subprocess')
     pid.terminate()
 
     # kill dashboard client server
-    context.destroy()
+    socket.setsockopt(zmq.LINGER, 0)
+    socket.close()
+    context.term()
 
 
 

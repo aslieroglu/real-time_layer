@@ -34,7 +34,7 @@ class ResultsServer(Thread):
     requested results are available, and return a JSON-formatted message
 
     """
-    def __init__(self, settings):
+    def __init__(self, settings, lock):
         """ Initialize the class
 
         Parameters
@@ -45,6 +45,8 @@ class ResultsServer(Thread):
         """
         # start the thread upon creation
         Thread.__init__(self)
+        
+        self.lock = lock
 
         # configuration parameters
         self.alive = True
@@ -118,8 +120,9 @@ class ResultsServer(Thread):
             volume
 
         """
-        self.results[str(volIdx)] = volResults
-        print('vol {} - {} added to resultsServer'.format(volIdx, volResults))
+        with self.lock:
+            self.results[str(volIdx)] = volResults
+            print('vol {} - {} added to resultsServer'.format(volIdx, volResults))
 
     def requestLookup(self, volIdx):
         """ Lookup results for the requested volume

@@ -27,7 +27,7 @@ app = Flask(__name__)
 with app.app_context():
     eventlet.monkey_patch()
 
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="http://localhost:8080")
 
 # vars to store incoming data
 existingData = {'mask': '',
@@ -67,7 +67,7 @@ class DashboardIPCServer(Thread):
         # get local reference to socket
         self.context = zmq.Context.instance()
         self.ipc_socket = self.context.socket(zmq.REP)
-
+        self.ipc_socket.setsockopt(zmq.LINGER, 0)
         print('dashboard IPC socket binding to port: {}'.format(socketPort))
         self.ipc_socket.bind('tcp://127.0.0.1:{}'.format(socketPort))
 
@@ -172,6 +172,7 @@ class DashboardIPCServer(Thread):
     def killServer(self):
         """ Close the thread by setting the alive flag to False """
         print('shutting down dashboard socket')
+        self.ipc_socket.close()
         self.context.destroy()
         self.alive = False
 
@@ -216,7 +217,7 @@ def launchDashboard(dashboardPort=9998, clientPort=9999):
     dashboardServer.start()
 
     # launch the server
-    socketio.run(app, port=clientPort)
+    socketio.run(app, port=clientPort, )
     # Open dashboard in browser
     #if dashboarServer.alive:
     #    s = '127.0.0.1:{}'.format(settings['dashboardClientPort'])

@@ -1,4 +1,4 @@
-""" Set of classes and methods specific to Siemens scanning environments
+""" Set of classes and methods specific to Siemens XA scanning environments
 
 """
 from __future__ import print_function
@@ -16,32 +16,36 @@ import select
 from threading import Thread
 from queue import Queue
 from inotify_simple import INotify, flags, masks
-import atexit
+
 
 import numpy as np
 import pydicom
 import nibabel as nib
 from nibabel.nicom import dicomreaders
 import zmq
+from datetime import datetime
 
-# regEx for Siemens style file naming
-Siemens_filePattern = re.compile('\d{3}_\d{6}_\d{6}.dcm')
 
-# regEx for pulling the volume field out of the mosaic file name
-Siemens_mosaicVolumeNumberField = re.compile('(?<=\d{6}_)\d{6}')
-Siemens_mosaicSeriesNumberField = re.compile('(?<=\d{3}_)\d{6}(?=_\d{6}.dcm)')
+# regEx for new Siemens XA style file naming 
+# (e.g. 001_000030_000048_1.3.12.2.1107.5.2.61.237204.2024060412405430981227618.dcm)
+Siemens_filePattern = re.compile('^\d{3}_\d{6}_\d{6}_[\d.]{1,64}\.dcm$')
 
+# regEx for pulling the volume field out of the dicom file name
+Siemens_mosaicVolumeNumberField = re.compile('(?<=\d{6}_)\d{6}(?=_[\d.]{1,64}\.dcm$)')
+
+# regEx for pulling the volume field out of the dicom file name
+Siemens_mosaicSeriesNumberField = re.compile('(?<=\d{3}_)\d{6}(?=_\d{6}_[\d.]{1,64}\.dcm$)')
 
 class Siemens_DirStructure():
-    """ Finding the names and paths of series directories in a Siemens scanning
+    """ Finding the names and paths of series directories in a Siemens XA scanning
     environment.
 
-    In Siemens environments, using the ideacmdtool, the scanner is set up to
+    In Siemens XA environments, using the ideacmdtool, the scanner is set up to
     export data in real-time to a shared directory that is accessible from a
-    remote workstation (running Pyneal Scanner). For functional data, Siemens
+    remote workstation (running Pyneal Scanner). For functional data, Siemens XA
     scanners store reconstructed slices images by taking all of the slices for
-    a single volume, and placing them side-by-side in a larger "mosaic" dicom
-    image. A scan will produce one mosaic image per volume.
+    a single volume and placing them in a multi frame dicom. A scan will produce 
+    one multi frame dicom per volume.
 
     For anatomical data, dicom images for each 2D slice will be written as
     separate files, numbered sequentially, and saved in the `sessionDir`.
@@ -49,11 +53,11 @@ class Siemens_DirStructure():
     All dicom images for all scans across a single session will be stored in
     the same directory. We'll call this directory the `sessionDir`.
 
-    A single `sessionDir` will hold all of the mosaic files for all of the
+    A single `sessionDir` will hold all of the dicom files for all of the
     series for the current session. The series number is contained in the
     filename, which follows the pattern:
 
-    [session#]_[series#]_[vol#].dcm
+    [session#]_[series#]_[vol#]_[uniqueid].dcm
 
     These files will appear in real-time as the scan progresses.
 
@@ -104,7 +108,7 @@ class Siemens_DirStructure():
             print('Unique Series: ')
             for series in sorted(self.uniqueSeries):
                 # get list of all dicoms that match this series number
-                thisSeriesDicoms = glob.glob(join(self.sessionDir, ('*_' + series + '_*.dcm')))
+                thisSeriesDicoms = glob.glob(join(self.sessionDir, ('*_' + series + '_*_*.dcm')))
 
                 # get time since last modification for last dicom in list
                 lastModifiedTime = os.stat(thisSeriesDicoms[-1]).st_mtime
@@ -204,7 +208,7 @@ class Siemens_BuildNifti():
         self.niftiImage = None
 
         # make a list of the specified raw dicom mosaic files in this dir
-        rawDicoms = glob.glob(join(self.seriesDir, ('*_' + str(self.seriesNum).zfill(6) + '_*.dcm')))
+        rawDicoms = glob.glob(join(self.seriesDir, ('*_' + str(self.seriesNum).zfill(6) + '_*_*.dcm')))
 
         # figure out what type of image this is, 4d or 3d
         self.scanType = self._determineScanType(rawDicoms[0])
@@ -298,11 +302,11 @@ class Siemens_BuildNifti():
         """ Build a 4D functional image from list of dicom files
 
         Given a list of dicomFile paths, build a 4d functional image. For
-        Siemens scanners, each dicom file is assumed to represent a mosaic
-        image comprised of mulitple slices. This tool will split apart the
-        mosaic images, and construct a 4D nifti object. The 4D nifti object
-        contain a voxel array ordered like RAS+ as well the affine
-        transformation to map between vox and mm space
+        SiemensXA scanners, each dicom file is assumed to represent a dicom
+        image comprised of mulitple slices. This tool will construct a 4D 
+        nifti object. The 4D nifti object contain a voxel array ordered 
+        like RAS+ as well the affine transformation to map between vox and 
+        mm space
 
         Parameters
         ----------
@@ -321,26 +325,27 @@ class Siemens_BuildNifti():
 
         ### Loop over all dicom mosaic files
         nVols = len(dicomFiles)
-        for mosaic_dcm_fname in dicomFiles:
-            ### Parse the mosaic image into a 3D volume
-            # we use the nibabel mosaic_to_nii() method which does a lot of the
-            # heavy-lifting of extracting slices, arranging in a 3D array, and
-            # grabbing the affine
-            dcm = pydicom.dcmread(mosaic_dcm_fname)     # create dicom object
+        acquisition_times = dict()
 
-            # for mosaic files, the instanceNumber tag will correspond to the
+        
+        for dcm_fname in dicomFiles:
+            # read the dicom file
+            dcm = pydicom.dcmread(dcm_fname)
+            DPCS_TO_TAL = np.diag([-1,-1,1,1])
+            dcm_w = dicomreaders.wrapper_from_data(dcm)
+            data = dcm_w.get_data()
+            aff = np.dot(DPCS_TO_TAL,dcm_w.affine)
+
+            thisVol = nib.Nifti1Image(data, aff)
+
+            # instanceNumber tag will correspond to the
             # volume number (using a 1-based indexing, so subtract by 1)
             volIdx = dcm.InstanceNumber - 1
-
-            # convert the dicom object to nii
-            thisVol = dicomreaders.mosaic_to_nii(dcm)
+            acquisition_times[volIdx] = datetime.strptime(dcm.AcquisitionDateTime,'%Y%m%d%H%M%S.%f')
 
             # convert to RAS+
             thisVol_RAS = nib.as_closest_canonical(thisVol)
-
-            if TR is None:
-                TR = dcm.RepetitionTime / 1000
-
+            
             # construct the imageMatrix if it hasn't been made yet
             if imageMatrix is None:
                 imageMatrix = np.zeros(shape=(thisVol_RAS.shape[0],
@@ -353,12 +358,27 @@ class Siemens_BuildNifti():
                 affine = thisVol_RAS.affine
 
             # Add this data to the image matrix
-            imageMatrix[:, :, :, volIdx] = thisVol_RAS.get_fdata()
+            imageMatrix[:, :, :, volIdx] = thisVol_RAS.get_fdata()[:,:,::-1,0]
+            
 
         ### Build a Nifti object
+        print(affine)
+        affine = np.dot(affine, np.array([[ 1 ,0 ,0 ,0],
+                                          [0 ,1 ,0 ,0],
+                                          [0, 0,1,imageMatrix.shape[2]-1],
+                                          [0,0,0,1]]))
+        print(affine)
+        #affine[2][3] = affine[2][3]+128*0.8
+
+        
+        
         funcImage = nib.Nifti1Image(imageMatrix, affine=affine)
         pixDims = np.array(funcImage.header.get_zooms())
-        pixDims[3] = TR
+        
+        if nVols > 1:
+            pixDims[3] = (acquisition_times[1]-acquisition_times[0]).total_seconds()
+        else:
+            pixDims[3] = 1
         funcImage.header.set_zooms(pixDims)
 
         return funcImage
@@ -471,7 +491,7 @@ class Siemens_BuildNifti():
         print('Image saved at: {}'.format(output_path))
 
 
-class Siemens_monitorSessionDirOld(Thread):
+class Siemens_monitorSessionDirOLD(Thread):
     """ Class to monitor for new mosaic images to appear in the sessionDir.
 
     This class will run independently in a separate thread. Each new mosaic
@@ -479,7 +499,7 @@ class Siemens_monitorSessionDirOld(Thread):
     the Queue for further processing
 
     """
-    def __init__(self, sessionDir, seriesNum, dicomQ, interval=.1):
+    def __init__(self, sessionDir, seriesNum, dicomQ, interval=.2):
         """ Initialize the class, and set basic class attributes
 
         Parameters
@@ -514,12 +534,11 @@ class Siemens_monitorSessionDirOld(Thread):
 
     def run(self):
         # function that runs while the Thread is still alive
-        
         while self.alive:
 
             # create a set of all mosaic files with the current series num
             #currentMosaics = set(os.listdir(self.seriesDir))
-            currentMosaics = set(glob.glob(join(self.sessionDir, ('*_' + str(self.seriesNum).zfill(6) + '_*.dcm'))))
+            currentMosaics = set(glob.glob(join(self.sessionDir, ('*_' + str(self.seriesNum).zfill(6) + '_*_*.dcm'))))
 
             # grab only the ones that haven't already been added to the queue
             newMosaics = [f for f in currentMosaics if f not in self.queued_mosaic_files]
@@ -528,9 +547,6 @@ class Siemens_monitorSessionDirOld(Thread):
             for f in newMosaics:
                 mosaic_fname = join(self.sessionDir, f)
                 try:
-                    _, mosaicFile_name = os.path.split(mosaic_fname)
-                    volIdx = int(Siemens_mosaicVolumeNumberField.search(mosaicFile_name).group(0)) - 1
-                    self.logger.info('Putting Volume {} to Queue'.format(volIdx))
                     self.dicomQ.put(mosaic_fname)
                 except:
                     self.logger.error('failed on: {}'.format(mosaic_fname))
@@ -544,7 +560,7 @@ class Siemens_monitorSessionDirOld(Thread):
             self.queued_mosaic_files.update(set(newMosaics))
 
             # pause
-            time.sleep(self.interval)
+            time.sleep(self.interval)        
 
     def get_numMosaicsAdded(self):
         """ Return the cumulative number of mosaic files added to the queue thus far """
@@ -553,7 +569,6 @@ class Siemens_monitorSessionDirOld(Thread):
     def stop(self):
         """ Set the `alive` flag to False, stopping thread """
         self.alive = False
-
 
 class Siemens_monitorSessionDir(Thread):
     """ Class to monitor for new mosaic images to appear in the sessionDir.
@@ -610,25 +625,11 @@ class Siemens_monitorSessionDir(Thread):
         self.dicomQ = dicomQ                # queue to store dicom mosaic files
         self.numMosaicsAdded = 0            # counter to keep track of # mosaics
         self.queued_mosaic_files = set()    # empty set to store names of queued mosaic
-        
-        # Scan existing files before watching
-        self._add_existing_files()
-
-    def _add_existing_files(self):
-        """Scan the directory for existing mosaic files that match the seriesNum and queue them."""
-        for fname in os.listdir(self.sessionDir):
-            if Siemens_mosaicSeriesNumberField.search(fname) and Siemens_mosaicSeriesNumberField.search(fname).group() == self.seriesNum:
-                dicom_fname = join(self.sessionDir, fname)
-                if dicom_fname not in self.queued_mosaic_files:
-                    self.dicomQ.put(dicom_fname)
-                    self.queued_mosaic_files.add(dicom_fname)
-                    self.numMosaicsAdded += 1
-                    self.logger.info(f'Added existing mosaic file: {dicom_fname}')
 
     def run(self):
         # Watch the session directory
         self.__inotify.add_watch(self.sessionDir, flags.CLOSE_WRITE)#flags.CLOSE_WRITE
-        self.logger.info(f"Watching Directory")
+
         # function that runs while the Thread is still alive
         while True:
             # Wait for inotify events or a write in the pipe
@@ -638,7 +639,7 @@ class Siemens_monitorSessionDir(Thread):
 
             # go through all inotify events
             if self.__inotify.fileno() in rlist:
-                for event in self.__inotify.read(timeout=0.1):
+                for event in self.__inotify.read(timeout=0):
                     # check for dicom filename pattern and match with series number
                     print(event.name)
                     if Siemens_mosaicSeriesNumberField.search(event.name).group() == self.seriesNum:
@@ -682,7 +683,7 @@ class Siemens_processMosaic(Thread):
     pynealSocket
 
     """
-    def __init__(self, dicomQ, pynealSocket, interval=.1):
+    def __init__(self, dicomQ, pynealSocket, interval=.2):
         """ Initialize the class
 
         Parameters
@@ -774,11 +775,23 @@ class Siemens_processMosaic(Thread):
         # heavy-lifting of extracting slices, arranging in a 3D array, and
         # grabbing the affine
         dcm = pydicom.dcmread(mosaic_dcm_fname,force=True)     # create dicom object
-        thisVol = dicomreaders.mosaic_to_nii(dcm)   # convert to nifti
+        #thisVol = dicomreaders.mosaic_to_nii(dcm)   # convert to nifti
+
+        # convert to RAS+
+        #thisVol_RAS = nib.as_closest_canonical(thisVol)
+
+        DPCS_TO_TAL = np.diag([-1,-1,1,1])
+        dcm_w = dicomreaders.wrapper_from_data(dcm)
+        data = dcm_w.get_data()
+        aff = np.dot(DPCS_TO_TAL,dcm_w.affine)
+
+        thisVol = nib.Nifti1Image(data, aff)
 
         # convert to RAS+
         thisVol_RAS = nib.as_closest_canonical(thisVol)
 
+
+        
         # get the data as a contiguous array (required for ZMQ)
         thisVol_RAS_data = np.ascontiguousarray(thisVol_RAS.get_fdata())
 
@@ -788,7 +801,7 @@ class Siemens_processMosaic(Thread):
             'dtype': str(thisVol_RAS_data.dtype),
             'shape': thisVol_RAS_data.shape,
             'affine': json.dumps(thisVol_RAS.affine.tolist()),
-            'TR': str(dcm.RepetitionTime / 1000)}
+            'TR': str('3')} ### NEED TO CHANGE HARD CODED PARAMETER TODO!!!
 
         ### Send the voxel array and header to the pynealSocket
         self.sendVolToPynealSocket(volHeader, thisVol_RAS_data)
@@ -818,19 +831,13 @@ class Siemens_processMosaic(Thread):
         self.logger.debug('FROM pynealSocket: {}'.format(pynealSocketResponse))
 
         # check if that was the last volume, and if so, stop
-        if "STOP" in pynealSocketResponse:
-            self.logger.info("STOP signal Received. Stopping Scanner!")
+        if 'STOP' in pynealSocketResponse:
             self.stop()
 
     def stop(self):
         """ set the `alive` flag to False, stopping the thread """
         self.alive = False
 
-def destroy_context(socket, context):
-    print("Destroying context")
-    socket.setsockopt(zmq.LINGER, 0)
-    socket.close()
-    context.term()
 
 def Siemens_launch_rtfMRI(scannerSettings, scannerDirs):
     """ Launch a real-time session in a Siemens environment.
@@ -858,19 +865,15 @@ def Siemens_launch_rtfMRI(scannerSettings, scannerDirs):
 
     # create a socket connection
     from .general_utils import create_pynealSocket
-    pynealSocket, pynealContext = create_pynealSocket(host, port, get_context=True)
-    atexit.register(destroy_context, pynealSocket, pynealContext)
+    pynealSocket = create_pynealSocket(host, port)
     logger.debug('Created pynealSocket')
 
     # wait for remote to connect on pynealSocket
     logger.info('Connecting to pynealSocket...')
     while True:
         msg = 'hello from pyneal_scanner '
-        print("sent message to pynealSocket")
         pynealSocket.send_string(msg)
-        print("waiting for response...")
         msgResponse = pynealSocket.recv_string()
-        # msgResponse = pynealSocket.recv()
         if msgResponse == msg:
             break
     logger.info('pynealSocket connected')
@@ -896,7 +899,3 @@ def Siemens_launch_rtfMRI(scannerSettings, scannerDirs):
     # to pyneal. Start the thread going
     mosaicProcessor = Siemens_processMosaic(dicomQ, pynealSocket)
     mosaicProcessor.start()
-    while mosaicProcessor.is_alive():
-        pass
-    scanWatcher.stop()
-    logger.info('pynealscanner stopped')

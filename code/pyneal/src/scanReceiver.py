@@ -88,7 +88,7 @@ class ScanReceiver(Thread):
         """
         # start the thread upon creation
         Thread.__init__(self)
-
+        
         # set up logger
         self.logger = logging.getLogger('PynealLog')
 
@@ -107,7 +107,7 @@ class ScanReceiver(Thread):
 
         # array to keep track of completedVols
         #self.completedVols = np.zeros(self.numTimepts, dtype=bool)
-        self.completedVols = mp.Array('b', [False] * self.numTimepts)
+        self.completedVols = [False] * self.numTimepts
 
         # set up socket server to listen for msgs from pyneal-scanner
         self.context = zmq.Context.instance()
@@ -149,6 +149,9 @@ class ScanReceiver(Thread):
             # affine - affine to transform vol to RAS+ mm space
             # TR - repetition time of scan
             volHeader = self.scannerSocket.recv_json(flags=0)
+            self.logger.debug(f"Received volHeader: volIdx={volHeader['volIdx']}, "
+                  f"dtype={volHeader['dtype']}, shape={volHeader['shape']}, "
+                  f"TR={volHeader.get('TR', 'N/A')}")
             volIdx = volHeader['volIdx']
             self.logger.debug('received volHeader volIdx {}'.format(volIdx));
 
@@ -167,14 +170,19 @@ class ScanReceiver(Thread):
             voxelArray = np.frombuffer(voxelArray, dtype=volHeader['dtype'])
             voxelArray = voxelArray.reshape(volHeader['shape'])
 
+            self.logger.debug(
+                f"Right after voxelArray reshape: Received volume data for volIdx {volIdx}: "
+                f"mean={np.mean(voxelArray)}, max={np.max(voxelArray)}, min={np.min(voxelArray)}"
+            )
+
+            self.logger.debug(f"Storing volIdx {volIdx} in imageMatrix with mean {np.mean(voxelArray)}")
+            
             # add the volume to the appropriate location in the image matrix
             self.imageMatrix[:, :, :, volIdx] = voxelArray
-
+            
             # update the completed volumes table
             self.completedVols[volIdx] = True
-            logging.debug(f"ScanReceiver updated completedVols[{volIdx}] to True at {time.time()}")
-
-
+                
             # send response back to Pyneal-Scanner
             if int(volIdx) == self.numTimepts - 1:
                 response = 'received volIdx {} STOP'.format(volIdx) #the STOP message stops the pyneal scanner
@@ -215,6 +223,7 @@ class ScanReceiver(Thread):
         """
         return self.affine
 
+
     def get_vol(self, volIdx):
         """ Return the requested vol, if it is here.
 
@@ -250,6 +259,7 @@ class ScanReceiver(Thread):
             2D array of voxel data for the requested slice
 
         """
+        # with self.lock:
         if self.completedVols[volIdx]:
             return self.imageMatrix[:, :, sliceIdx, volIdx]
         else:
@@ -299,6 +309,8 @@ class ScanReceiver(Thread):
         """ Close the thread by setting the alive flag to False """
         self.context.destroy()
         self.alive = False
+
+    
 
 
 if __name__ == '__main__':
